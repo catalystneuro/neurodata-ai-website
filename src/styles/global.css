@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Provisional tokens; replaced by the design system in Phase 1. */
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #111111;
+}
+
+@layer base {
+  body { background: var(--color-paper); color: var(--color-ink); font-family: system-ui, sans-serif; }
+}
