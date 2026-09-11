@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import VideoCard from "../../components/VideoCard.astro";
+import Icon from "../../components/Icon.astro";
+import { withBase } from "../../lib/url";
+import { initials } from "../../lib/format";
+import { lecturesBy, yearsFor } from "../../lib/derive";
+
+export async function getStaticPaths() {
+  const people = await getCollection("people");
+  return people.map((p) => ({ params: { slug: p.id }, props: { person: p } }));
+}
+const { person } = Astro.props;
+const p = person.data;
+const { Content } = await render(person);
+const lectures = await lecturesBy(person.id);
+const years = await yearsFor(person.id);
+const events = (await getCollection("events")).filter((e) => years.includes(e.data.year)).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const roleLabel = p.roles.includes("director") ? "Program director" : p.roles.includes("advisory") && p.roles.includes("faculty") ? "Faculty and advisory committee" : p.roles.includes("advisory") ? "Advisory committee" : p.roles.includes("faculty") ? "Faculty" : "Guest speaker";
+const links = Object.entries(p.links).filter(([, v]) => v) as [string, string][];
+const LINK_ICON: Record<string, string> = { website: "link", github: "github", scholar: "book", orcid: "orcid", bluesky: "bluesky", linkedin: "linkedin" };
+---
+<Base title={p.name} description={`${p.name}, ${p.affiliation}. ${roleLabel} at the NeuroData AI Summer School.`}>
+  <section class="section">
+    <div class="container-x">
+      <a href={withBase("/faculty/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All faculty</a>
+      <div class="pp">
+        {p.photo ? <img class="pp-photo" src={withBase(p.photo)} alt="" width="160" height="160" /> : <span class="pp-photo pp-initials">{initials(p.name)}</span>}
+        <div class="pp-body">
+          <span class="eyebrow">{roleLabel}</span>
+          <h1>{p.name}</h1>
+          <p class="pp-aff">{p.affiliation}{p.title && <span class="soft"> · {p.title}</span>}</p>
+          {p.tools.length > 0 && <div class="pp-tools">{p.tools.map((t) => <span class="chip">{t}</span>)}</div>}
+          {links.length > 0 && <div class="pp-links">{links.map(([k, v]) => <a href={v} target="_blank" rel="noopener" class="pp-link"><Icon name={LINK_ICON[k] ?? "link"} size={16} /> {k === "website" ? "Website" : k[0].toUpperCase() + k.slice(1)}</a>)}</div>}
+          <div class="prose pp-bio"><Content /></div>
+          {events.length > 0 && <p class="pp-years muted">At the school: {events.map((e, i) => <><a href={withBase(`/events/${e.id}/`)} class="text-link">{e.data.year}</a>{i < events.length - 1 ? ", " : ""}</>)}</p>}
+        </div>
+      </div>
+
+      {lectures.length > 0 && (
+        <>
+          <h2 class="h2">Recorded lectures</h2>
+          <div class="grid-3">{lectures.map((l) => <VideoCard lecture={l} />)}</div>
+        </>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .back { margin-bottom: 1.5rem; display: inline-flex; }
+  .back :global(.flip) { transform: rotate(180deg); }
+  .pp { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 640px) { .pp { grid-template-columns: 160px 1fr; gap: 2.5rem; } }
+  .pp-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 1px solid var(--color-line); background: var(--color-pine-50); }
+  .pp-initials { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 2.5rem; color: var(--color-pine); background: var(--color-pine-100); }
+  .pp h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+  .pp-aff { font-size: 1.1rem; color: var(--color-ink-muted); margin-top: 0.4rem; }
+  .pp-tools { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.8rem; }
+  .pp-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.8rem; }
+  .pp-link { color: var(--color-pine); display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 500; }
+  .pp-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .pp-bio { margin-top: 1.25rem; font-size: 1.1rem; }
+  .pp-years { margin-top: 1rem; }
+  .h2 { margin-top: 3.5rem; margin-bottom: 1rem; }
+</style>

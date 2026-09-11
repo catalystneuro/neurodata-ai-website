@@ -1,11 +1,126 @@
 @import "tailwindcss";
 
-/* Provisional tokens; replaced by the design system in Phase 1. */
+@import "@fontsource-variable/source-sans-3";
+@import "@fontsource-variable/source-serif-4";
+@import "@fontsource-variable/source-code-pro";
+
+/*
+  NeuroData AI Summer School design tokens. See DESIGN.md.
+  One brand color (pine) on a near-white ground; gold is a status color only.
+*/
 @theme {
-  --color-paper: #ffffff;
-  --color-ink: #111111;
+  --color-ink: #16211d;
+  --color-pine: #14563f;
+  --color-pine-700: #0f4432;
+  --color-pine-600: #186a4d;
+  --color-pine-400: #3c8f6f;
+  --color-pine-100: #d9ece2;
+  --color-pine-50: #eef6f1;
+  --color-sun: #d9a441;
+  --color-sun-100: #f7ecd0;
+  --color-paper: #f7f8f6;
+  --color-surface: #ffffff;
+  --color-line: #dbe2dd;
+  --color-line-soft: #eaeeeb;
+  --color-ink-muted: #4f5b56;
+  --color-ink-soft: #66716c;
+  --color-dark: #12201a;
+
+  --font-display: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+  --font-sans: "Source Sans 3 Variable", "Source Sans 3", system-ui, sans-serif;
+  --font-mono: "Source Code Pro Variable", "Source Code Pro", ui-monospace, monospace;
 }
 
 @layer base {
-  body { background: var(--color-paper); color: var(--color-ink); font-family: system-ui, sans-serif; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); font-size: 1.05rem; line-height: 1.6; }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; color: var(--color-ink); line-height: 1.12; letter-spacing: -0.01em; text-wrap: balance; }
+  h1 { font-size: clamp(2.4rem, 5.5vw, 3.8rem); line-height: 1.08; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+  h3 { font-size: clamp(1.4rem, 2.5vw, 1.75rem); line-height: 1.2; }
+  h4 { font-size: 1.15rem; font-family: var(--font-sans); font-weight: 600; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--color-pine-100); color: var(--color-ink); }
+  :focus-visible { outline: 2px solid var(--color-pine); outline-offset: 3px; border-radius: 2px; }
+  img { max-width: 100%; height: auto; }
+  strong { font-weight: 600; }
 }
+
+@layer components {
+  .container-x { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: 1.5rem; }
+  .container-prose { width: 100%; max-width: 44rem; }
+  .section { padding-block: 3rem; }
+  @media (min-width: 860px) { .section { padding-block: 4.5rem; } }
+  .section-tight { padding-block: 2rem; }
+  .section-title { margin-bottom: 1.5rem; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .section-head p { color: var(--color-ink-muted); max-width: 40rem; }
+
+  .eyebrow { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-pine); display: block; margin-bottom: 0.6rem; }
+  .label { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .muted { color: var(--color-ink-muted); }
+  .soft { color: var(--color-ink-soft); }
+  .mono { font-family: var(--font-mono); font-size: 0.85rem; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .lede { font-size: 1.25rem; line-height: 1.55; color: var(--color-ink-muted); max-width: 44rem; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: var(--font-sans); font-weight: 600; font-size: 1rem; padding: 0.7rem 1.3rem; border-radius: 0.4rem; border: 1px solid transparent; cursor: pointer; white-space: nowrap; transition: background-color 0.15s, border-color 0.15s, color 0.15s; line-height: 1.2; }
+  .btn-primary { background: var(--color-pine); color: #fff; }
+  .btn-primary:hover { background: var(--color-pine-700); }
+  .btn-secondary { background: var(--color-surface); color: var(--color-ink); border-color: var(--color-line); }
+  .btn-secondary:hover { border-color: var(--color-pine-400); color: var(--color-pine); }
+  .btn-ondark { background: transparent; color: #fff; border-color: rgba(255,255,255,0.35); }
+  .btn-ondark:hover { background: #fff; color: var(--color-dark); }
+  .btn-sm { padding: 0.45rem 0.9rem; font-size: 0.9rem; }
+  .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+
+  .card { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.6rem; transition: border-color 0.15s; }
+  .card-hover:hover { border-color: var(--color-pine-400); }
+  .rule { height: 1px; background: var(--color-line); border: 0; }
+
+  .chip { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 500; padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--color-pine-50); color: var(--color-pine-700); border: 1px solid var(--color-pine-100); white-space: nowrap; }
+  .chip--neutral { background: var(--color-surface); color: var(--color-ink-muted); border-color: var(--color-line); }
+  .chip--sun { background: var(--color-sun-100); color: #6b4d0b; border-color: #ecd9a6; }
+
+  .text-link { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: color-mix(in srgb, var(--color-pine) 40%, transparent); }
+  .text-link:hover { text-decoration-color: var(--color-pine); }
+  .arrow-link { color: var(--color-pine); font-weight: 600; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .arrow-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .notice { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.9rem 1.1rem; border-radius: 0.5rem; border: 1px solid var(--color-line); background: var(--color-surface); font-size: 0.98rem; }
+  .notice--sun { background: var(--color-sun-100); border-color: #ecd9a6; }
+  .notice--pine { background: var(--color-pine-50); border-color: var(--color-pine-100); }
+
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.2rem; font-size: 1rem; }
+  .kv dt { color: var(--color-ink-soft); font-weight: 500; }
+  .kv dd { margin: 0; }
+
+  .grid-2 { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+  .grid-3 { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .grid-2, .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+}
+
+/* Long-form prose */
+.prose { font-size: 1.15rem; line-height: 1.7; color: var(--color-ink); max-width: 44rem; }
+.prose > * + * { margin-top: 1.2em; }
+.prose h2 { font-size: 1.75rem; margin-top: 2.2em; margin-bottom: 0.3em; }
+.prose h3 { font-size: 1.35rem; margin-top: 1.8em; margin-bottom: 0.2em; }
+.prose h4 { margin-top: 1.5em; }
+.prose a { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: color-mix(in srgb, var(--color-pine) 40%, transparent); }
+.prose a:hover { text-decoration-color: var(--color-pine); }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li + li { margin-top: 0.35em; }
+.prose li::marker { color: var(--color-pine); }
+.prose blockquote { border-left: 3px solid var(--color-pine-100); padding-left: 1.2rem; color: var(--color-ink-muted); }
+.prose img { border-radius: 0.6rem; border: 1px solid var(--color-line); margin-block: 1.5em; width: 100%; }
+.prose figure figcaption { font-size: 0.9rem; color: var(--color-ink-soft); margin-top: 0.5rem; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.95rem; display: block; overflow-x: auto; }
+.prose th, .prose td { border-bottom: 1px solid var(--color-line); padding: 0.55rem 0.8rem; text-align: left; vertical-align: top; }
+.prose th { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-soft); }
+.prose :not(pre) > code { font-family: var(--font-mono); font-size: 0.85em; background: var(--color-pine-50); padding: 0.1em 0.35em; border-radius: 0.3rem; border: 1px solid var(--color-line-soft); }
+.prose pre { border-radius: 0.6rem; padding: 1.1rem 1.25rem; overflow-x: auto; font-size: 0.88rem; line-height: 1.55; }
+.prose hr { border: 0; height: 1px; background: var(--color-line); margin-block: 2em; }

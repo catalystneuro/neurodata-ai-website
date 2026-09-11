@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+import ResourceCard from "../components/ResourceCard.astro";
+import { withBase } from "../lib/url";
+
+const groups = await getCollection("resources");
+const order = ["program", "tutorials", "data", "tools", "prep"];
+groups.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+const fix = (url: string) => url.replace("https://catalystneuro.github.io/neurodata-ai-website/", withBase("/"));
+---
+<Base title="Resources" description="Tutorials that run in the cloud, program materials on GitHub, documentation for NWB and DANDI, the analysis tools taught at the school, and pre-course preparation.">
+  <PageHeader eyebrow="Resources" title="Materials, tutorials, and documentation" subtitle="Everything the school teaches is built on public data and open software. Most of these links are usable without attending." />
+  <section class="section">
+    <div class="container-x layout">
+      <aside class="toc">
+        <span class="label">On this page</span>
+        <nav>{groups.map((g) => <a href={`#${g.id}`}>{g.data.title}</a>)}</nav>
+      </aside>
+      <div class="main">
+        {groups.map((g) => (
+          <div class="group" id={g.id}>
+            <h2>{g.data.title}</h2>
+            {g.data.blurb && <p class="muted intro">{g.data.blurb}</p>}
+            <div class="list">{g.data.items.map((it) => <ResourceCard item={{ ...it, url: fix(it.url) }} />)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .layout { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 960px) { .layout { grid-template-columns: 13rem 1fr; gap: 3rem; } }
+  .toc { position: sticky; top: 5.5rem; align-self: start; display: none; }
+  @media (min-width: 960px) { .toc { display: block; } }
+  .toc nav { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.6rem; }
+  .toc a { font-size: 0.95rem; color: var(--color-ink-muted); }
+  .toc a:hover { color: var(--color-pine); }
+  .main { max-width: 48rem; }
+  .group { margin-bottom: 3rem; scroll-margin-top: 5.5rem; }
+  .group h2 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .intro { margin-bottom: 1rem; }
+  .list { display: flex; flex-direction: column; gap: 0.75rem; }
+</style>

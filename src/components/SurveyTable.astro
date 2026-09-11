@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from "astro:content";
+interface Props { events: CollectionEntry<"events">[] }
+const { events } = Astro.props;
+const rows = events.filter((e) => e.data.survey).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const fmt = (n?: number) => (n == null ? "—" : n.toFixed(2).replace(/\.?0+$/, ""));
+---
+<div class="st-wrap">
+  <table class="st">
+    <thead><tr><th scope="col">Year</th><th scope="col">Responses</th><th scope="col">Overall experience</th><th scope="col">Would recommend</th><th scope="col">Ease of getting help</th></tr></thead>
+    <tbody>
+      {rows.map((e) => (
+        <tr>
+          <th scope="row">{e.data.name}</th>
+          <td class="tnum">{e.data.survey?.respondents ?? "—"}</td>
+          <td class="tnum">{fmt(e.data.survey?.overall)}{e.data.survey?.overall != null && <span class="soft"> / 5</span>}</td>
+          <td class="tnum">{fmt(e.data.survey?.recommend)}{e.data.survey?.recommend != null && <span class="soft"> / 5</span>}</td>
+          <td class="tnum">{fmt(e.data.survey?.helpAccess)}{e.data.survey?.helpAccess != null && <span class="soft"> / 5</span>}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  <ul class="st-notes">
+    {rows.filter((e) => e.data.survey?.notes).map((e) => <li><strong>{e.data.year}:</strong> {e.data.survey!.notes}</li>)}
+  </ul>
+</div>
+
+<style>
+  .st-wrap { overflow-x: auto; }
+  .st { width: 100%; border-collapse: collapse; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.6rem; overflow: hidden; font-size: 0.98rem; }
+  .st th, .st td { text-align: left; padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--color-line-soft); }
+  .st thead th { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-soft); background: var(--color-paper); font-weight: 600; }
+  .st tbody th { font-weight: 600; }
+  .st tr:last-child td, .st tr:last-child th { border-bottom: 0; }
+  .st-notes { list-style: none; padding: 0; margin: 0.9rem 0 0; font-size: 0.92rem; color: var(--color-ink-muted); display: flex; flex-direction: column; gap: 0.35rem; }
+</style>

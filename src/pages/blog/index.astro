@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import { withBase } from "../../lib/url";
+import { longDate } from "../../lib/format";
+const posts = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+<Base title="Blog" description="News from the NeuroData AI Summer School: announcements, project highlights, and outcomes.">
+  <PageHeader eyebrow="Blog" title="News and project highlights" subtitle="Announcements about the school, recordings, and what participants did with what they learned." />
+  <section class="section">
+    <div class="container-x list">
+      {posts.map((p) => (
+        <article class="post">
+          <span class="soft tnum">{longDate(p.data.date)}{p.data.author && ` · ${p.data.author}`}</span>
+          <h2 class="post-title"><a href={withBase(`/blog/${p.id}/`)}>{p.data.title}</a></h2>
+          <p class="muted">{p.data.description}</p>
+          <a href={withBase(`/blog/${p.id}/`)} class="arrow-link">Read</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .list { max-width: 44rem; display: flex; flex-direction: column; gap: 2.5rem; }
+  .post { display: flex; flex-direction: column; gap: 0.5rem; }
+  .post-title { font-size: 1.6rem; }
+  .post-title a:hover { color: var(--color-pine); }
+</style>

@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import EventCard from "../../components/EventCard.astro";
+import { allLectures } from "../../lib/derive";
+
+const events = (await getCollection("events")).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const projects = await getCollection("projects");
+const lectures = await allLectures();
+const upcoming = events.filter((e) => e.data.status === "upcoming");
+const past = events.filter((e) => e.data.status === "past");
+const count = (year: string, list: { data: { event: { id: string } } }[]) => list.filter((p) => p.data.event.id === year).length;
+---
+<Base title="Events" description="Every installment of the school and of NeuroDataReHack since 2022, with schedules, recordings, projects, and reports.">
+  <PageHeader eyebrow="Archive" title="Past and upcoming installments" subtitle="The school has run every year since 2022, first as NeuroDataReHack. Each page collects that year's schedule, recordings, projects, report, and photos." />
+  <section class="section">
+    <div class="container-x">
+      {upcoming.length > 0 && (
+        <>
+          <h2 class="section-title">Upcoming</h2>
+          <div class="grid-2 mb">
+            {upcoming.map((e) => <EventCard event={e} />)}
+          </div>
+        </>
+      )}
+      <h2 class="section-title">Past installments</h2>
+      <div class="grid-2">
+        {past.map((e) => <EventCard event={e} lectures={lectures.filter((l) => l.year === e.data.year).length} projects={count(e.id, projects)} />)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mb { margin-bottom: 3rem; }
+</style>

@@ -1,0 +1,29 @@
+---
+import Icon from "./Icon.astro";
+interface Item { title: string; description?: string; url: string; kind: string; colabUrl?: string; dandihubUrl?: string; year?: string }
+interface Props { item: Item }
+const { item } = Astro.props;
+const ICON: Record<string, string> = { repo: "github", tutorial: "notebook", docs: "book", video: "video", dataset: "database", tool: "tool", slides: "slides", course: "book" };
+---
+<div class="rc card">
+  <span class="rc-icon"><Icon name={ICON[item.kind] ?? "link"} size={18} /></span>
+  <div class="rc-body">
+    <a href={item.url} target="_blank" rel="noopener" class="rc-title">{item.title}{item.year && <span class="soft"> ({item.year})</span>}</a>
+    {item.description && <p class="rc-desc">{item.description}</p>}
+    {(item.colabUrl || item.dandihubUrl) && (
+      <div class="rc-actions">
+        {item.colabUrl && <a href={item.colabUrl} target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Open in Colab</a>}
+        {item.dandihubUrl && <a href={item.dandihubUrl} target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Open DANDI Hub</a>}
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .rc { display: flex; gap: 0.9rem; padding: 0.9rem 1rem; }
+  .rc-icon { color: var(--color-pine); flex-shrink: 0; margin-top: 0.15rem; }
+  .rc-title { font-weight: 600; }
+  .rc-title:hover { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; }
+  .rc-desc { font-size: 0.93rem; color: var(--color-ink-muted); margin-top: 0.15rem; line-height: 1.45; }
+  .rc-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
+</style>

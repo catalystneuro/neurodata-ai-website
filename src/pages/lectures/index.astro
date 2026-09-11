@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import FilterBar from "../../components/FilterBar.astro";
+import VideoCard from "../../components/VideoCard.astro";
+import Icon from "../../components/Icon.astro";
+import { allLectures, topicCounts } from "../../lib/derive";
+import { topicLabel } from "../../lib/format";
+import { playlistUrl } from "../../lib/youtube";
+
+const lectures = await allLectures();
+const events = (await getCollection("events")).filter((e) => e.data.playlistId).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const years = [...new Set(lectures.map((l) => l.year))].sort().reverse();
+const topics = topicCounts(lectures).filter(([t]) => t !== "welcome");
+const byYear = years.map((y) => ({ year: y, name: lectures.find((l) => l.year === y)!.eventName, items: lectures.filter((l) => l.year === y) }));
+---
+<Base title="Lectures" description="Every recorded lecture from the school and from NeuroDataReHack, filterable by year and topic: NWB, DANDI, spike sorting, Pynapple, foundation models, LLMs, and more.">
+  <PageHeader eyebrow="Archive" title="Recorded lectures" subtitle="Every lecture we have on video, from the 2025 and 2026 installments. Videos load only when you press play." count={`${lectures.length} recordings`}>
+    <div class="playlists">
+      {events.map((e) => <a href={playlistUrl(e.data.playlistId!)} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="youtube" size={16} /> {e.data.year} playlist</a>)}
+    </div>
+  </PageHeader>
+  <section class="section">
+    <div class="container-x">
+      <FilterBar target="#lectures" countLabel="recordings" facets={[
+        { key: "year", label: "Year", options: years.map((y) => ({ value: y, label: y, count: lectures.filter((l) => l.year === y).length })) },
+        { key: "topic", label: "Topic", options: topics.map(([t, n]) => ({ value: t, label: topicLabel(t), count: n })) },
+      ]} />
+      <div id="lectures">
+        {byYear.map((g) => (
+          <div data-group class="group">
+            <h2 class="group-h">{g.name}</h2>
+            <div class="grid-3">{g.items.map((l) => <VideoCard lecture={l} showEvent={false} />)}</div>
+          </div>
+        ))}
+      </div>
+      <p class="muted note">Talks from 2022 to 2024 were not published as recordings. The reports for those years, on each event page, summarize the program and the projects.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .playlists { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.25rem; }
+  .group { margin-bottom: 3rem; }
+  .group-h { font-size: 1.5rem; margin-bottom: 1.1rem; }
+  .note { margin-top: 1rem; font-size: 0.95rem; }
+</style>

@@ -1,8 +1,219 @@
 ---
+import { getCollection, getEntry, getEntries } from "astro:content";
+import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
+import { SITE, CURRENT_EVENT } from "../consts";
 import { withBase } from "../lib/url";
+import { dateRange } from "../lib/format";
+import { applyState } from "../lib/apply";
+import { allLectures, siteStats } from "../lib/derive";
+import { photo } from "../lib/photos";
+import VideoCard from "../components/VideoCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Testimonial from "../components/Testimonial.astro";
+import LogoRow from "../components/LogoRow.astro";
+import StatsTiles from "../components/StatsTiles.astro";
+import NewsletterCta from "../components/NewsletterCta.astro";
+import Icon from "../components/Icon.astro";
+
+const current = (await getEntry("events", CURRENT_EVENT))!;
+const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
+const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
+const stats = await siteStats();
+const lectures = await allLectures();
+const featured = lectures.filter((l) => l.featured).slice(0, 3);
+const projects = (await getCollection("projects")).filter((p) => p.data.featured).slice(0, 3);
+const testimonials = (await getCollection("testimonials")).filter((t) => t.data.featured).slice(0, 3);
+const posts = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 3);
+const sponsors = await getCollection("sponsors");
+const byId = (ids: string[]) => ids.map((id) => sponsors.find((s) => s.id === id)!).filter(Boolean);
+const instructors = await getEntries(current.data.instructors);
+const hero = photo("2026/w2-room-working.jpg");
+const campus = photo("2024/08-rainbow-over-pond.jpg");
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: SITE.name,
+  url: new URL(withBase("/"), Astro.site).href,
+  description: SITE.description,
+};
 ---
-<Base title="NeuroData AI Summer School" description="A one-week residential program on reanalysis of open neurophysiology data and AI methods for neural data, at HHMI Janelia.">
-  <h1>NeuroData AI Summer School</h1>
-  <p>Site under construction. <a href={withBase("/")}>Home</a></p>
+<Base description={SITE.description} jsonLd={jsonLd}>
+  <section class="hero">
+    <div class="container-x hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">{current.data.name} · {dateRange(current.data.startDate, current.data.endDate)} · {current.data.venue.name}</span>
+        <h1>Learn to reanalyze open neurophysiology data, from the people who built the tools.</h1>
+        <p class="lede">A one-week residential school at HHMI Janelia on working with the NWB data on the DANDI Archive: finding it, streaming it, analyzing it with community tools, and applying AI methods to it. Free to attend, including lodging and meals. Formerly NeuroDataReHack.</p>
+        <div class="hero-actions">
+          <a href={cta.href} class="btn btn-primary" {...ctaAttrs}>{cta.label}</a>
+          <a href={withBase(`/events/${CURRENT_EVENT}/`)} class="btn btn-secondary">About the {CURRENT_EVENT} school</a>
+        </div>
+        <p class="hero-note soft">{cta.sentence}</p>
+      </div>
+      <figure class="hero-fig">
+        <Image src={hero} alt="Participants working on projects at long tables in the Janelia classroom, NeuroDataReHack 2026." widths={[600, 900, 1200]} sizes="(min-width: 960px) 34rem, 100vw" loading="eager" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container-x">
+      <StatsTiles tiles={[
+        { value: stats.years, label: "installments", sub: "2022 to 2026" },
+        { value: stats.alumni, label: "alumni" },
+        { value: stats.projects, label: "projects" },
+        { value: stats.lectures, label: "recorded lectures" },
+      ]} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x">
+      <div class="section-head">
+        <h2>What you learn</h2>
+        <p>Two strands, taught side by side, and a week of project work to put them to use.</p>
+      </div>
+      <div class="grid-2 tracks">
+        <div class="card track">
+          <span class="eyebrow">Foundations</span>
+          <h3>Open data and the tools around it</h3>
+          <p>How NWB files are organized and validated; how to search the DANDI Archive and stream from it instead of downloading; the flagship datasets from OpenScope, the International Brain Laboratory, and MICrONS; and the analysis ecosystem built on the standard: SpikeInterface and Kilosort, Pynapple and NeMoS, Neurosift, suite2p, Facemap, and Spyglass.</p>
+        </div>
+        <div class="card track">
+          <span class="eyebrow">AI methods</span>
+          <h3>Modern methods for neural data</h3>
+          <p>Foundation models for neural activity and how to apply them across datasets; coding with large language models and AI agents; dimensionality reduction, neural decoding, and state space models; and how to judge whether a method developed on one lab's recordings transfers to another's.</p>
+        </div>
+      </div>
+      <div class="how">
+        <div class="how-item"><Icon name="users" size={22} /><div><strong>Bring a question.</strong> Apply with a reanalysis project in mind. Teams form around shared datasets on the first day.</div></div>
+        <div class="how-item"><Icon name="clock" size={22} /><div><strong>Mornings are lectures, afternoons are projects.</strong> Faculty and dataset stewards stay on hand all week.</div></div>
+        <div class="how-item"><Icon name="video" size={22} /><div><strong>Everything is published.</strong> Lectures are recorded and projects are documented in notebooks anyone can run.</div></div>
+      </div>
+      <p class="mt"><a href={withBase("/program/")} class="arrow-link">More about the program <Icon name="arrow" size={16} /></a></p>
+    </div>
+  </section>
+
+  {featured.length > 0 && (
+    <section class="section band">
+      <div class="container-x">
+        <div class="section-head">
+          <h2>From the 2026 lectures</h2>
+          <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
+        </div>
+        <div class="grid-3">
+          {featured.map((l) => <VideoCard lecture={l} showEvent={false} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container-x">
+      <div class="section-head">
+        <h2>Projects from the last installment</h2>
+        <a href={withBase("/projects/")} class="arrow-link">All {stats.projects} projects <Icon name="arrow" size={16} /></a>
+      </div>
+      <div class="grid-3">
+        {projects.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x week-grid">
+      <figure class="week-fig">
+        <Image src={campus} alt="A rainbow over the pond and walking path at Janelia." widths={[600, 900]} sizes="(min-width: 960px) 30rem, 100vw" loading="lazy" />
+      </figure>
+      <div>
+        <span class="eyebrow">The week at Janelia</span>
+        <h2>Six days, one campus, no logistics</h2>
+        <p class="week-p">Participants stay in private rooms on the Janelia campus, a few minutes' walk from the rooms where sessions run. Meals are provided, the kitchen handles dietary requirements, and the evenings belong to the pub, the pond, and the ping-pong table. For six days, the people who can answer your question are in the building.</p>
+        <p class="week-p">The school is free to attend. Lodging and meals are covered by Janelia, and travel support is available under the NINDS award.</p>
+        <div class="week-people">
+          <span class="label">{CURRENT_EVENT} instructors so far</span>
+          <ul class="week-avatars">
+            {instructors.map((p) => (
+              <li><a href={withBase(`/faculty/${p.id}/`)} title={p.data.name}>{p.data.photo ? <img src={withBase(p.data.photo)} alt={p.data.name} width="44" height="44" loading="lazy" /> : <span class="avatar-fallback">{p.data.name[0]}</span>}</a></li>
+            ))}
+          </ul>
+          <a href={withBase("/faculty/")} class="arrow-link">All faculty <Icon name="arrow" size={16} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="container-x">
+      <h2 class="section-title">What participants said</h2>
+      <div class="grid-3">
+        {testimonials.map((t) => <Testimonial quote={t.data.quote} name={t.data.name} affiliation={t.data.affiliation} eventLabel={`NeuroDataReHack ${t.data.event.id}`} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x">
+      <div class="section-head">
+        <h2>Latest from the blog</h2>
+        <a href={withBase("/blog/")} class="arrow-link">All posts <Icon name="arrow" size={16} /></a>
+      </div>
+      <div class="grid-3">
+        {posts.map((p) => (
+          <a href={withBase(`/blog/${p.id}/`)} class="card card-hover post">
+            <span class="soft tnum">{p.data.date}</span>
+            <h3 class="post-title">{p.data.title}</h3>
+            <p class="post-desc">{p.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container-x">
+      <NewsletterCta />
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container-x">
+      <LogoRow title="Funded and hosted by" sponsors={byId(["nih", "hhmi-janelia"])} />
+      <div class="mt"><LogoRow title="Partners and past sponsors" sponsors={byId(["catalystneuro", "dandi", "nwb", "lbnl", "allen", "kavli"])} size="sm" /></div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .hero { background: var(--color-surface); border-bottom: 1px solid var(--color-line); padding: 3rem 0 3.5rem; }
+  .hero-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.15fr 1fr; gap: 3.5rem; } }
+  .hero h1 { margin-bottom: 1.1rem; font-size: clamp(2.1rem, 4.2vw, 3.2rem); }
+  .hero .lede { margin-bottom: 1.5rem; }
+  .hero-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .hero-note { margin-top: 0.9rem; font-size: 0.95rem; }
+  .hero-fig img { width: 100%; height: auto; border-radius: 0.8rem; border: 1px solid var(--color-line); }
+  .band { background: var(--color-surface); border-block: 1px solid var(--color-line); }
+  .tracks .track { padding: 1.5rem 1.6rem; }
+  .track h3 { margin-bottom: 0.6rem; }
+  .track p { color: var(--color-ink-muted); line-height: 1.55; }
+  .how { display: grid; gap: 1rem 2rem; grid-template-columns: 1fr; margin-top: 2rem; }
+  @media (min-width: 860px) { .how { grid-template-columns: repeat(3, 1fr); } }
+  .how-item { display: flex; gap: 0.8rem; align-items: flex-start; color: var(--color-ink-muted); line-height: 1.5; }
+  .how-item :global(svg) { color: var(--color-pine); flex-shrink: 0; margin-top: 0.15rem; }
+  .how-item strong { color: var(--color-ink); }
+  .mt { margin-top: 1.5rem; }
+  .week-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 960px) { .week-grid { grid-template-columns: 1fr 1.1fr; } }
+  .week-fig img { width: 100%; height: auto; border-radius: 0.8rem; border: 1px solid var(--color-line); }
+  .week-p { color: var(--color-ink-muted); margin-top: 0.9rem; line-height: 1.6; }
+  .week-people { margin-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; }
+  .week-avatars { list-style: none; padding: 0; margin: 0; display: flex; }
+  .week-avatars li { margin-left: -8px; }
+  .week-avatars li:first-child { margin-left: 0; }
+  .week-avatars img, .avatar-fallback { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--color-surface); background: var(--color-pine-100); display: inline-flex; align-items: center; justify-content: center; color: var(--color-pine); font-weight: 600; }
+  .post { padding: 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .post-title { font-size: 1.25rem; }
+  .post-desc { color: var(--color-ink-muted); font-size: 0.95rem; line-height: 1.5; }
+</style>

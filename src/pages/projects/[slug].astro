@@ -1,0 +1,70 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Icon from "../../components/Icon.astro";
+import { withBase } from "../../lib/url";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).filter((p) => p.data.hasBody);
+  return projects.map((p) => ({ params: { slug: p.id.split("/").pop() }, props: { project: p } }));
+}
+const { project } = Astro.props;
+const p = project.data;
+const { Content } = await render(project);
+const event = (await getEntry("events", p.event.id))!;
+const investigators = await Promise.all(p.investigators.map(async (i) => ({ ...i, entry: i.person ? await getEntry("people", i.person) : undefined })));
+---
+<Base title={p.title} description={p.summary ?? `${p.title}, a project from ${event.data.name}.`}>
+  <section class="section">
+    <div class="container-x">
+      <a href={withBase("/projects/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All projects</a>
+      <div class="pj">
+        <div class="pj-main">
+          <span class="eyebrow"><a href={withBase(`/events/${event.id}/`)}>{event.data.name}</a>{p.featured && " · Highlight"}</span>
+          <h1 class="pj-title">{p.title}</h1>
+          <p class="pj-inv">{investigators.map((i, k) => <>{i.entry ? <a href={withBase(`/faculty/${i.entry.id}/`)} class="text-link">{i.name}</a> : i.name}{i.affiliation ? `, ${i.affiliation}` : ""}{k < investigators.length - 1 ? " · " : ""}</>)}</p>
+          <div class="prose pj-body"><Content /></div>
+        </div>
+        <aside class="pj-side">
+          <div class="card side-card">
+            {p.dandisets.length > 0 && (
+              <>
+                <span class="label">Data</span>
+                <ul class="side-list">{p.dandisets.map((d) => <li><a href={d.url ?? `https://dandiarchive.org/dandiset/${d.id}`} class="text-link mono" target="_blank" rel="noopener">DANDI:{d.id}</a>{d.note && <span class="soft"> {d.note}</span>}</li>)}</ul>
+              </>
+            )}
+            {(p.links.repo || p.links.slides || p.links.notebook || p.links.presentation || p.links.paper) && (
+              <>
+                <span class="label">Links</span>
+                <ul class="side-list">
+                  {p.links.repo && <li><a href={p.links.repo} class="text-link" target="_blank" rel="noopener"><Icon name="github" size={15} /> Code</a></li>}
+                  {p.links.slides && <li><a href={p.links.slides} class="text-link" target="_blank" rel="noopener"><Icon name="slides" size={15} /> Slides</a></li>}
+                  {p.links.presentation && <li><a href={p.links.presentation} class="text-link" target="_blank" rel="noopener"><Icon name="slides" size={15} /> Presentation</a></li>}
+                  {p.links.notebook && <li><a href={p.links.notebook} class="text-link" target="_blank" rel="noopener"><Icon name="notebook" size={15} /> Notebook</a></li>}
+                  {p.links.paper && <li><a href={p.links.paper} class="text-link" target="_blank" rel="noopener"><Icon name="doc" size={15} /> Paper</a></li>}
+                </ul>
+              </>
+            )}
+            <span class="label">Source</span>
+            <p class="soft small">Written by the team during the week in the shared project document, reproduced in the {event.data.year} event report.{event.data.reportUrl && <> <a href={event.data.reportUrl} class="text-link" target="_blank" rel="noopener">Report PDF</a>.</>}</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .back { margin-bottom: 1.5rem; display: inline-flex; }
+  .back :global(.flip) { transform: rotate(180deg); }
+  .pj { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 1024px) { .pj { grid-template-columns: 1fr 17rem; gap: 3rem; } }
+  .pj-title { font-size: clamp(1.7rem, 3.8vw, 2.5rem); }
+  .pj-inv { font-size: 1.1rem; margin-top: 0.7rem; color: var(--color-ink-muted); }
+  .pj-body { margin-top: 1.5rem; }
+  .pj-body :global(h2) { font-size: 1.35rem; margin-top: 2em; }
+  .side-card { padding: 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem; position: sticky; top: 5.5rem; }
+  .side-list { list-style: none; padding: 0; margin: 0 0 0.9rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.95rem; }
+  .side-list a { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .small { font-size: 0.88rem; line-height: 1.45; }
+</style>

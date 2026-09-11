@@ -1,0 +1,18 @@
+---
+import { SITE } from "../consts";
+interface Props { heading?: string; blurb?: string }
+const { heading = "Hear when applications open", blurb = "Announcements about the school, application dates, and new recordings go out on the NWB mailing list a few times a year." } = Astro.props;
+---
+<div class="nl">
+  <div>
+    <h2 class="nl-h">{heading}</h2>
+    <p class="nl-p">{blurb}</p>
+  </div>
+  <a href={SITE.mailingList} class="btn btn-ondark" target="_blank" rel="noopener">Join the mailing list</a>
+</div>
+
+<style>
+  .nl { background: var(--color-pine); color: #fff; border-radius: 0.8rem; padding: 2rem 2rem; display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: center; justify-content: space-between; }
+  .nl-h { color: #fff; font-size: 1.6rem; margin-bottom: 0.3rem; }
+  .nl-p { color: rgba(255,255,255,0.85); max-width: 36rem; }
+</style>

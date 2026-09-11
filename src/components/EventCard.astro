@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/url";
+import { dateRange } from "../lib/format";
+import Icon from "./Icon.astro";
+interface Props { event: CollectionEntry<"events">; lectures?: number; projects?: number }
+const { event, lectures = 0, projects = 0 } = Astro.props;
+const e = event.data;
+const href = withBase(`/events/${event.id}/`);
+---
+<article class="ec card card-hover">
+  <a href={href} class="ec-banner" aria-hidden="true" tabindex="-1">
+    {e.banner ? <img src={withBase(e.banner)} alt="" loading="lazy" /> : <div class="ec-banner-fallback"><span>{e.year}</span></div>}
+  </a>
+  <div class="ec-body">
+    <div class="ec-top">
+      <span class="label">{e.status === "upcoming" ? "Upcoming" : e.year}</span>
+      {e.status === "upcoming" && <span class="chip chip--sun">{e.applications?.state === "open" ? "Applications open" : "Applications soon"}</span>}
+    </div>
+    <h3 class="ec-title"><a href={href}>{e.name}</a></h3>
+    <p class="ec-meta">{dateRange(e.startDate, e.endDate)} · {e.venue.name}, {e.venue.city}</p>
+    <p class="ec-tag">{e.tagline}</p>
+    <ul class="ec-facts">
+      {e.stats.participants && <li><Icon name="users" size={15} /> {e.stats.participants} participants{e.stats.countries ? ` from ${e.stats.countries} countries` : ""}</li>}
+      {projects > 0 && <li><Icon name="notebook" size={15} /> {projects} projects</li>}
+      {lectures > 0 && <li><Icon name="video" size={15} /> {lectures} recorded lectures</li>}
+      {e.reportUrl && <li><Icon name="doc" size={15} /> Report</li>}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .ec { overflow: hidden; display: flex; flex-direction: column; }
+  .ec-banner { display: block; aspect-ratio: 3 / 1; background: var(--color-pine-50); border-bottom: 1px solid var(--color-line); }
+  .ec-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ec-banner-fallback { height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 2.4rem; color: var(--color-pine); }
+  .ec-body { padding: 1.1rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  .ec-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+  .ec-title { font-size: 1.35rem; }
+  .ec-title a:hover { color: var(--color-pine); }
+  .ec-meta { color: var(--color-ink-muted); font-size: 0.95rem; }
+  .ec-tag { font-size: 0.98rem; margin-top: 0.3rem; }
+  .ec-facts { list-style: none; padding: 0; margin: 0.6rem 0 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: 0.9rem; color: var(--color-ink-muted); }
+  .ec-facts li { display: inline-flex; align-items: center; gap: 0.35rem; }
+</style>

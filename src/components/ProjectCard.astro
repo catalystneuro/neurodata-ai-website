@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/url";
+import Icon from "./Icon.astro";
+interface Props { project: CollectionEntry<"projects">; showYear?: boolean; eventName?: string }
+const { project, showYear = true, eventName } = Astro.props;
+const p = project.data;
+const year = p.event.id;
+const href = p.hasBody ? withBase(`/projects/${project.id.split("/").pop()}/`) : undefined;
+const inv = p.investigators.map((i) => i.name).join(", ");
+---
+<article class:list={["pc card", href && "card-hover"]} data-year={year} data-topics={p.topics.join(" ")} data-search={`${p.title} ${inv}`.toLowerCase()}>
+  <div class="pc-top">
+    {showYear && <span class="chip chip--neutral">{eventName ?? `NeuroDataReHack ${year}`}</span>}
+    {p.featured && <span class="chip chip--sun">Highlight</span>}
+  </div>
+  <h3 class="pc-title">{href ? <a href={href}>{p.title}</a> : p.title}</h3>
+  {inv && <p class="pc-inv">{inv}</p>}
+  {p.summary && <p class="pc-sum">{p.summary}</p>}
+  <div class="pc-foot">
+    {p.dandisets.length > 0 && <span class="pc-dandi mono">{p.dandisets.map((d) => d.id).join(", ")}</span>}
+    {p.links.repo && <a href={p.links.repo} target="_blank" rel="noopener" class="pc-link"><Icon name="github" size={15} /> Code</a>}
+    {p.links.slides && <a href={p.links.slides} target="_blank" rel="noopener" class="pc-link"><Icon name="slides" size={15} /> Slides</a>}
+    {href && <a href={href} class="pc-link pc-more">Read more <Icon name="arrow" size={15} /></a>}
+  </div>
+</article>
+
+<style>
+  .pc { padding: 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .pc-top { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .pc-title { font-family: var(--font-sans); font-size: 1.08rem; font-weight: 600; line-height: 1.3; letter-spacing: 0; }
+  .pc-title a:hover { color: var(--color-pine); }
+  .pc-inv { color: var(--color-ink-muted); font-size: 0.92rem; }
+  .pc-sum { font-size: 0.95rem; color: var(--color-ink-muted); line-height: 1.45; }
+  .pc-foot { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; align-items: center; margin-top: auto; padding-top: 0.4rem; font-size: 0.9rem; }
+  .pc-dandi { color: var(--color-ink-soft); font-size: 0.8rem; }
+  .pc-link { color: var(--color-pine); display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 500; }
+  .pc-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .pc-more { margin-left: auto; }
+</style>

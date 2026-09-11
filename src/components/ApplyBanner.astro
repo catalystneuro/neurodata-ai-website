@@ -1,0 +1,29 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { SITE } from "../consts";
+import { withBase } from "../lib/url";
+import { applyState } from "../lib/apply";
+import { dateRange } from "../lib/format";
+interface Props { event: CollectionEntry<"events">; variant?: "inline" | "compact" }
+const { event, variant = "inline" } = Astro.props;
+const cta = applyState(event, withBase("/apply/"), SITE.mailingList);
+const attrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
+---
+<div class:list={["apply", `apply--${cta.state}`, variant === "compact" && "apply--compact"]}>
+  <div class="apply-text">
+    <strong>{event.data.name}</strong>, {dateRange(event.data.startDate, event.data.endDate)}, {event.data.venue.name}. {cta.sentence}
+    {event.data.applications?.note && cta.state === "not_open" && <span class="soft"> {event.data.applications.note}</span>}
+  </div>
+  <div class="apply-actions">
+    <a href={cta.href} class="btn btn-primary btn-sm" {...attrs}>{cta.label}</a>
+    <a href={withBase("/apply/")} class="btn btn-secondary btn-sm">How to apply</a>
+  </div>
+</div>
+
+<style>
+  .apply { display: flex; flex-wrap: wrap; gap: 0.9rem 1.5rem; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-radius: 0.6rem; background: var(--color-pine-50); border: 1px solid var(--color-pine-100); }
+  .apply--open { background: var(--color-sun-100); border-color: #ecd9a6; }
+  .apply-text { flex: 1 1 24rem; font-size: 1rem; line-height: 1.5; }
+  .apply-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .apply--compact { padding: 0.75rem 1rem; }
+</style>

@@ -1,0 +1,22 @@
+---
+interface Props { tiles: { value: string | number; label: string; sub?: string }[]; columns?: number }
+const { tiles, columns = tiles.length } = Astro.props;
+---
+<div class="stats" style={`--cols:${Math.min(columns, 5)}`}>
+  {tiles.map((t) => (
+    <div class="stat">
+      <div class="stat-v tnum">{t.value}</div>
+      <div class="stat-l">{t.label}</div>
+      {t.sub && <div class="stat-s">{t.sub}</div>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .stats { display: grid; gap: 1rem 1.5rem; grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 720px) { .stats { grid-template-columns: repeat(var(--cols), 1fr); } }
+  .stat { border-top: 2px solid var(--color-pine); padding-top: 0.7rem; }
+  .stat-v { font-family: var(--font-display); font-size: clamp(1.9rem, 3.5vw, 2.6rem); font-weight: 600; line-height: 1; color: var(--color-ink); }
+  .stat-l { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-ink-soft); margin-top: 0.45rem; }
+  .stat-s { font-size: 0.85rem; color: var(--color-ink-soft); margin-top: 0.15rem; }
+</style>

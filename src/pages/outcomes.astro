@@ -1,0 +1,80 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+import StatsTiles from "../components/StatsTiles.astro";
+import SurveyTable from "../components/SurveyTable.astro";
+import Icon from "../components/Icon.astro";
+import { withBase } from "../lib/url";
+import { siteStats } from "../lib/derive";
+
+const events = (await getCollection("events")).filter((e) => e.data.status === "past").sort((a, b) => b.data.year.localeCompare(a.data.year));
+const outcomes = (await getCollection("outcomes")).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const stats = await siteStats();
+const KIND: Record<string, string> = { paper: "doc", repo: "github", award: "check", talk: "video", tool: "tool", pr: "code" };
+---
+<Base title="Outcomes" description="Participation, exit-survey results, and public outputs from every installment of the school and of NeuroDataReHack.">
+  <PageHeader eyebrow="Archive" title="Outcomes" subtitle="What five installments have produced so far. Survey numbers are aggregates from the anonymous exit survey sent one week after each event; the event reports have the full results." />
+  <section class="section">
+    <div class="container-x main">
+      <StatsTiles tiles={[
+        { value: stats.alumni, label: "alumni", sub: "2022 to 2026" },
+        { value: stats.projects, label: "projects" },
+        { value: stats.lectures, label: "recorded lectures" },
+        { value: stats.countries, label: "countries in one cohort", sub: "2023, Granada" },
+      ]} />
+
+      <h2 class="h2">Participation by year</h2>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead><tr><th>Installment</th><th>Participants</th><th>Institutions</th><th>Countries</th><th>Projects</th><th>Report</th></tr></thead>
+          <tbody>
+            {events.map((e) => (
+              <tr>
+                <th scope="row"><a href={withBase(`/events/${e.id}/`)} class="text-link">{e.data.name}</a></th>
+                <td class="tnum">{e.data.stats.participants ?? "—"}{e.data.stats.applicants && <span class="soft"> of {e.data.stats.applicants} applicants</span>}</td>
+                <td class="tnum">{e.data.stats.institutions ?? "—"}</td>
+                <td class="tnum">{e.data.stats.countries ?? "—"}</td>
+                <td class="tnum">{e.data.stats.projects ?? "—"}</td>
+                <td>{e.data.reportUrl ? <a href={e.data.reportUrl} class="text-link" target="_blank" rel="noopener">PDF</a> : "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="h2">Exit survey</h2>
+      <SurveyTable events={events} />
+
+      <h2 class="h2">Public outputs</h2>
+      <p class="muted intro">Code, tools, and results that participants and faculty made public during or after the week. This list grows as alumni report back; the one-year follow-up survey asks about publications and software.</p>
+      <ul class="out">
+        {outcomes.map((o) => (
+          <li class="out-item">
+            <span class="out-icon"><Icon name={KIND[o.data.kind] ?? "link"} size={18} /></span>
+            <div>
+              <div>{o.data.url ? <a href={o.data.url} class="text-link" target="_blank" rel="noopener">{o.data.title}</a> : o.data.title}</div>
+              <div class="soft small">{o.data.year}{o.data.people && ` · ${o.data.people}`}{o.data.note && ` · ${o.data.note}`}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .main { max-width: 52rem; }
+  .h2 { margin-top: 3.5rem; margin-bottom: 1rem; }
+  .intro { margin-bottom: 1.25rem; }
+  .table-wrap { overflow-x: auto; }
+  .tbl { width: 100%; border-collapse: collapse; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.6rem; overflow: hidden; font-size: 0.98rem; }
+  .tbl th, .tbl td { text-align: left; padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--color-line-soft); }
+  .tbl thead th { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-soft); background: var(--color-paper); font-weight: 600; }
+  .tbl tbody th { font-weight: 600; }
+  .tbl tr:last-child td, .tbl tr:last-child th { border-bottom: 0; }
+  .out { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.9rem; }
+  .out-item { display: flex; gap: 0.8rem; align-items: flex-start; }
+  .out-icon { color: var(--color-pine); margin-top: 0.15rem; }
+  .small { font-size: 0.88rem; }
+</style>

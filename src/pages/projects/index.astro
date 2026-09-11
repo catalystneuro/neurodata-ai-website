@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import FilterBar from "../../components/FilterBar.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { CURRENT_EVENT } from "../../consts";
+import { withBase } from "../../lib/url";
+
+const projects = await getCollection("projects");
+const events = (await getCollection("events")).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const years = events.filter((e) => projects.some((p) => p.data.event.id === e.id));
+const current = events.find((e) => e.id === CURRENT_EVENT);
+const groups = years.map((e) => ({ event: e, items: projects.filter((p) => p.data.event.id === e.id).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.title.localeCompare(b.data.title)) }));
+---
+<Base title="Projects" description="Every reanalysis project from the school and from NeuroDataReHack since 2022, with full write-ups for the most recent installment.">
+  <PageHeader eyebrow="Archive" title="Participant projects" subtitle="What teams built during the week: replication studies, cross-dataset comparisons, new analyses of flagship datasets, and contributions to the open data infrastructure. Titles for earlier years come from the event reports; 2026 projects have full write-ups." count={`${projects.length} projects`} />
+  <section class="section">
+    <div class="container-x">
+      {current?.data.liveProjectsDocUrl && (
+        <div class="notice notice--pine mb"><span>During the {current.data.year} school, participants document their projects in a shared document that is linked from the <a href={withBase(`/events/${current.id}/`)} class="text-link">event page</a>. Write-ups are added here afterward.</span></div>
+      )}
+      <FilterBar target="#projects" countLabel="projects" facets={[
+        { key: "year", label: "Year", options: years.map((e) => ({ value: e.id, label: e.data.year, count: projects.filter((p) => p.data.event.id === e.id).length })) },
+      ]} />
+      <div id="projects">
+        {groups.map((g) => (
+          <div data-group class="group">
+            <h2 class="group-h">{g.event.data.name} <a href={withBase(`/events/${g.event.id}/`)} class="soft group-link">event page</a></h2>
+            <div class="grid-3">{g.items.map((p) => <ProjectCard project={p} showYear={false} />)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mb { margin-bottom: 1.5rem; }
+  .group { margin-bottom: 3rem; }
+  .group-h { font-size: 1.5rem; margin-bottom: 1.1rem; display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .group-link { font-family: var(--font-sans); font-size: 0.9rem; font-weight: 500; }
+  .group-link:hover { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; }
+</style>

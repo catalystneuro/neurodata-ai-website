@@ -1,0 +1,30 @@
+---
+import { withBase } from "../lib/url";
+interface Props { items: { year: string; title: string; venue: string; note?: string; href: string; upcoming?: boolean }[] }
+const { items } = Astro.props;
+---
+<ol class="tl">
+  {items.map((it) => (
+    <li class:list={["tl-item", it.upcoming && "tl-item--up"]}>
+      <span class="tl-year tnum">{it.year}</span>
+      <div class="tl-body">
+        <a href={withBase(it.href)} class="tl-title">{it.title}</a>
+        <div class="tl-venue">{it.venue}</div>
+        {it.note && <div class="tl-note">{it.note}</div>}
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .tl { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--color-pine-100); }
+  .tl-item { position: relative; padding: 0 0 1.4rem 1.5rem; display: grid; grid-template-columns: 4rem 1fr; gap: 0.5rem 1rem; }
+  .tl-item::before { content: ""; position: absolute; left: -7px; top: 0.45rem; width: 12px; height: 12px; border-radius: 50%; background: var(--color-pine); border: 2px solid var(--color-paper); }
+  .tl-item--up::before { background: var(--color-sun); }
+  .tl-year { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; color: var(--color-pine); line-height: 1.5; }
+  .tl-title { font-weight: 600; font-size: 1.05rem; }
+  .tl-title:hover { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; }
+  .tl-venue { color: var(--color-ink-muted); font-size: 0.95rem; }
+  .tl-note { color: var(--color-ink-soft); font-size: 0.9rem; margin-top: 0.15rem; }
+  @media (max-width: 480px) { .tl-item { grid-template-columns: 1fr; gap: 0.1rem; } }
+</style>

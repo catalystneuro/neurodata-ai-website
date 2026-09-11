@@ -1,0 +1,82 @@
+---
+/**
+ * Facet filters for a grid of items carrying data-year / data-topics / data-search attributes.
+ * Vanilla JS, URL-synced (?year=&topic=&q=). Without JS every item stays visible.
+ */
+interface Facet { key: "year" | "topic"; label: string; options: { value: string; label: string; count: number }[] }
+interface Props { facets: Facet[]; target: string; search?: boolean; countLabel?: string }
+const { facets, target, search = true, countLabel = "items" } = Astro.props;
+---
+<form class="fb" data-filter-target={target} data-count-label={countLabel} role="search" onsubmit="return false">
+  {search && (
+    <label class="fb-search">
+      <span class="sr-only">Search</span>
+      <input type="search" name="q" placeholder="Search…" autocomplete="off" />
+    </label>
+  )}
+  {facets.map((f) => (
+    <label class="fb-select">
+      <span class="label">{f.label}</span>
+      <select name={f.key}>
+        <option value="">All</option>
+        {f.options.map((o) => <option value={o.value}>{o.label} ({o.count})</option>)}
+      </select>
+    </label>
+  ))}
+  <button type="button" class="btn btn-secondary btn-sm fb-clear" hidden>Clear</button>
+  <span class="fb-count soft tnum" aria-live="polite"></span>
+</form>
+
+<style>
+  .fb { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: end; margin-bottom: 1.75rem; }
+  .fb-search input { font: inherit; padding: 0.5rem 0.8rem; border: 1px solid var(--color-line); border-radius: 0.4rem; background: var(--color-surface); min-width: 14rem; }
+  .fb-select { display: flex; flex-direction: column; gap: 0.25rem; }
+  .fb-select select { font: inherit; padding: 0.5rem 2rem 0.5rem 0.7rem; border: 1px solid var(--color-line); border-radius: 0.4rem; background: var(--color-surface); }
+  .fb-count { margin-left: auto; font-size: 0.9rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("form.fb").forEach((form) => {
+    const grid = document.querySelector<HTMLElement>(form.dataset.filterTarget!);
+    if (!grid) return;
+    const items = [...grid.querySelectorAll<HTMLElement>("[data-year]")];
+    const q = form.querySelector<HTMLInputElement>("input[name=q]");
+    const year = form.querySelector<HTMLSelectElement>("select[name=year]");
+    const topic = form.querySelector<HTMLSelectElement>("select[name=topic]");
+    const clear = form.querySelector<HTMLButtonElement>(".fb-clear");
+    const count = form.querySelector<HTMLElement>(".fb-count");
+    const label = form.dataset.countLabel ?? "items";
+
+    const params = new URLSearchParams(location.search);
+    if (q && params.get("q")) q.value = params.get("q")!;
+    if (year && params.get("year")) year.value = params.get("year")!;
+    if (topic && params.get("topic")) topic.value = params.get("topic")!;
+
+    function apply(pushUrl = true) {
+      const qv = (q?.value ?? "").trim().toLowerCase();
+      const yv = year?.value ?? "";
+      const tv = topic?.value ?? "";
+      let shown = 0;
+      for (const it of items) {
+        const ok = (!yv || it.dataset.year === yv) && (!tv || (it.dataset.topics ?? "").split(" ").includes(tv)) && (!qv || (it.dataset.search ?? "").includes(qv));
+        it.hidden = !ok;
+        if (ok) shown++;
+      }
+      grid.querySelectorAll<HTMLElement>("[data-group]").forEach((g) => { g.hidden = !g.querySelector("[data-year]:not([hidden])"); });
+      const active = !!(qv || yv || tv);
+      if (clear) clear.hidden = !active;
+      if (count) count.textContent = active ? `${shown} of ${items.length} ${label}` : `${items.length} ${label}`;
+      if (pushUrl) {
+        const p = new URLSearchParams();
+        if (qv) p.set("q", qv); if (yv) p.set("year", yv); if (tv) p.set("topic", tv);
+        history.replaceState(null, "", p.toString() ? `?${p}` : location.pathname);
+      }
+    }
+    q?.addEventListener("input", () => apply());
+    year?.addEventListener("change", () => apply());
+    topic?.addEventListener("change", () => apply());
+    clear?.addEventListener("click", () => { if (q) q.value = ""; if (year) year.value = ""; if (topic) topic.value = ""; apply(); });
+    apply(false);
+  });
+</script>

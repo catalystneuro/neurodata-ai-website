@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/url";
+import { initials } from "../lib/format";
+interface Props { person: CollectionEntry<"people">; role?: string; size?: "md" | "sm"; link?: boolean; note?: string }
+const { person, role, size = "md", link = true, note } = Astro.props;
+const p = person.data;
+const href = withBase(`/faculty/${person.id}/`);
+---
+<div class:list={["person", size === "sm" && "person--sm"]}>
+  {p.photo ? (
+    <img class="person-photo" src={withBase(p.photo)} alt="" width="96" height="96" loading="lazy" />
+  ) : (
+    <span class="person-photo person-initials" aria-hidden="true">{initials(p.name)}</span>
+  )}
+  <div class="person-body">
+    <div class="person-name">{link ? <a href={href}>{p.name}</a> : p.name}</div>
+    <div class="person-aff">{p.affiliation}</div>
+    {(role || p.title) && <div class="person-role">{role ?? p.title}</div>}
+    {note && <div class="person-note">{note}</div>}
+  </div>
+</div>
+
+<style>
+  .person { display: flex; gap: 0.9rem; align-items: center; }
+  .person-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1px solid var(--color-line); background: var(--color-pine-50); }
+  .person--sm .person-photo { width: 52px; height: 52px; }
+  .person-initials { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; color: var(--color-pine); background: var(--color-pine-100); font-size: 1.2rem; }
+  .person-name { font-weight: 600; font-size: 1.05rem; line-height: 1.25; }
+  .person-name a:hover { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; }
+  .person-aff { color: var(--color-ink-muted); font-size: 0.95rem; line-height: 1.3; }
+  .person-role { color: var(--color-ink-soft); font-size: 0.85rem; margin-top: 0.15rem; }
+  .person-note { color: var(--color-ink-soft); font-size: 0.85rem; }
+</style>

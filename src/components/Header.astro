@@ -1,0 +1,94 @@
+---
+import { getEntry } from "astro:content";
+import { NAV, SITE, CURRENT_EVENT } from "../consts";
+import { withBase, basePath } from "../lib/url";
+import { applyState } from "../lib/apply";
+import Icon from "./Icon.astro";
+import Wordmark from "./Wordmark.astro";
+
+const path = Astro.url.pathname;
+const rel = path.startsWith(basePath) ? "/" + path.slice(basePath.length) : path;
+const isActive = (href: string) => rel === href || (href !== "/" && rel.startsWith(href));
+const current = await getEntry("events", CURRENT_EVENT);
+const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
+const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
+---
+<header class="hdr">
+  <div class="container-x hdr-inner">
+    <a href={withBase("/")} class="hdr-logo" aria-label="NeuroData AI Summer School home"><Wordmark /></a>
+
+    <nav class="hdr-nav" aria-label="Primary">
+      {NAV.map((item) =>
+        item.children ? (
+          <div class="nav-group">
+            <button class:list={["nav-link", "nav-trigger", item.children.some((c) => isActive(c.href)) && "is-active"]} aria-haspopup="true" aria-expanded="false">
+              {item.label}
+              <Icon name="chevron" size={14} />
+            </button>
+            <div class="nav-menu" role="menu">
+              {item.children.map((c) => (
+                <a href={withBase(c.href)} role="menuitem" class:list={["nav-menu-link", isActive(c.href) && "is-active"]}>{c.label}</a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a href={withBase(item.href)} class:list={["nav-link", isActive(item.href) && "is-active"]}>{item.label}</a>
+        )
+      )}
+    </nav>
+
+    <div class="hdr-actions">
+      <a href={cta.href} class="btn btn-primary btn-sm hdr-cta" {...ctaAttrs}>{cta.label}</a>
+      <button class="hdr-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-panel">
+        <Icon name="menu" size={22} />
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-panel" id="mobile-panel" hidden>
+    <nav aria-label="Mobile">
+      {NAV.flatMap((item) => (item.children ? item.children : [item])).map((c) => (
+        <a href={withBase(c.href)} class:list={["mobile-link", isActive(c.href) && "is-active"]}>{c.label}</a>
+      ))}
+      <a href={cta.href} class="btn btn-primary mobile-cta" {...ctaAttrs}>{cta.label}</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .hdr { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-line); }
+  .hdr-inner { display: flex; align-items: center; justify-content: space-between; height: 4.25rem; gap: 1rem; }
+  .hdr-nav { display: none; align-items: center; gap: 0.1rem; }
+  @media (min-width: 1024px) { .hdr-nav { display: flex; } }
+  .nav-link { font-size: 1rem; font-weight: 500; color: var(--color-ink); padding: 0.5rem 0.7rem; border-radius: 0.4rem; display: inline-flex; align-items: center; gap: 0.25rem; background: none; border: 0; cursor: pointer; font-family: var(--font-sans); transition: color 0.15s, background 0.15s; }
+  .nav-link:hover { color: var(--color-pine); background: var(--color-pine-50); }
+  .nav-link.is-active { color: var(--color-pine); box-shadow: inset 0 -2px 0 var(--color-pine); border-radius: 0.4rem 0.4rem 0 0; }
+  .nav-group { position: relative; }
+  .nav-menu { position: absolute; top: calc(100% + 0.25rem); left: 0; min-width: 11rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.5rem; padding: 0.35rem; box-shadow: 0 12px 30px -16px rgba(18,32,26,0.35); opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity 0.15s, transform 0.15s, visibility 0.15s; }
+  .nav-group:hover .nav-menu, .nav-group:focus-within .nav-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-menu-link { display: block; padding: 0.5rem 0.7rem; border-radius: 0.35rem; font-size: 0.98rem; color: var(--color-ink); }
+  .nav-menu-link:hover, .nav-menu-link.is-active { background: var(--color-pine-50); color: var(--color-pine); }
+  .hdr-actions { display: flex; align-items: center; gap: 0.5rem; }
+  .hdr-cta { display: none; }
+  @media (min-width: 1024px) { .hdr-cta { display: inline-flex; } }
+  .hdr-burger { display: inline-flex; background: none; border: 0; color: var(--color-ink); cursor: pointer; padding: 0.3rem; }
+  @media (min-width: 1024px) { .hdr-burger { display: none; } }
+  .mobile-panel { border-top: 1px solid var(--color-line); background: var(--color-surface); padding: 0.75rem 1.5rem 1.25rem; }
+  @media (min-width: 1024px) { .mobile-panel { display: none; } }
+  .mobile-panel nav { display: flex; flex-direction: column; gap: 0.1rem; }
+  .mobile-link { padding: 0.7rem 0.4rem; font-weight: 500; border-bottom: 1px solid var(--color-line-soft); }
+  .mobile-link.is-active { color: var(--color-pine); }
+  .mobile-cta { margin-top: 0.9rem; }
+</style>
+
+<script>
+  const burger = document.getElementById("burger");
+  const panel = document.getElementById("mobile-panel");
+  function setOpen(open: boolean) {
+    if (open) panel?.removeAttribute("hidden"); else panel?.setAttribute("hidden", "");
+    burger?.setAttribute("aria-expanded", String(open));
+  }
+  burger?.addEventListener("click", () => setOpen(!!panel?.hasAttribute("hidden")));
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", (e) => { if (e.matches) setOpen(false); });
+  panel?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+</script>

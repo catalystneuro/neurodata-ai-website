@@ -1,0 +1,78 @@
+---
+import { getEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
+import VideoCard from "../../components/VideoCard.astro";
+import Icon from "../../components/Icon.astro";
+import { withBase } from "../../lib/url";
+import { allLectures } from "../../lib/derive";
+import { topicLabel, weekdayDate, time12 } from "../../lib/format";
+import { youtubeWatch } from "../../lib/youtube";
+
+export async function getStaticPaths() {
+  const lectures = await allLectures();
+  return lectures.map((l) => ({ params: { id: l.id }, props: { lecture: l } }));
+}
+const { lecture: l } = Astro.props;
+const all = await allLectures();
+const related = all.filter((x) => x.id !== l.id && (x.topics.some((t) => l.topics.includes(t)) || x.speakers.some((s) => s.person && l.speakers.some((y) => y.person === s.person)))).slice(0, 3);
+const speakers = await Promise.all(l.speakers.map(async (s) => ({ ...s, entry: s.person ? await getEntry("people", s.person) : undefined })));
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: l.title,
+  description: `${l.title}, a lecture from ${l.eventName}${speakers.length ? ` by ${speakers.map((s) => s.name).join(", ")}` : ""}.`,
+  thumbnailUrl: `https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`,
+  embedUrl: `https://www.youtube-nocookie.com/embed/${l.youtubeId}`,
+  uploadDate: l.date,
+};
+---
+<Base title={l.title} description={`${l.title}. A recorded lecture from ${l.eventName}${speakers.length ? ` by ${speakers.map((s) => s.name).join(", ")}` : ""}.`} jsonLd={jsonLd}>
+  <section class="section">
+    <div class="container-x">
+      <a href={withBase("/lectures/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All lectures</a>
+      <div class="lec">
+        <div class="lec-main">
+          <YouTubeEmbed id={l.youtubeId} title={l.title} />
+          <h1 class="lec-title">{l.title}</h1>
+          <p class="lec-meta">
+            {speakers.map((s, i) => <>{s.entry ? <a href={withBase(`/faculty/${s.entry.id}/`)} class="text-link">{s.name}</a> : s.name}{s.affiliation ? `, ${s.affiliation}` : ""}{i < speakers.length - 1 ? " · " : ""}</>)}
+          </p>
+          <p class="lec-ev muted"><a href={withBase(`/events/${l.eventSlug}/`)} class="text-link">{l.eventName}</a>{l.date && <> · {weekdayDate(l.date, true)}{l.start && `, ${time12(l.start)}`}</>}</p>
+          {l.abstract && <p class="lec-abs">{l.abstract}</p>}
+          <div class="lec-links">
+            <a href={youtubeWatch(l.youtubeId)} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="youtube" size={16} /> Watch on YouTube</a>
+            {l.slidesUrl && <a href={l.slidesUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="slides" size={16} /> Slides</a>}
+            {l.notebookUrl && <a href={l.notebookUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="notebook" size={16} /> Notebook</a>}
+            {l.colabUrl && <a href={l.colabUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener">Open in Colab</a>}
+            {l.dandihubUrl && <a href={l.dandihubUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener">Open in DANDI Hub</a>}
+            {l.repoUrl && <a href={l.repoUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="github" size={16} /> Code</a>}
+          </div>
+          {l.topics.length > 0 && <div class="lec-topics">{l.topics.map((t) => <a href={withBase(`/lectures/?topic=${t}`)} class="chip">{topicLabel(t)}</a>)}</div>}
+        </div>
+        <aside class="lec-side">
+          {related.length > 0 && (
+            <>
+              <span class="label">Related lectures</span>
+              <div class="lec-related">{related.map((r) => <VideoCard lecture={r} embed={false} />)}</div>
+            </>
+          )}
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .back { margin-bottom: 1.5rem; display: inline-flex; }
+  .back :global(.flip) { transform: rotate(180deg); }
+  .lec { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 1024px) { .lec { grid-template-columns: 1fr 18rem; gap: 3rem; } }
+  .lec-title { font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin-top: 1.5rem; }
+  .lec-meta { font-size: 1.1rem; margin-top: 0.6rem; }
+  .lec-ev { margin-top: 0.3rem; }
+  .lec-abs { margin-top: 1rem; color: var(--color-ink-muted); line-height: 1.6; max-width: 44rem; }
+  .lec-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+  .lec-topics { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1rem; }
+  .lec-related { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 0.8rem; }
+</style>

@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import { FOOTER, SITE } from "../consts";
+import { withBase } from "../lib/url";
+import Wordmark from "./Wordmark.astro";
+const year = new Date().getFullYear();
+const sponsors = (await getCollection("sponsors")).filter((s) => ["nih", "hhmi-janelia", "catalystneuro"].includes(s.id));
+const order = ["nih", "hhmi-janelia", "catalystneuro"];
+sponsors.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+---
+<footer class="ftr">
+  <div class="container-x">
+    <div class="ftr-top">
+      <div class="ftr-brand">
+        <Wordmark ondark />
+        <p class="ftr-tag">A one-week residential school on reanalysis of open neurophysiology data and AI methods for neural data, held at HHMI Janelia Research Campus. Formerly NeuroDataReHack.</p>
+        <p class="ftr-ack">Supported by the {SITE.grant.funder} of the National Institutes of Health under award number <a href={SITE.grant.url} target="_blank" rel="noopener">{SITE.grant.number}</a>. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health.</p>
+      </div>
+      <div class="ftr-cols">
+        {FOOTER.map((col) => (
+          <div>
+            <h3 class="ftr-h">{col.title}</h3>
+            <ul>
+              {col.links.map((l) => (
+                <li><a href={l.external ? l.href : withBase(l.href)} {...(l.external ? { target: "_blank", rel: "noopener" } : {})}>{l.label}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        <div>
+          <h3 class="ftr-h">Contact</h3>
+          <p class="ftr-note">Questions about the school or the application?</p>
+          <a href={`mailto:${SITE.email}`} class="ftr-mail">{SITE.email}</a>
+        </div>
+      </div>
+    </div>
+    <div class="ftr-logos">
+      {sponsors.map((s) => (
+        <a href={s.data.url} target="_blank" rel="noopener" class="ftr-logo" title={s.data.name}><img src={withBase(s.data.logo)} alt={s.data.name} loading="lazy" /></a>
+      ))}
+    </div>
+    <hr class="ftr-rule" />
+    <div class="ftr-bottom">
+      <span>© {year} CatalystNeuro. Content is CC BY 4.0 unless noted.</span>
+      <a href={SITE.github} target="_blank" rel="noopener">Site source on GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--color-dark); color: rgba(255,255,255,0.75); padding: 3.5rem 0 2rem; margin-top: 5rem; }
+  .ftr-top { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .ftr-top { grid-template-columns: 1.2fr 2fr; } }
+  .ftr-tag { margin: 1rem 0 1rem; max-width: 24rem; font-size: 0.95rem; line-height: 1.55; }
+  .ftr-ack { max-width: 26rem; font-size: 0.8rem; line-height: 1.5; color: rgba(255,255,255,0.55); }
+  .ftr-ack a { text-decoration: underline; text-underline-offset: 2px; }
+  .ftr-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  @media (min-width: 640px) { .ftr-cols { grid-template-columns: repeat(4, 1fr); } }
+  .ftr-h { color: #fff; font-family: var(--font-sans); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.9rem; font-weight: 600; }
+  .ftr-cols ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; padding: 0; }
+  .ftr-cols a, .ftr-mail { font-size: 0.95rem; color: rgba(255,255,255,0.75); transition: color 0.15s; }
+  .ftr-cols a:hover, .ftr-mail:hover, .ftr-bottom a:hover { color: #fff; }
+  .ftr-note { font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .ftr-logos { display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem; align-items: center; margin-top: 2.5rem; }
+  .ftr-logo img { height: 40px; width: auto; filter: brightness(0) invert(1); opacity: 0.85; }
+  .ftr-rule { border: 0; height: 1px; background: rgba(255,255,255,0.12); margin: 2.5rem 0 1.25rem; }
+  .ftr-bottom { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+</style>

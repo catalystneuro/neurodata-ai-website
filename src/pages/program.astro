@@ -1,0 +1,91 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Timeline from "../components/Timeline.astro";
+import PersonCard from "../components/PersonCard.astro";
+import LogoRow from "../components/LogoRow.astro";
+import { SITE } from "../consts";
+
+import { dateRange } from "../lib/format";
+
+const page = (await getEntry("pages", "program"))!;
+const { Content } = await render(page);
+const events = (await getCollection("events")).sort((a, b) => a.data.year.localeCompare(b.data.year));
+const timeline = events.map((e) => ({
+  year: e.data.year,
+  title: e.data.name,
+  venue: `${e.data.venue.name}, ${e.data.venue.city}${e.data.venue.note ? ` (${e.data.venue.note.toLowerCase()})` : ""}`,
+  note: e.data.status === "past" && e.data.stats.participants ? `${dateRange(e.data.startDate, e.data.endDate)} · ${e.data.stats.participants} participants from ${e.data.stats.institutions} institutions` : dateRange(e.data.startDate, e.data.endDate),
+  href: `/events/${e.id}/`,
+  upcoming: e.data.status === "upcoming",
+}));
+const advisory = (await getCollection("people")).filter((p) => p.data.roles.includes("advisory")).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const sponsors = await getCollection("sponsors");
+---
+<Base title="The program" description="What the NeuroData AI Summer School teaches, how the week is organized, who funds and hosts it, and how it grew out of NeuroDataReHack.">
+  <PageHeader eyebrow="The program" title="A week of reanalysis, taught by the people who built the tools" subtitle="What the school covers, how the week runs, who supports it, and where it came from." />
+
+  <section class="section">
+    <div class="container-x layout">
+      <aside class="toc">
+        <span class="label">On this page</span>
+        <nav>
+          <a href="#why">Why the school exists</a>
+          <a href="#aims">Aims</a>
+          <a href="#format">Format</a>
+          <a href="#history">History</a>
+          <a href="#funding">Funding and hosting</a>
+          <a href="#advisory">Advisory committee</a>
+          <a href="#conduct">Code of conduct and contact</a>
+        </nav>
+      </aside>
+      <div class="main">
+        <div class="prose" id="why">
+          <Content />
+        </div>
+
+        <h2 id="history" class="h2">History</h2>
+        <p class="muted intro">The school continues NeuroDataReHack, which ran five times between 2022 and 2026. Each past installment has its own page with the schedule, recordings, projects, and report.</p>
+        <Timeline items={timeline} />
+
+        <h2 id="advisory" class="h2">Advisory committee</h2>
+        <p class="muted intro">The committee reviews the curriculum each year, advises on selection criteria, evaluates outcomes, and helps spread the word. It meets three times a year.</p>
+        <div class="grid-2">
+          {advisory.map((p) => <PersonCard person={p} />)}
+        </div>
+
+        <h2 id="conduct" class="h2">Code of conduct and contact</h2>
+        <p class="muted intro">The school follows the <a href={SITE.codeOfConduct} class="text-link" target="_blank" rel="noopener">code of conduct for NWB events</a>. Questions about the program or an application can go to <a href={`mailto:${SITE.email}`} class="text-link">{SITE.email}</a>.</p>
+
+        <div class="sponsors">
+          <LogoRow title="Supported by" sponsors={sponsors.filter((s) => ["nih", "hhmi-janelia", "catalystneuro", "kavli", "allen"].includes(s.id))} size="sm" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .layout { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 960px) { .layout { grid-template-columns: 13rem 1fr; gap: 3rem; } }
+  .toc { position: sticky; top: 5.5rem; align-self: start; display: none; }
+  @media (min-width: 960px) { .toc { display: block; } }
+  .toc nav { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.6rem; }
+  .toc a { font-size: 0.95rem; color: var(--color-ink-muted); }
+  .toc a:hover { color: var(--color-pine); }
+  .main { max-width: 44rem; }
+  .h2 { margin-top: 3.5rem; margin-bottom: 0.6rem; scroll-margin-top: 5.5rem; }
+  .intro { margin-bottom: 1.5rem; line-height: 1.6; }
+  .sponsors { margin-top: 3rem; }
+  /* anchor ids inside the markdown come from headings; add scroll margin */
+  .prose :global(h2) { scroll-margin-top: 5.5rem; }
+</style>
+
+<script>
+  // Give the prose headings the ids the sidebar links to.
+  const map: Record<string, string> = { "aims": "Aims", "format": "Format", "funding": "Funding and hosting" };
+  document.querySelectorAll<HTMLHeadingElement>(".prose h2").forEach((h) => {
+    for (const [id, text] of Object.entries(map)) if (h.textContent?.trim() === text) h.id = id;
+  });
+</script>

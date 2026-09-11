@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/url";
+import { time12, weekdayDate } from "../lib/format";
+import Icon from "./Icon.astro";
+type Day = CollectionEntry<"schedules">["data"]["days"][number];
+interface Props { day: Day; tentative?: boolean }
+const { day, tentative = false } = Astro.props;
+const QUIET = new Set(["meal", "break", "arrival"]);
+const speakerLine = (it: Day["items"][number]) => it.speakers.map((s) => s.name).filter(Boolean).join(", ");
+const affLine = (it: Day["items"][number]) => [...new Set(it.speakers.map((s) => s.affiliation).filter(Boolean))].join("; ");
+---
+<section class="sched">
+  <h3 class="sched-h"><span class="sched-day">{day.label}</span>{day.date && <span class="sched-date">{weekdayDate(day.date)}</span>}{day.theme && <span class="sched-theme">{day.theme}</span>}</h3>
+  <table class="sched-table">
+    <thead><tr><th scope="col">Time</th><th scope="col">Session</th><th scope="col">Speaker</th></tr></thead>
+    <tbody>
+      {day.items.map((it) => (
+        <tr class:list={[`row-${it.type}`, QUIET.has(it.type) && "row-quiet"]}>
+          <td class="sched-time tnum" data-label="Time">{time12(it.start)}{it.end && <span class="sched-end"> – {time12(it.end)}</span>}</td>
+          <td class="sched-title" data-label="Session">
+            {it.youtubeId ? (
+              <a href={withBase(`/lectures/${it.id}/`)} class="sched-link"><Icon name="play-ring" size={16} /> {it.title}</a>
+            ) : it.title}
+            {it.recordingStatus === "unavailable" && <span class="sched-note"> (not recorded)</span>}
+            {it.speakers.some((s) => s.remote) && <span class="sched-note"> (remote)</span>}
+          </td>
+          <td class="sched-speaker" data-label="Speaker">{speakerLine(it) && <span>{speakerLine(it)}</span>}{affLine(it) && <span class="sched-aff">{affLine(it)}</span>}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</section>
+
+<style>
+  .sched { margin-bottom: 2rem; }
+  .sched-h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.9rem; font-family: var(--font-sans); font-size: 1.05rem; margin-bottom: 0.6rem; }
+  .sched-day { font-weight: 700; color: var(--color-pine); }
+  .sched-date { font-weight: 600; }
+  .sched-theme { color: var(--color-ink-muted); font-weight: 400; }
+  .sched-table { width: 100%; border-collapse: collapse; font-size: 0.98rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 0.6rem; overflow: hidden; }
+  .sched-table th { text-align: left; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-soft); padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--color-line); background: var(--color-paper); font-weight: 600; }
+  .sched-table td { padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--color-line-soft); vertical-align: top; }
+  .sched-table tr:last-child td { border-bottom: 0; }
+  .sched-time { white-space: nowrap; color: var(--color-ink-muted); width: 11rem; }
+  .sched-end { color: var(--color-ink-soft); }
+  .row-quiet td { color: var(--color-ink-soft); background: color-mix(in srgb, var(--color-paper) 60%, transparent); }
+  .row-hack .sched-title, .row-discussion .sched-title, .row-presentations .sched-title, .row-checkin .sched-title { color: var(--color-ink-muted); }
+  .row-talk .sched-title, .row-breakout .sched-title { font-weight: 500; }
+  .sched-link { color: var(--color-pine); display: inline-flex; align-items: center; gap: 0.35rem; }
+  .sched-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .sched-note { color: var(--color-ink-soft); font-size: 0.9em; }
+  .sched-speaker span { display: block; }
+  .sched-aff { color: var(--color-ink-soft); font-size: 0.88rem; }
+  @media (max-width: 700px) {
+    .sched-table, .sched-table tbody, .sched-table tr, .sched-table td { display: block; }
+    .sched-table thead { display: none; }
+    .sched-table tr { padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--color-line-soft); }
+    .sched-table td { padding: 0; border: 0; }
+    .sched-time { width: auto; font-size: 0.85rem; }
+    .sched-speaker { font-size: 0.9rem; }
+    .row-quiet td { background: none; }
+  }
+</style>

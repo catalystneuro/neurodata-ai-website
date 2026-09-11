@@ -1,0 +1,187 @@
+---
+import { getCollection, getEntry, getEntries, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import ApplyBanner from "../../components/ApplyBanner.astro";
+import StatsTiles from "../../components/StatsTiles.astro";
+import PersonCard from "../../components/PersonCard.astro";
+import ScheduleTable from "../../components/ScheduleTable.astro";
+import VideoCard from "../../components/VideoCard.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import PhotoGallery from "../../components/PhotoGallery.astro";
+import Testimonial from "../../components/Testimonial.astro";
+import LogoRow from "../../components/LogoRow.astro";
+import Icon from "../../components/Icon.astro";
+import { withBase } from "../../lib/url";
+import { dateRange, weekdayDate } from "../../lib/format";
+import { allLectures } from "../../lib/derive";
+import { photo } from "../../lib/photos";
+import { playlistUrl } from "../../lib/youtube";
+
+export async function getStaticPaths() {
+  const events = await getCollection("events");
+  return events.map((e) => ({ params: { year: e.id }, props: { event: e } }));
+}
+const { event } = Astro.props;
+const e = event.data;
+const { Content } = await render(event);
+const schedule = await getEntry("schedules", event.id);
+const projects = (await getCollection("projects")).filter((p) => p.data.event.id === event.id).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.title.localeCompare(b.data.title));
+const lectures = (await allLectures()).filter((l) => l.year === e.year);
+const testimonials = (await getCollection("testimonials")).filter((t) => t.data.event.id === event.id);
+const instructors = await getEntries(e.instructors);
+const organizers = await getEntries(e.organizers);
+const sponsors = (await getCollection("sponsors")).filter((s) => e.sponsors.includes(s.id));
+const photos = e.photos.map((p) => ({ image: photo(p.src), alt: p.alt, caption: p.caption }));
+const lead = e.groupPhoto ? { image: photo(e.groupPhoto.src), alt: e.groupPhoto.alt, caption: e.groupPhoto.caption } : undefined;
+const isPast = e.status === "past";
+const tiles = [
+  e.stats.participants && { value: e.stats.participants, label: isPast ? "participants" : "places", sub: e.stats.applicants ? `${e.stats.applicants} applicants` : undefined },
+  e.stats.institutions && { value: e.stats.institutions, label: "institutions" },
+  e.stats.countries && { value: e.stats.countries, label: "countries" },
+  projects.length && { value: projects.length, label: "projects" },
+  lectures.length && { value: lectures.length, label: "recordings" },
+  e.survey?.overall && { value: `${e.survey.overall}/5`, label: "overall rating", sub: e.survey.respondents ? `n = ${e.survey.respondents}` : undefined },
+].filter(Boolean) as { value: string | number; label: string; sub?: string }[];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationEvent",
+  name: e.name,
+  startDate: e.startDate,
+  endDate: e.endDate,
+  eventStatus: isPast ? "https://schema.org/EventScheduled" : "https://schema.org/EventScheduled",
+  location: { "@type": "Place", name: e.venue.name, address: `${e.venue.city}, ${e.venue.country}` },
+  organizer: { "@type": "Organization", name: "CatalystNeuro", url: "https://catalystneuro.com" },
+  isAccessibleForFree: true,
+  description: e.tagline,
+};
+---
+<Base title={e.name} description={`${e.name}, ${dateRange(e.startDate, e.endDate)} at ${e.venue.name}. ${e.tagline}`} image={e.banner} jsonLd={jsonLd}>
+  <section class="ev-head">
+    <div class="container-x">
+      <span class="eyebrow">{isPast ? "Past installment" : "Upcoming"} · {e.series === "ndrh" ? "NeuroDataReHack" : "NeuroData AI Summer School"}</span>
+      <h1>{e.name}</h1>
+      <p class="lede">{e.tagline}</p>
+      <dl class="kv ev-facts">
+        <dt><Icon name="calendar" size={16} /> Dates</dt><dd>{dateRange(e.startDate, e.endDate)}{e.arrivalDate && <span class="soft"> · arrive {weekdayDate(e.arrivalDate)}</span>}</dd>
+        <dt><Icon name="map" size={16} /> Venue</dt><dd>{e.venue.url ? <a href={e.venue.url} class="text-link" target="_blank" rel="noopener">{e.venue.name}</a> : e.venue.name}, {e.venue.city}, {e.venue.country}{e.venue.note && <span class="soft"> · {e.venue.note}</span>}</dd>
+        {organizers.length > 0 && <><dt><Icon name="users" size={16} /> Organizers</dt><dd>{organizers.map((p, i) => <><a href={withBase(`/faculty/${p.id}/`)} class="text-link">{p.data.name}</a>{i < organizers.length - 1 ? ", " : ""}</>)}</dd></>}
+      </dl>
+      {!isPast && <div class="ev-apply"><ApplyBanner event={event} /></div>}
+      {isPast && (
+        <div class="ev-links">
+          {e.playlistId && <a href={playlistUrl(e.playlistId)} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="youtube" size={16} /> Playlist</a>}
+          {e.reportUrl && <a href={e.reportUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="doc" size={16} /> Event report</a>}
+          {e.slidesUrl && <a href={e.slidesUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="slides" size={16} /> Slides</a>}
+          {e.agendaPdf && <a href={withBase(e.agendaPdf)} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="calendar" size={16} /> Agenda</a>}
+          {e.githubUrl && <a href={e.githubUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="github" size={16} /> Materials</a>}
+        </div>
+      )}
+    </div>
+  </section>
+
+  {e.banner && (
+    <div class="container-x ev-banner"><img src={withBase(e.banner)} alt="" loading="eager" /></div>
+  )}
+
+  <section class="section">
+    <div class="container-x layout">
+      <aside class="toc">
+        <span class="label">On this page</span>
+        <nav>
+          <a href="#about">About</a>
+          {instructors.length > 0 && <a href="#instructors">Instructors</a>}
+          {schedule && <a href="#schedule">Schedule</a>}
+          {lectures.length > 0 && <a href="#recordings">Recordings</a>}
+          {projects.length > 0 && <a href="#projects">Projects</a>}
+          {(photos.length > 0 || lead) && <a href="#photos">Photos</a>}
+          {testimonials.length > 0 && <a href="#testimonials">Participants said</a>}
+        </nav>
+      </aside>
+      <div class="main">
+        {tiles.length > 0 && <div class="mb"><StatsTiles tiles={tiles} columns={tiles.length > 4 ? 3 : tiles.length} /></div>}
+
+        <div class="prose" id="about"><Content /></div>
+
+        {instructors.length > 0 && (
+          <>
+            <h2 id="instructors" class="h2">Instructors</h2>
+            <div class="grid-2">{instructors.map((p) => <PersonCard person={p} size="sm" />)}</div>
+          </>
+        )}
+
+        {schedule && (
+          <>
+            <h2 id="schedule" class="h2">Schedule</h2>
+            {schedule.data.tentative && <div class="notice notice--sun mb"><Icon name="clock" size={18} /><span>{schedule.data.note ?? "This schedule is tentative."}</span></div>}
+            {!schedule.data.tentative && schedule.data.note && <p class="muted mb">{schedule.data.note}</p>}
+            {e.recordingsNote && lectures.length > 0 && <p class="soft mb small">{e.recordingsNote}</p>}
+            {schedule.data.days.map((d) => <ScheduleTable day={d} tentative={schedule.data.tentative} />)}
+            {schedule.data.unscheduled.length > 0 && <ScheduleTable day={{ label: "Recorded talks", items: schedule.data.unscheduled }} />}
+          </>
+        )}
+
+        {lectures.length > 0 && (
+          <>
+            <h2 id="recordings" class="h2">Recordings</h2>
+            <div class="grid-2">{lectures.map((l) => <VideoCard lecture={l} showEvent={false} />)}</div>
+          </>
+        )}
+        {isPast && lectures.length === 0 && e.recordingsNote && (
+          <>
+            <h2 id="recordings" class="h2">Recordings</h2>
+            <p class="muted">{e.recordingsNote}{e.reportUrl && <> The <a href={e.reportUrl} class="text-link" target="_blank" rel="noopener">event report</a> summarizes the program and projects.</>}</p>
+          </>
+        )}
+
+        {projects.length > 0 && (
+          <>
+            <h2 id="projects" class="h2">Projects</h2>
+            {e.liveProjectsDocUrl && <p class="muted mb">Participants documented their projects in a <a href={e.liveProjectsDocUrl} class="text-link" target="_blank" rel="noopener">shared document</a> during the week; the write-ups below are drawn from it.</p>}
+            <div class="grid-2">{projects.map((p) => <ProjectCard project={p} showYear={false} />)}</div>
+          </>
+        )}
+
+        {(photos.length > 0 || lead) && (
+          <>
+            <h2 id="photos" class="h2">Photos</h2>
+            <PhotoGallery photos={photos} lead={lead} />
+          </>
+        )}
+
+        {testimonials.length > 0 && (
+          <>
+            <h2 id="testimonials" class="h2">Participants said</h2>
+            <div class="grid-2">{testimonials.map((t) => <Testimonial quote={t.data.quote} name={t.data.name} affiliation={t.data.affiliation} />)}</div>
+          </>
+        )}
+
+        {sponsors.length > 0 && <div class="sponsors"><LogoRow title={isPast ? "Hosted and supported by" : "Funded and hosted by"} sponsors={sponsors} size="sm" /></div>}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ev-head { background: var(--color-surface); border-bottom: 1px solid var(--color-line); padding: 3rem 0 2rem; }
+  .ev-head h1 { font-size: clamp(2rem, 4.5vw, 3rem); }
+  .ev-head .lede { margin-top: 0.8rem; }
+  .ev-facts { margin-top: 1.4rem; }
+  .ev-facts dt { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .ev-apply { margin-top: 1.5rem; }
+  .ev-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.4rem; }
+  .ev-banner { margin-top: 2rem; }
+  .ev-banner img { width: 100%; height: auto; border-radius: 0.8rem; border: 1px solid var(--color-line); }
+  .layout { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 960px) { .layout { grid-template-columns: 12rem 1fr; gap: 3rem; } }
+  .toc { position: sticky; top: 5.5rem; align-self: start; display: none; }
+  @media (min-width: 960px) { .toc { display: block; } }
+  .toc nav { display: flex; flex-direction: column; gap: 0.35rem; margin-top: 0.6rem; }
+  .toc a { font-size: 0.95rem; color: var(--color-ink-muted); }
+  .toc a:hover { color: var(--color-pine); }
+  .main { min-width: 0; }
+  .main .prose { max-width: 46rem; }
+  .h2 { margin-top: 3.5rem; margin-bottom: 1rem; scroll-margin-top: 5.5rem; }
+  .mb { margin-bottom: 1.25rem; }
+  .small { font-size: 0.92rem; }
+  .sponsors { margin-top: 3.5rem; }
+</style>
