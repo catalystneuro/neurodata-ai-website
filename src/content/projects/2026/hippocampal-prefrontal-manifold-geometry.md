@@ -32,15 +32,15 @@ Population-geometry ("cognitive map") analysis of hippocampal CA1 and prefrontal
 
 **Approach**.
 
-  - Data is streamed lazily from DANDI (pynwb/remfile). A common pipeline runs per dandiset: (1) extract time-binned spike-rate matrices with position/velocity and epoch/condition/session labels; (2) linear baselines — PCA, lap-resolved dPCA (cross-validated regularization + permutation significance), and GPFA with latents indexed by linearized track position; (3) nonlinear embeddings — UMAP and CEBRA (supervised and unsupervised CEBRA-Time) on a validated 50 ms / Gaussian-smoothed / speed-filtered representation; (4) geometry comparison — Procrustes/CCA on position-matched centroids, with tracks linearized onto a common W topology so different physical mazes are comparable; (5) intrinsic-dimensionality triangulation — TwoNN, PCA participation ratio, Isomap residual variance, and a decoding-vs-dimension curve, all cross-validated.
+  - Data is streamed lazily from DANDI (pynwb/remfile). A common pipeline runs per dandiset: (1) extract time-binned spike-rate matrices with position/velocity and epoch/condition/session labels; (2) linear baselines, PCA, lap-resolved dPCA (cross-validated regularization + permutation significance), and GPFA with latents indexed by linearized track position; (3) nonlinear embeddings, UMAP and CEBRA (supervised and unsupervised CEBRA-Time) on a validated 50 ms / Gaussian-smoothed / speed-filtered representation; (4) geometry comparison, Procrustes/CCA on position-matched centroids, with tracks linearized onto a common W topology so different physical mazes are comparable; (5) intrinsic-dimensionality triangulation, TwoNN, PCA participation ratio, Isomap residual variance, and a decoding-vs-dimension curve, all cross-validated.
 
 ## Progress and Next Steps
 
 **Done**
 
-  - compared in track-relative (linearized) coordinates the maps show a spatially-structured transformation — clear shared geometry plus real reshaping. dPCA confirms a genuine space×condition interaction (remap), significant in all animals.
+  - compared in track-relative (linearized) coordinates the maps show a spatially-structured transformation, clear shared geometry plus real reshaping. dPCA confirms a genuine space×condition interaction (remap), significant in all animals.
   - 000978: the manifold converges monotonically toward its final-session geometry across the day, robust to bin size, embedding, region, and 2-D vs. track-relative binning.
-  - Dimensionality: both maps are low-dimensional and curved — TwoNN/Isomap give \~3–5 intrinsic dimensions vs. a much higher linear participation ratio (the gap is a curvature signal). Intrinsic dimensionality is largely unchanged by familiarisation (000447) and, within a session, is stable (\~3) across learning (000978) — the pooled \~8 reflects cross-session drift, not within-session complexity. Conclusion: learning/novelty reshape the geometry of a fixed-low-dimensional map rather than changing its dimensionality.
+  - Dimensionality: both maps are low-dimensional and curved, TwoNN/Isomap give \~3–5 intrinsic dimensions vs. a much higher linear participation ratio (the gap is a curvature signal). Intrinsic dimensionality is largely unchanged by familiarisation (000447) and, within a session, is stable (\~3) across learning (000978), the pooled \~8 reflects cross-session drift, not within-session complexity. Conclusion: learning/novelty reshape the geometry of a fixed-low-dimensional map rather than changing its dimensionality.
 
 ## Next Steps
 

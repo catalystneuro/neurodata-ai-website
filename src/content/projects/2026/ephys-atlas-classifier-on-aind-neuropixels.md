@@ -26,7 +26,7 @@ hasBody: true
   - DANDI:001637 (AIND ecephys): contains CCF acronyms and coordinates for per-channel brain-region labeling. <https://dandiarchive.org/dandiset/001637/draft>
   - Used WavPack-compressed Zarr files to stream raw AP and LF signals from the aind-open-data S3 bucket, cross-referenced with allen\_info.tsv.
 
-\- \*\*DANDI 001637\*\* (AIND \`ecephys\`) — per-channel Allen brain-region labels (CCF acronyms +
+\- \*\*DANDI 001637\*\* (AIND \`ecephys\`), per-channel Allen brain-region labels (CCF acronyms +
 
   coordinates): https://dandiarchive.org/dandiset/001637/draft
 
@@ -36,7 +36,7 @@ hasBody: true
 
 ## Objectives and Approach
 
-  - Stream raw AP + LF per probe directly from AIND S3 (no downloads) and compute the full ephys-atlas feature set (LF, CSD, AP, spike-waveforms) on 5 × 5 s snippets, aggregated and denoised with the library's own pipeline — the same pipeline that built the training vintage.
+  - Stream raw AP + LF per probe directly from AIND S3 (no downloads) and compute the full ephys-atlas feature set (LF, CSD, AP, spike-waveforms) on 5 × 5 s snippets, aggregated and denoised with the library's own pipeline, the same pipeline that built the training vintage.
   - Attach per-channel Cosmos region labels from the matching DANDI 001637 NWB electrodes table (joined on the channel index within each probe).
   - Retrain an XGBoost Cosmos classifier on the latest ea\_active vintage (\`2026\_W26\`), predict the Allen channels, and report accuracy grouped by probe id.
   -

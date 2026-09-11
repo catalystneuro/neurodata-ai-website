@@ -21,13 +21,13 @@ const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
       {NAV.map((item) =>
         item.children ? (
           <div class="nav-group">
-            <button class:list={["nav-link", "nav-trigger", item.children.some((c) => isActive(c.href)) && "is-active"]} aria-haspopup="true" aria-expanded="false">
+            <button class:list={["nav-link", "nav-trigger", item.children.some((c) => isActive(c.href)) && "is-active"]} >
               {item.label}
               <Icon name="chevron" size={14} />
             </button>
-            <div class="nav-menu" role="menu">
+            <div class="nav-menu">
               {item.children.map((c) => (
-                <a href={withBase(c.href)} role="menuitem" class:list={["nav-menu-link", isActive(c.href) && "is-active"]}>{c.label}</a>
+                <a href={withBase(c.href)} class:list={["nav-menu-link", isActive(c.href) && "is-active"]}>{c.label}</a>
               ))}
             </div>
           </div>

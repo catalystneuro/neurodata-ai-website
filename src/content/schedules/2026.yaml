@@ -61,7 +61,7 @@ days:
         type: talk
         speakers:
           - person: oliver-ruebel
-            name: Oliver Ruebel
+            name: Oliver Rübel
             affiliation: Lawrence Berkeley National Laboratory
         room: Synapse
         youtubeId: sXHLbhdC0Pk
@@ -113,7 +113,7 @@ days:
         type: talk
         speakers:
           - person: jerome-lecoq
-            name: Jerome Lecoq
+            name: Jérôme Lecoq
             affiliation: Allen Institute for Neural Dynamics
             remote: true
         room: Synapse

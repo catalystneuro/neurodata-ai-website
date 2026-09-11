@@ -12,7 +12,7 @@ const attrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
 <div class:list={["apply", `apply--${cta.state}`, variant === "compact" && "apply--compact"]}>
   <div class="apply-text">
     <strong>{event.data.name}</strong>, {dateRange(event.data.startDate, event.data.endDate)}, {event.data.venue.name}. {cta.sentence}
-    {event.data.applications?.note && cta.state === "not_open" && <span class="soft"> {event.data.applications.note}</span>}
+    {event.data.applications?.note && cta.state === "not_open" && <span class="muted"> {event.data.applications.note}</span>}
   </div>
   <div class="apply-actions">
     <a href={cta.href} class="btn btn-primary btn-sm" {...attrs}>{cta.label}</a>

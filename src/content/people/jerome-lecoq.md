@@ -1,6 +1,6 @@
 ---
 name: Jérôme Lecoq
-affiliation: Allen Institute
+affiliation: Allen Institute for Neural Dynamics
 photo: /images/people/jerome-lecoq.jpg
 roles: [advisory, guest, organizer]
 ---

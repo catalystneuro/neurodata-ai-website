@@ -2,9 +2,9 @@
 title: Support S3 read in the AqNWB C++ API
 event: "2026"
 investigators:
-  - name: Oliver Ruebel
+  - name: Oliver Rübel
     person: oliver-ruebel
-  - name: Benjamin Dichter
+  - name: Ben Dichter
     person: ben-dichter
 dandisets:
   - id: "000717"

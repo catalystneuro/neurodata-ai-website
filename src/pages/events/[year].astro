@@ -64,6 +64,7 @@ const jsonLd = {
       <dl class="kv ev-facts">
         <dt><Icon name="calendar" size={16} /> Dates</dt><dd>{dateRange(e.startDate, e.endDate)}{e.arrivalDate && <span class="soft"> · arrive {weekdayDate(e.arrivalDate)}</span>}</dd>
         <dt><Icon name="map" size={16} /> Venue</dt><dd>{e.venue.url ? <a href={e.venue.url} class="text-link" target="_blank" rel="noopener">{e.venue.name}</a> : e.venue.name}, {e.venue.city}, {e.venue.country}{e.venue.note && <span class="soft"> · {e.venue.note}</span>}</dd>
+        {!isPast && e.stats.participants && <><dt><Icon name="users" size={16} /> Places</dt><dd>About {e.stats.participants} participants</dd></>}
         {organizers.length > 0 && <><dt><Icon name="users" size={16} /> Organizers</dt><dd>{organizers.map((p, i) => <><a href={withBase(`/faculty/${p.id}/`)} class="text-link">{p.data.name}</a>{i < organizers.length - 1 ? ", " : ""}</>)}</dd></>}
       </dl>
       {!isPast && <div class="ev-apply"><ApplyBanner event={event} /></div>}
@@ -79,7 +80,7 @@ const jsonLd = {
     </div>
   </section>
 
-  {e.banner && (
+  {e.banner && isPast && (
     <div class="container-x ev-banner"><img src={withBase(e.banner)} alt="" loading="eager" /></div>
   )}
 
@@ -98,7 +99,7 @@ const jsonLd = {
         </nav>
       </aside>
       <div class="main">
-        {tiles.length > 0 && <div class="mb"><StatsTiles tiles={tiles} columns={tiles.length > 4 ? 3 : tiles.length} /></div>}
+        {tiles.length > 1 && <div class="mb"><StatsTiles tiles={tiles} columns={tiles.length > 4 ? 3 : tiles.length} /></div>}
 
         <div class="prose" id="about"><Content /></div>
 

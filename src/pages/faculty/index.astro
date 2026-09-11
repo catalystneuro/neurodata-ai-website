@@ -22,7 +22,7 @@ const guests = people.filter((p) => p.data.roles.includes("guest")).sort(byName)
   <section class="section">
     <div class="container-x">
       <h2 class="section-title">Program director</h2>
-      <div class="grid-2 mb">{director.map((p) => <PersonCard person={p} role="Program Director, CatalystNeuro" />)}</div>
+      <div class="grid-2 mb">{director.map((p) => <PersonCard person={p} />)}</div>
 
       <h2 class="section-title">{CURRENT_EVENT} instructors announced so far</h2>
       <div class="grid-3 mb">{currentInstructors.map((p) => <PersonCard person={p} />)}</div>

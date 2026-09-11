@@ -21,7 +21,7 @@ const href = withBase(`/events/${event.id}/`);
     <p class="ec-meta">{dateRange(e.startDate, e.endDate)} · {e.venue.name}, {e.venue.city}</p>
     <p class="ec-tag">{e.tagline}</p>
     <ul class="ec-facts">
-      {e.stats.participants && <li><Icon name="users" size={15} /> {e.stats.participants} participants{e.stats.countries ? ` from ${e.stats.countries} countries` : ""}</li>}
+      {e.stats.participants && <li><Icon name="users" size={15} /> {e.stats.participants} {e.status === "upcoming" ? "places" : "participants"}{e.stats.countries ? ` from ${e.stats.countries} countries` : ""}</li>}
       {projects > 0 && <li><Icon name="notebook" size={15} /> {projects} projects</li>}
       {lectures > 0 && <li><Icon name="video" size={15} /> {lectures} recorded lectures</li>}
       {e.reportUrl && <li><Icon name="doc" size={15} /> Report</li>}

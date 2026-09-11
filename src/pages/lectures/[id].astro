@@ -53,7 +53,7 @@ const jsonLd = {
         <aside class="lec-side">
           {related.length > 0 && (
             <>
-              <span class="label">Related lectures</span>
+              <h2 class="label">Related lectures</h2>
               <div class="lec-related">{related.map((r) => <VideoCard lecture={r} embed={false} />)}</div>
             </>
           )}

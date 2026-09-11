@@ -21,7 +21,7 @@ colors:
 typography:
   display:
     fontFamily: "Source Serif 4 Variable, Source Serif 4, Georgia, serif"
-    fontSize: "clamp(2.4rem, 5.5vw, 3.8rem)"
+    fontSize: "clamp(2.1rem, 4.5vw, 3.2rem)"
     fontWeight: 600
     lineHeight: 1.08
     letterSpacing: "-0.01em"
@@ -59,7 +59,9 @@ typography:
 rounded:
   sm: "0.25rem"
   base: "0.4rem"
+  md: "0.5rem"
   lg: "0.6rem"
+  xl: "0.8rem"
   full: "999px"
 spacing:
   section: "4.5rem"
@@ -104,7 +106,7 @@ Strategy: restrained. Neutrals plus one accent.
 
 - Cards are white on paper with a 1px `line` border and 0.6rem radius. Hover raises the border to `pine-400`; no shadow by default, a soft neutral shadow only on the mobile navigation panel and dialogs.
 - Buttons are 0.4rem radius. Primary: pine fill, white text. Secondary: white fill, `line` border, ink text. No pill buttons except chips.
-- Photos are 0.6rem radius with a hairline border; headshots are circles.
+- Cards and gallery photos are 0.6rem radius with a hairline border; full-width photos, banners, and the newsletter band are 0.8rem; notices and menus 0.5rem; headshots are circles.
 
 ## Components
 

@@ -38,8 +38,8 @@ Our goal is to predict the neural latent space from peripheral behavioral signal
 
 ## Background and References
 
-  - **Reimer et al., 2014 —** pupil size tracks fast switches of cortical state in quiet wakefulness.
-  - **McGinley et al., 2015 —** pupil-indexed arousal modulates neural and behavioral responses.
-  - **Vinck et al., 2015 —** arousal and locomotion make distinct contributions to cortical activity.
-  - **Stringer et al., 2019 —** spontaneous facial movements drive brain-wide activity; 1-D signals (pupil, running) capture only a slice.
-  - **Musall et al., 2019 —** single-trial neural dynamics are dominated by movement.
+  - **Reimer et al., 2014, ** pupil size tracks fast switches of cortical state in quiet wakefulness.
+  - **McGinley et al., 2015, ** pupil-indexed arousal modulates neural and behavioral responses.
+  - **Vinck et al., 2015, ** arousal and locomotion make distinct contributions to cortical activity.
+  - **Stringer et al., 2019, ** spontaneous facial movements drive brain-wide activity; 1-D signals (pupil, running) capture only a slice.
+  - **Musall et al., 2019, ** single-trial neural dynamics are dominated by movement.
