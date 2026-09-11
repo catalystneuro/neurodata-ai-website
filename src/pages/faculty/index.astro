@@ -13,12 +13,11 @@ const director = people.filter((p) => p.data.roles.includes("director"));
 const currentIds = new Set(current.data.instructors.map((r) => r.id));
 const currentInstructors = people.filter((p) => currentIds.has(p.id) && !p.data.roles.includes("director")).sort(byName);
 const faculty = people.filter((p) => p.data.roles.includes("faculty") && !currentIds.has(p.id) && !p.data.roles.includes("director")).sort(byName);
-const advisory = people.filter((p) => p.data.roles.includes("advisory")).sort(byName);
 const spoke = await speakerSlugs();
 const guests = people.filter((p) => p.data.roles.includes("guest")).sort(byName);
 ---
-<Base title="Faculty" description="The director, instructors, faculty, and advisory committee of the NeuroData AI Summer School.">
-  <PageHeader eyebrow="People" title="Faculty and advisory committee" subtitle="Instructors include the developers of NWB, DANDI, SpikeInterface, Pynapple, Neurosift, and suite2p, alongside researchers applying AI methods to neural data. Each faculty member gives one or two sessions and stays on site for at least three days to mentor projects." />
+<Base title="Faculty" description="The director, instructors, and faculty of the NeuroData AI Summer School.">
+  <PageHeader eyebrow="People" title="Faculty" subtitle="Instructors include the developers of NWB, DANDI, SpikeInterface, Pynapple, Neurosift, and suite2p, alongside researchers applying AI methods to neural data. Each faculty member gives one or two sessions and stays on site for at least three days to mentor projects." />
   <section class="section">
     <div class="container-x">
       <h2 class="section-title">Program director</h2>
@@ -30,9 +29,6 @@ const guests = people.filter((p) => p.data.roles.includes("guest")).sort(byName)
       <h2 class="section-title">Faculty</h2>
       <p class="muted intro">Faculty who have taught at recent installments and are expected to return. The roster is confirmed each year.</p>
       <div class="grid-3 mb">{faculty.map((p) => <PersonCard person={p} />)}</div>
-
-      <h2 class="section-title">Advisory committee</h2>
-      <div class="grid-3 mb">{advisory.map((p) => <PersonCard person={p} />)}</div>
 
       <h2 class="section-title">Guest speakers at past installments</h2>
       <div class="grid-3">{guests.map((p) => <PersonCard person={p} size="sm" note={spoke.get(p.id) ? [...spoke.get(p.id)!].sort().join(", ") : undefined} />)}</div>

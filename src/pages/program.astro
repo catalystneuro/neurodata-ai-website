@@ -3,7 +3,6 @@ import { getCollection, getEntry, render } from "astro:content";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Timeline from "../components/Timeline.astro";
-import PersonCard from "../components/PersonCard.astro";
 import LogoRow from "../components/LogoRow.astro";
 import { SITE } from "../consts";
 
@@ -20,7 +19,6 @@ const timeline = events.map((e) => ({
   href: `/events/${e.id}/`,
   upcoming: e.data.status === "upcoming",
 }));
-const advisory = (await getCollection("people")).filter((p) => p.data.roles.includes("advisory")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const sponsors = await getCollection("sponsors");
 ---
 <Base title="The program" description="What the NeuroData AI Summer School teaches, how the week is organized, who funds and hosts it, and how it grew out of NeuroDataReHack.">
@@ -36,7 +34,6 @@ const sponsors = await getCollection("sponsors");
           <a href="#format">Format</a>
           <a href="#history">History</a>
           <a href="#funding">Funding and hosting</a>
-          <a href="#advisory">Advisory committee</a>
           <a href="#conduct">Code of conduct and contact</a>
         </nav>
       </aside>
@@ -48,12 +45,6 @@ const sponsors = await getCollection("sponsors");
         <h2 id="history" class="h2">History</h2>
         <p class="muted intro">The school continues NeuroDataReHack, which ran five times between 2022 and 2026. Each past installment has its own page with the schedule, recordings, projects, and report.</p>
         <Timeline items={timeline} />
-
-        <h2 id="advisory" class="h2">Advisory committee</h2>
-        <p class="muted intro">The committee reviews the curriculum each year, advises on selection criteria, evaluates outcomes, and helps spread the word. It meets three times a year.</p>
-        <div class="grid-2">
-          {advisory.map((p) => <PersonCard person={p} />)}
-        </div>
 
         <h2 id="conduct" class="h2">Code of conduct and contact</h2>
         <p class="muted intro">The school follows the <a href={SITE.codeOfConduct} class="text-link" target="_blank" rel="noopener">code of conduct for NWB events</a>. Questions about the program or an application can go to <a href={`mailto:${SITE.email}`} class="text-link">{SITE.email}</a>.</p>

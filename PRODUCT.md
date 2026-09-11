@@ -10,7 +10,7 @@ web
 
 Primary: prospective applicants, mostly PhD students, postdocs, and early-career faculty in neuroscience (about four in five) or in computational fields wanting to work on neurophysiology (about one in five). They arrive from a mailing-list announcement, a colleague's recommendation, or a search, usually on a laptop between other tasks, deciding whether the school is worth a week away and an application. Their job on the home page: understand what the school teaches, judge whether they qualify, and either apply or join the mailing list to be told when applications open.
 
-Secondary, confirmed: past participants and self-learners who use the archive of recorded lectures, projects, and tutorials without attending; faculty and advisory committee members checking their own pages; NINDS program staff and future sponsors verifying that the program is real, well run, and producing outcomes.
+Secondary, confirmed: past participants and self-learners who use the archive of recorded lectures, projects, and tutorials without attending; faculty checking their own pages; NINDS program staff and future sponsors verifying that the program is real, well run, and producing outcomes.
 
 ## Product Purpose
 
@@ -36,7 +36,7 @@ Name: NeuroData AI Summer School, with the lineage "formerly NeuroDataReHack" st
 
 ## Evidence on Hand
 
-Real: five years of event records with participant counts (28, 31, 20, 24, 24), 84 project titles with 20 full write-ups from 2026, 32 recorded lectures from 2025 and 2026 with YouTube IDs, report PDFs for every year, exit-survey numbers (2026 overall 4.86/5, recommend 4.95/5, n=22; 2024 unanimous 5/5), seven attributed testimonials, photos from Janelia in 2024 and 2026 and from Granada in 2023 (in `src/assets/photos/`), headshots for 16 of 28 people (`public/images/people/`), sponsor logos (NIH, HHMI Janelia, Kavli, Allen, LBNL, DANDI, NWB, CatalystNeuro). Absent, do not fabricate: recordings from 2022 to 2024, headshots for twelve people, alumni publication counts, a 2027 speaker-confirmed schedule, the application form.
+Real: five years of event records with participant counts (28, 31, 20, 24, 24), 84 project titles with 20 full write-ups from 2026, 32 recorded lectures from 2025 and 2026 with YouTube IDs, report PDFs for every year, exit-survey numbers (2026 overall 4.86/5, recommend 4.95/5, n=22; 2024 unanimous 5/5), seven attributed testimonials, photos from Janelia in 2024 and 2026 and from Granada in 2023 (in `src/assets/photos/`), headshots for 16 of 28 people (`public/images/people/`), sponsor logos (NIH, HHMI Janelia, Kavli, Allen, LBNL, DANDI, NWB, CatalystNeuro). Absent, do not fabricate: recordings from 2022 to 2024, headshots for twelve people, alumni publication counts, a 2027 speaker-confirmed schedule, the application form, and the advisory committee, which is not yet assembled and must not be presented as confirmed (September 2026).
 
 ## Product Principles
 

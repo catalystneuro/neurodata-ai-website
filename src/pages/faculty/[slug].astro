@@ -9,7 +9,7 @@ import { lecturesBy, yearsFor } from "../../lib/derive";
 
 export async function getStaticPaths() {
   const people = await getCollection("people");
-  return people.map((p) => ({ params: { slug: p.id }, props: { person: p } }));
+  return people.filter((p) => p.data.roles.length > 0).map((p) => ({ params: { slug: p.id }, props: { person: p } }));
 }
 const { person } = Astro.props;
 const p = person.data;
@@ -17,7 +17,7 @@ const { Content } = await render(person);
 const lectures = await lecturesBy(person.id);
 const years = await yearsFor(person.id);
 const events = (await getCollection("events")).filter((e) => years.includes(e.data.year)).sort((a, b) => b.data.year.localeCompare(a.data.year));
-const roleLabel = p.roles.includes("director") ? "Program director" : p.roles.includes("advisory") && p.roles.includes("faculty") ? "Faculty and advisory committee" : p.roles.includes("advisory") ? "Advisory committee" : p.roles.includes("faculty") ? "Faculty" : "Guest speaker";
+const roleLabel = p.roles.includes("director") ? "Program director" : p.roles.includes("faculty") ? "Faculty" : p.roles.includes("organizer") ? "Organizer" : "Guest speaker";
 const links = Object.entries(p.links).filter(([, v]) => v) as [string, string][];
 const LINK_ICON: Record<string, string> = { website: "link", github: "github", scholar: "book", orcid: "orcid", bluesky: "bluesky", linkedin: "linkedin" };
 ---
