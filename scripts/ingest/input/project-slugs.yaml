@@ -1,0 +1,14 @@
+# Manual slug overrides for 2026 project pages, keyed by the exact project title
+# (after stripping bold markers and collapsing whitespace). Titles not listed
+# here are slugified and truncated to 60 characters at a word boundary.
+"Toward Non-Invasive Depth Recording: Learning Mesial Temporal iEEG from Scalp EEG": non-invasive-depth-recording-ieeg-from-scalp-eeg
+"Explore neural representations of block structure in “A common computational and neural anomaly across mouse models of autism.” Neural (geometry and ensemble) Dynamics underlying Prior updating in Mouse models of autism.": block-structure-representations-in-mouse-models-of-autism
+"Visual hierarchy - onset latencies, representational geometries, communication": visual-hierarchy-latencies-geometries-communication
+"Geometric analysis of behaviorally derived neural latent state dynamics in IBL BWM data": neural-latent-state-dynamics-in-ibl-bwm-data
+"Disruption of Visual representations and Brain-Wide neural dynamics following psilocybin administration(Openscope)": psilocybin-visual-representations-openscope
+"Hippocampal - Prefrontal Manifold Geometry Across Novelty and Learning": hippocampal-prefrontal-manifold-geometry
+"Saliency Modulation of V1 Visual Encoding during Natural Image Viewing": saliency-modulation-of-v1-visual-encoding
+"Pooling neurons masks heterogeneous low-dimensional geometries during temporal processing in DMFC": heterogeneous-low-dimensional-geometries-in-dmfc
+"Benchmarking the ephys-atlas brain-region classifier on Allen (AIND) Neuropixels data": ephys-atlas-classifier-on-aind-neuropixels
+"Replicating minute-scale oscillatory sequences in entorhinal cortex": minute-scale-oscillatory-sequences-in-entorhinal-cortex
+"Oscillatory signatures of prediction error in mouse V1: stimulus-dependent, not error-general": prediction-error-oscillations-in-mouse-v1

@@ -1,0 +1,39 @@
+- id: reith-2026
+  quote: I didn't know it was so easy to get started with analysing open datasets!
+  name: William Reith
+  affiliation: Sainsbury Wellcome Centre
+  event: "2026"
+  featured: true
+- id: villanueva-2026
+  quote: Getting familiarized with open data is a critical skill for anyone who wants to think through their hypothesis before diving deep into an experimental project, or who needs to replicate results on new data. This workshop is a fantastic way to understand what data is already out there, how to use open science tools, and how to contribute yourself to the open data community.
+  name: Estrella Villanueva Pivel
+  affiliation: LMU Munich
+  event: "2026"
+  featured: true
+- id: wang-2026
+  quote: Collective data collection, data sharing and data reuse will be the future of neuroscience. This workshop is great for computational neuroscientists, and experimentalists who could benefit from using open data to complement their own research.
+  name: Siyu Wang
+  affiliation: National Institutes of Health
+  event: "2026"
+  featured: true
+- id: velazquez-2026
+  quote: Why wait for the experiments? Use open data now!
+  name: Antonio Velázquez
+  affiliation: Universidad Nacional Autónoma de México
+  event: "2026"
+  featured: true
+- id: martinez-2024
+  quote: This workshop was enlightening, and I'm excited to bring these tools back to my research group and my university!
+  name: Miles Martinez
+  affiliation: Duke University
+  event: "2024"
+- id: filipe-2024
+  quote: The Hackathon was an incredible experience. I had the opportunity to get familiar with not only NWB but also the expanding NWB ecosystem. Additionally, the week was fantastic for connecting with others working on similar topics. I established potential collaborations and learned from people working on different topics as well.
+  name: Carolina Filipe
+  affiliation: Champalimaud Foundation
+  event: "2024"
+- id: ma-2024
+  quote: NeuroDataReHack 2024 is an inspiring tour of the ecosystem that NWB and DANDI have supported, including a set of useful tools, datasets, and example notebooks to work with. Great opportunities to meet the organizers who make those things happen, and to connect with other researchers interested in dataset reuse.
+  name: Xinyue Ma
+  affiliation: McGill University
+  event: "2024"

@@ -1,0 +1,93 @@
+# Display name -> people slug and default affiliation.
+# `person` must be a slug that exists in src/content/people. `aliases` are other
+# spellings that appear in the source documents. Names that are not listed here
+# are emitted with `name` and `affiliation` only. Affiliations are as of the
+# event they spoke at; a source table's affiliation column overrides these.
+speakers:
+  Ben Dichter:
+    person: ben-dichter
+    affiliation: CatalystNeuro
+    aliases: [Benjamin Dichter]
+  Ryan Ly:
+    person: ryan-ly
+    affiliation: Lawrence Berkeley National Laboratory
+  Oliver Ruebel:
+    person: oliver-ruebel
+    affiliation: Lawrence Berkeley National Laboratory
+  Carter Peene:
+    person: carter-peene
+    affiliation: Allen Institute for Neural Dynamics
+  Guillaume Viejo:
+    person: guillaume-viejo
+    affiliation: Flatiron Institute
+  Misha Ahrens:
+    person: misha-ahrens
+    affiliation: HHMI Janelia Research Campus
+  Carsen Stringer:
+    person: carsen-stringer
+    affiliation: HHMI Janelia Research Campus
+  Atika Syeda:
+    person: atika-syeda
+    affiliation: HHMI Janelia Research Campus
+  Jacob Pennington:
+    person: jacob-pennington
+    affiliation: HHMI Janelia Research Campus
+    aliases: [Jake Pennington]
+  Pranav Rai:
+    person: pranav-rai
+    affiliation: International Brain Laboratory
+  Jerome Lecoq:
+    person: jerome-lecoq
+    affiliation: Allen Institute for Neural Dynamics
+  Will Slatton:
+    person: will-slatton
+    affiliation: Harvard University
+  Alexandre Andre:
+    person: alexandre-andre
+    affiliation: University of Pennsylvania
+  Jeremy Magland:
+    person: jeremy-magland
+    affiliation: Flatiron Institute
+  Robin Dard:
+    person: robin-dard
+    affiliation: Ecole Polytechnique Federale de Lausanne
+  Jakob Voigts:
+    person: jakob-voigts
+    affiliation: HHMI Janelia Research Campus
+  Alessio Buccino:
+    person: alessio-buccino
+    affiliation: Allen Institute for Neural Dynamics
+  Stephanie Prince:
+    person: stephanie-prince
+    affiliation: Lawrence Berkeley National Laboratory
+  Chris Halcrow:
+    person: chris-halcrow
+    affiliation: University of Edinburgh
+  Mayo Faulkner:
+    person: mayo-faulkner
+    affiliation: International Brain Laboratory
+  Alison Comrie:
+    person: alison-comrie
+    affiliation: University of California, San Francisco
+  Eva Dyer:
+    person: eva-dyer
+    affiliation: Georgia Institute of Technology
+  Scott Linderman:
+    person: scott-linderman
+    affiliation: Stanford University
+  Edoardo Balzani:
+    person: edoardo-balzani
+    affiliation: Flatiron Institute
+  Sarah Jo Venditto:
+    person: sarah-jo-venditto
+    affiliation: Princeton University
+  Satrajit Ghosh:
+    person: satrajit-ghosh
+    affiliation: Massachusetts Institute of Technology
+    aliases: [Satra Ghosh]
+  Olivier Winter:
+    person: olivier-winter
+    affiliation: International Brain Laboratory
+  Ariel Rokem:
+    person: ariel-rokem
+    affiliation: University of Washington

@@ -1,0 +1,291 @@
+# Project titles and investigators transcribed from the NeuroDataReHack
+# reports (2022, 2023, 2024 PDFs and the 2025 report). Consumed by
+# ingest-project-stubs.mjs. `summary` is the first sentence of the report's
+# Project Description where one was easy to grab.
+#
+# Investigator entries are "Name" or {name, affiliation}. Affiliations are only
+# present where the report gave them (2022).
+"2022":
+  - title: Cross-species, cross-modality survey of bursting neurons
+    investigators:
+      - { name: Chenggang Chen, affiliation: Johns Hopkins University }
+    summary: Comparing the proportion of burst spiking neurons in the sensory cortex of non-human primates (macaque and marmoset) and rodents (gerbil and mouse).
+  - title: Decoding history dependent neural activity in primary and higher visual areas
+    investigators:
+      - { name: Lan Luo, affiliation: Duke University }
+    summary: Investigate how visual adaptation (history dependency of visual signals in the brain) transforms the encoding of stimulus identity using the Allen Institute Visual Behavior 2-Photon Imaging and Neuropixels datasets.
+  - title: Cross-Lab and Cross-Species co-clustering of cortical intracellular patch-clamp data
+    investigators:
+      - { name: Sam Mestern, affiliation: University of Western Ontario }
+    summary: With this project, we aim to derive novel insights regarding cortical neuron differences between species and recording conditions.
+  - title: Using DANDI open datasets in transfer learning for decoding proprioception from neuronal calcium image using artificial neural network
+    investigators:
+      - Seungbin Park
+    summary: Decoding proprioception is necessary for proprioceptive feedback to brain-machine interface to improve its movement performance.
+  - title: Validating latent variable models in dandisets with rich behavioral data
+    investigators:
+      - { name: Ben Lansdell, affiliation: St. Jude Children's Research Hospital }
+    summary: Tracking behavioral data from freely behaving animals, possibly in conjunction with neural recordings, is an exciting and growing direction in neuroscience.
+  - title: Sub-seconds Neural Emotion-Coding in Amygdala under Diverse Hippocampal Theta-Gamma States
+    investigators:
+      - { name: Lu Zhang, affiliation: Georgia Institute of Technology }
+    summary: How hippocampal theta-gamma coupling states affect neural emotion-coding in the amygdala, a brain region highly interacting with the hippocampus during emotion memory consolidation.
+  - title: Feature-based embeddings of non-stationary ECoG
+    investigators:
+      - { name: Brendan Harris, affiliation: University of Sydney }
+    summary: Describe the spatio-temporal dynamical structure of an ECoG recording using an existing pipeline for summarizing non-stationary neural data in a low-dimensional space of time-series features.
+  - title: Finding neuronal networks based on shared temporal activity across task conditions
+    investigators:
+      - { name: Noga Mudrik, affiliation: Johns Hopkins University }
+    summary: A framework for finding interpretable functional neuronal networks presented across various non-stationary task conditions, and for assessing neural encoding uncertainty in the networks' latent space.
+  - title: Human iPSC-derived neurons recapitulate phenotypic variation within the human cortex
+    investigators:
+      - { name: Michael Zabolocki, affiliation: SAHMRI }
+    summary: Human induced pluripotent stem cells (hiPSCs) offer a model which has the capacity to recapitulate the genetic underlying of the human brain across early neurodevelopment.
+  - title: Exploring the network of excitatory neurons with regularized GLMs
+    investigators:
+      - Tzu-Chi Yen
+      - Yi-Yun
+      - Josefina
+    summary: This project explored statistical methods for extracting network structure from point process observations.
+  - title: Elucidating Neural Learning Rules from Calcium Imaging Data
+    investigators:
+      - Felix Pei
+      - Alessandro Salatiello
+    summary: We want to analyze data from a mouse learning a task and see if any insight can be found regarding the learning rules used by the brain.
+  - title: Fitting state space models in SSM repo to NWB datasets
+    investigators:
+      - David Zoltowski
+    summary: My goal is to fit state space models in the SSM code package to NWB datasets.
+  - title: Constructing time-probability-matrices from simultaneously recorded visual areas using state space models
+    investigators:
+      - Brock Carlson
+      - Blake Mitchell
+      - David Zoltowski
+  - title: Identification of theta states in the prefrontal cortex
+    investigators:
+      - John Stout
+    summary: Neural activity, paced at theta frequency (4-12 Hz) in the medial prefrontal cortex, is linked to memory-guided decision making.
+  - title: "Spyglass: data analysis framework for reproducible neuroscience research"
+    investigators:
+      - { name: Kyu Hyun Lee, affiliation: "Loren Frank lab, UCSF" }
+    summary: Spyglass is a data analysis framework that brings together many open source tools, such as NWB, DataJoint, SpikeInterface, and others.
+  - title: Contrast sensitivity across layers and cell types within primary visual cortex
+    investigators:
+      - Blake Mitchell
+      - Brock Carlson
+    summary: To analyze V1 responses (2-photon calcium imaging) to full field images with varying image contrast.
+  - title: Ensemble computational models of neurons individually tuned with multimodal intracellular electrophysiology data
+    investigators:
+      - { name: Krishna Pusuluri, affiliation: Georgia State University }
+  - title: Probing excitatory computations underlying probabilistic learning
+    investigators:
+      - { name: Nuttida Rungratsameetaweemana, affiliation: Salk Institute }
+    summary: It is not well understood how excitatory and inhibitory neurons within each cortical region (as well as along the cortical hierarchy) work together to allow efficient information processing in dynamic environments.
+
+"2023":
+  - title: Neuronal ensembles in different brain regions
+    investigators:
+      - Ricardo Velázquez Contreras
+    summary: Neuronal ensembles, as originally proposed by Donald Hebb, represent groups of neurons that display coordinated and alternating activity patterns.
+  - title: Identifying latent states in decision-making tasks to uncover choice strategies
+    investigators:
+      - Zeinab Mohammadi
+    summary: Rodent decision-making relies on distinct latent states which switch on a timescale of tens to hundreds of trials, and different brain regions' contributions to state-dependent strategies remain an important open problem.
+  - title: Neural trajectories in the anterior cingulate cortex during reward
+    investigators:
+      - Olivier Winter
+      - Petrina Lau
+    summary: Compute neural trajectories from raw AP data in the anterior cingulate cortex of the mouse around the reward event in the IBL task.
+  - title: Bridging the gap between function and structure
+    investigators:
+      - Hannah Gooden
+      - Victoria Rose
+      - Daniel Xenes
+    summary: Continued secondary analysis of the MICrONS dataset, including the two-photon calcium imaging hosted on the DANDI archive and the co-registered electron microscopy data hosted in the BossDB archive.
+  - title: Predicting cell type identity based on functional connectivity
+    investigators:
+      - Margaret Conde Paredes
+    summary: Study task-specific neural trajectories and covariance in primate motor cortex electrophysiology data to gain insights into the neural mechanisms underlying motor control and movement generation.
+  - title: Analyzing spatiotemporal patterns from ECoG recordings
+    investigators:
+      - Tim Näher
+      - Lisa Bastian
+    summary: Analyze spatiotemporal patterns from ECoG recordings to identify patterns of neural activity in the sensorimotor cortex that correspond to different speech sounds and articulatory movements.
+  - title: Integrating Rule-Based Modulation and Context-Dependent Sensorimotor Adaptation in Cortical Areas
+    investigators:
+      - Tenghai Long
+    summary: Explore the integration of rule-based modulation and context-dependent sensorimotor adaptation across cortical areas by analyzing electrophysiological data from DANDI:000239 and DANDI:000232.
+  - title: "IBL Brain-wide map: Adaptation and history biases across the brain hierarchy"
+    investigators:
+      - Melanie Tschiersch
+    summary: Analyze the IBL Brain-wide map to understand adaptation (repulsion from the previous stimulus) versus serial dependence (attraction to the previous stimulus) in visual processing versus higher-order cognitive areas.
+  - title: Normative Models of Cognitive Representations
+    investigators:
+      - Will Dorrell
+    summary: Testing normative theories of neural representation, which explain tuning curves as the optimum of a set of goals and constraints, against experimental data on DANDI.
+  - title: Investigating the relationship between neuronal activity patterns and behavior in humans during decision-making tasks
+    investigators:
+      - Kshitij Kumar
+    summary: Analyzing DANDI:000397 to investigate the relationship between neuronal activity patterns and behavior in humans during decision-making tasks.
+  - title: Activity of single neurons during a declarative memory task
+    investigators:
+      - Fatmaalzahraa Aboalasaad
+    summary: How the activity of single neurons during a declarative memory task (DANDI:000004) correlates with the encoding, retrieval, and consolidation processes of memory formation.
+  - title: Modulation of spontaneous neural activity by arousal
+    investigators:
+      - Martynas Dervinis
+    summary: Neural activity can be broadly divided into fast and slow types; slow activity on the timescale of seconds is thought to underlie attentional processes and brain state transitions during wakefulness.
+  - title: Disparities in parental response to visual and auditory cues from pups
+    investigators:
+      - Eberechi Wogu
+    summary: Early maternal care is essential for the development and survival of offspring, and multiple sensory modalities such as visual, olfactory and auditory cues from the pups trigger parental responses.
+  - title: Identifying homologies and diversifications of intrinsic physiological properties in rodents
+    investigators:
+      - Felipe Yáñez
+    summary: Systematically assess the variability of intrinsic physiological properties of GABAergic interneurons across the cortical depth of rat barrel cortex and mouse visual and motor cortices.
+  - title: The effect of different analysis techniques on the detection of fNIRS responses
+    investigators:
+      - Ishara Paranawithana
+    summary: Investigate the impact of different analysis procedures on the morphology, detection, and lateralization of fNIRS responses in the motor cortex during a finger-tapping task (DANDI:000122).
+  - title: Transcriptomic profiles and action potentials in GABAergic interneurons in the mouse visual cortex
+    investigators:
+      - Raymond L Wang
+    summary: Understanding the relationship between transcriptomic profiles and action potentials in GABAergic interneurons in the mouse visual cortex using the Allen Institute Patch-seq dataset.
+  - title: Investigating neural representations of visual stimuli during encoding and retrieval
+    investigators:
+      - Sofia Raglio
+    summary: Investigate how different the neural representation of visual stimuli in the medial temporal lobe is during encoding and retrieval.
+  - title: Contribution of physiological rhythms (respiration) to neural population geometries
+    investigators:
+      - Araceli Ramirez Cardenas
+
+"2024":
+  - title: Surface-based parcellation using high-resolution ex vivo 7 tesla MRI and microscopy imaging
+    investigators:
+      - Pulkit Khandelwal
+    summary: MRI is the standard modality to understand human brain structure and function in vivo, and ex vivo imaging now opens the door to sub-millimeter study of brain structure.
+  - title: The effect of probability on the structure of neural states
+    investigators:
+      - Yun Chen
+    summary: Does the structure of preparatory neural subspaces in motor cortex geometrically represent reach in physical space, and does the probability distribution of targets change this map?
+  - title: Baseline Assessment of Cell Type Effects on Interpretable Neural Latent Dynamics
+    investigators:
+      - Keith Van Antwerp
+    summary: How do opto-tagged cell types impact brain dynamics, using state-space modeling with a Poisson hidden Markov model as the baseline?
+  - title: Building forecasting benchmarks for NeuroTask dataset
+    investigators:
+      - Carolina Filipe
+    summary: Recent studies have shown that neural dynamics are preserved in animals performing different tasks, as well as in different animals performing the same task.
+  - title: Revisiting stability and plasticity in hippocampal sequence firing dynamics
+    investigators:
+      - Miles Martinez
+    summary: Hippocampal place cells need to exhibit both stability and flexibility to support navigation through the world.
+  - title: Multiscale, Supervised Reanalysis of Optogenetically Induced Behavioral Reinforcement
+    investigators:
+      - Jack Goffinet
+    summary: It has recently been shown that optogenetically evoked dopamine release in the dorsolateral striatum can reinforce the use of short behavioral syllables in the mouse.
+  - title: Mapping spatial receptive fields in mouse visual cortex
+    investigators:
+      - Xinyue Ma
+    summary: Benchmark methods for estimating spatial receptive fields from two-photon calcium imaging of visual cortical neurons.
+  - title: Exploring Effective Pre-Training for Neuroscience Foundation Models with Neurodata Without Borders and DANDI
+    investigators:
+      - Yunlong Xu
+    summary: Explore better pretraining tasks for foundation models in neuroscience, combining contrastive and masking pretraining on large-scale datasets.
+  - title: Estimating Partial Coherence Networks from Neural Spike Trains
+    investigators:
+      - Carla Pinkney
+    summary: Statistically, neural spike trains can be represented by a multivariate point process whose second order structure can be characterised via the spectral density matrix.
+  - title: Dynamical modeling of decision-making through integrated behavioral and neural analysis
+    investigators:
+      - Luke Gong
+    summary: Using dynamical systems to unravel the latent brain dynamics underlying decision-making processes.
+  - title: Emotional and Cognitive Convergence during Naturalistic Movie Watching
+    investigators:
+      - Amber X. Chen
+    summary: Investigate the impacts of emotional processing and cognitive engagement on memory retrieval, leveraging a multimodal dataset of single neuron, iEEG and fMRI data during movie watching and recall.
+  - title: Are cortical inhibitory neurons adjusting their cellular properties to local circuits?
+    investigators:
+      - Omar Valerio Minero
+    summary: It is known that inhibitory neurons integrate into cortical circuits following the arrival of excitatory neurons.
+  - title: Pareto Optimality to Define the Topology of Brain States
+    investigators:
+      - Nils Nyberg
+    summary: Leverage Pareto optimality to understand trade-offs in neuronal activity space.
+  - title: Understanding kinetics of neuropeptide release in presynaptic terminals
+    investigators:
+      - Luciana Gallo
+    summary: CYbSEP is a novel tool to evaluate neuropeptide release by monitoring fusion of large dense-core vesicles.
+  - title: Smart neuromodulation approaches for motor control
+    investigators:
+      - Miguel Valencia
+    summary: Developing smart electrical neuromodulation approaches for controlling motor disturbances related to Parkinson's disease.
+  - title: Identification and distribution of prediction error-like signals in the mouse brain
+    investigators:
+      - Georg Raiser
+    summary: Reward prediction error signals have classically been linked to dopaminergic neurons, but recent findings have uncovered similar signals from norepinephrine releasing neurons in the locus coeruleus.
+  - title: Neural representation of ambiguity
+    investigators:
+      - Sophie Rogers
+    summary: How does cue ambiguity impact the dynamics of choice formation across brain regions in the IBL Brain-wide Map dataset?
+  - title: Comparison of spike sorting algorithms with SpikeInterface
+    investigators:
+      - Kate Doxey
+    summary: Spike sorting is the process of extracting the activity of individual neurons from raw extracellular multi-electrode array recordings.
+
+"2025":
+  - title: Mapping the brain across regions with single-unit activity
+    investigators:
+      - Cornelius Bergmann
+      - Chris Halcrow
+      - Mayo Faulkner
+      - Ji Xia
+      - Nisrine Bakri
+      - Pierre Le Merre
+    summary: In this project, we approached the organization of the brain at the level of single neuron activity.
+  - title: Generating Synthetic MRI Data Using GenAI Models to Enhance Neuroimaging Analyses
+    investigators:
+      - Reihaneh Hassanzadeh
+    summary: This project utilizes generative AI to expand and enrich structural MRI datasets using a diffusion-based model.
+  - title: Cyclic Adversarial Transformers for Temporally Stable Brain Computer Interface Decoding
+    investigators:
+      - Lyn Ackert-Smith
+    summary: Creating robust BCIs is a challenge due to changing populations of neurons, but leveraging stable population dynamics can counteract this effect.
+  - title: Place field and oscillation changes with mouse kinematics
+    investigators:
+      - Yang-Sun Hwang
+      - Eryn Sale
+    summary: The hippocampus plays a critical role in spatial navigation and memory, but its representations are shaped by more than just the animal's location.
+  - title: Apply electrophysiological-based neuron classification methods to other dandisets
+    investigators:
+      - Stephanie Prince
+      - Ambarish Ghatpande
+    summary: Several approaches have been recently introduced to classify neurons by cell type based on electrophysiological data; we apply them to a new dandiset to test generalization across datasets.
+  - title: A neurocentric account for context-dependent neural geometry
+    investigators:
+      - Zilu Liang
+      - Mia Whitefield
+      - Sumedha Nalluru
+    summary: One of the core pursuits in neuroscience is to understand how information is encoded in neural activity.
+  - title: The relationship between neuromodulation and neurovascular coupling
+    investigators:
+      - Yunmiao Wang
+    summary: This project explored spatiotemporal patterns in neurovascular data inspired by research on impulse response functions during spontaneous brain activity.
+  - title: Olfactory Representation in the Piriform Cortex
+    investigators:
+      - Nisrine Bakri
+    summary: Understanding how odors are represented at the single-cell and population levels in the piriform cortex is key to deciphering olfactory perception.
+  - title: Improving Low-Dimensional Embedding of Two-Photon Calcium Imaging Data Using Inferred Spiking Activity
+    investigators:
+      - Peter Hogg
+    summary: Embedding tools like CEBRA can uncover low-dimensional representations of population activity that reflect task or stimulus related neural dynamics.
+  - title: Whole-brain neuron-astrocyte information flow supporting futility-induced passivity
+    investigators:
+      - Marco Celotto
+      - David Makoko
+      - Camille Donoho
+      - Ameyaltzin Castillo Almazán
+      - Koray Cârsteanu
+      - Cheng-Yu Huang
+    summary: Mu et al. (2019) showed that norepinephrine-astrocyte signaling modulates neuronal activity to mediate futility-induced passivity in zebrafish.

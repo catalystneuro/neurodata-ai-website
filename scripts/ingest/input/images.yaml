@@ -1,0 +1,79 @@
+# Source manifest for scripts/prepare-images.mjs. Each entry: { src, dest, op }.
+# ops: headshot | photo | group | banner | logo | copy
+
+# --- Headshots -> public/images/people/<slug>.jpg ---
+- { src: /Users/bdichter/dev/nwb.org/static/images/ben-dichter.jpeg, dest: public/images/people/ben-dichter.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/ryan-ly.png, dest: public/images/people/ryan-ly.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/oliver-ruebel.png, dest: public/images/people/oliver-ruebel.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/eva-dyer.jpg, dest: public/images/people/eva-dyer.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/stephanie-prince.png, dest: public/images/people/stephanie-prince.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/satrajit.png, dest: public/images/people/satrajit-ghosh.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/jerome.png, dest: public/images/people/jerome-lecoq.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/alessio.png, dest: public/images/people/alessio-buccino.jpg, op: headshot }
+- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/edoardo-balzani.png, dest: public/images/people/edoardo-balzani.jpg, op: headshot }
+- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/sarah-jo-venditto.jpg, dest: public/images/people/sarah-jo-venditto.jpg, op: headshot }
+- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/carter-peene.jpeg, dest: public/images/people/carter-peene.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/carsen_stringer.jpg, dest: public/images/people/carsen-stringer.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/guillaume_viejo.avif, dest: public/images/people/guillaume-viejo.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/jakob_voigts.jpg, dest: public/images/people/jakob-voigts.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/jeremy_magland.avif, dest: public/images/people/jeremy-magland.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/misha-ahrens.jpg, dest: public/images/people/misha-ahrens.jpg, op: headshot }
+
+# --- Photos 2026 -> src/assets/photos/2026/ ---
+- { src: /Users/bdichter/dev/ndrh2026/photos/group_photo_2026.jpg, dest: src/assets/photos/2026/group-photo.jpg, op: group }
+- { src: /Users/bdichter/dev/ndrh2026/photos/c1_janelia_sculpture.jpg, dest: src/assets/photos/2026/c1-janelia-sculpture.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/c2_path.jpg, dest: src/assets/photos/2026/c2-path.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/c3_birding_group.jpg, dest: src/assets/photos/2026/c3-birding-group.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/c4_birding_camera.jpg, dest: src/assets/photos/2026/c4-birding-camera.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/c5_heron.jpg, dest: src/assets/photos/2026/c5-heron.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/c6_sunset.jpg, dest: src/assets/photos/2026/c6-sunset.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/s1_big_screen.jpg, dest: src/assets/photos/2026/s1-big-screen.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/s2_janelia_night.jpg, dest: src/assets/photos/2026/s2-janelia-night.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/s3_tournament_bracket.jpg, dest: src/assets/photos/2026/s3-tournament-bracket.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/s4_evening_patio.jpg, dest: src/assets/photos/2026/s4-evening-patio.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/s5_pingpong.jpg, dest: src/assets/photos/2026/s5-pingpong.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/s6_pingpong.jpg, dest: src/assets/photos/2026/s6-pingpong.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/w1_lecture_talk.jpg, dest: src/assets/photos/2026/w1-lecture-talk.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/w2_room_working.jpg, dest: src/assets/photos/2026/w2-room-working.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/w3_room_wide.jpg, dest: src/assets/photos/2026/w3-room-wide.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/w4_talk_slide.jpg, dest: src/assets/photos/2026/w4-talk-slide.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/w5_lounge.jpg, dest: src/assets/photos/2026/w5-lounge.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/photos/w6_dining.jpg, dest: src/assets/photos/2026/w6-dining.jpg, op: photo }
+
+# --- Photos 2024 -> src/assets/photos/2024/ ---
+- { src: "/Users/bdichter/dev/ndrh2026/_ref/2024/photos/Group Photo Version 2.png", dest: src/assets/photos/2024/group-photo.jpg, op: group }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7215.jpg, dest: src/assets/photos/2024/01-group-at-janelia-sign.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7219.jpg, dest: src/assets/photos/2024/02-group-on-staircase.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7258.jpg, dest: src/assets/photos/2024/03-working-at-laptops.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7260.jpg, dest: src/assets/photos/2024/04-classroom-working.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7267.jpg, dest: src/assets/photos/2024/05-team-collaborating.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7302.jpg, dest: src/assets/photos/2024/06-lecture-audience.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/489A7303.jpg, dest: src/assets/photos/2024/07-table-discussion.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/IMG_9246.jpeg, dest: src/assets/photos/2024/08-rainbow-over-pond.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2024/photos/IMG_9266.jpeg, dest: src/assets/photos/2024/09-nwb-latte-art.jpg, op: photo }
+
+# --- Photos 2023 -> src/assets/photos/2023/ ---
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2023/figs/group_photo_ndrh_2023.jpg, dest: src/assets/photos/2023/group-photo.jpg, op: group }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2023/figs/ndrh_photos_1.jpg, dest: src/assets/photos/2023/01-lecture-collage.jpg, op: photo }
+- { src: /Users/bdichter/dev/ndrh2026/_ref/2023/figs/ndrh_photos_2.jpg, dest: src/assets/photos/2023/02-sessions-collage.jpg, op: photo }
+
+# --- Banners and agendas -> public/images/banners/ ---
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck16-2023-granada-rh/NDRH2023_banner.png, dest: public/images/banners/2023.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck21-2024-janelia-ndrh/NDRH2024_banner.png, dest: public/images/banners/2024.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck24-2025-janelia-ndrh/NDRH2025_banner.png, dest: public/images/banners/2025.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck_2x_2026-janelia-ndrh/ndrh_2026_banner.png, dest: public/images/banners/2026.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck27-2027-janelia-ndrh/ndrh_2027_banner.png, dest: public/images/banners/2027.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck16-2023-granada-rh/AgendaNeuroDataReHack2023.png, dest: public/images/banners/agenda-2023.png, op: copy }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck21-2024-janelia-ndrh/AgendaNeuroDataReHack2024.png, dest: public/images/banners/agenda-2024.png, op: copy }
+- { src: "/Users/bdichter/dev/nwb.org/static/images/events/hck24-2025-janelia-ndrh/Agenda -- NeuroDataReHack 2025.pdf", dest: public/images/banners/agenda-2025.pdf, op: copy }
+- { src: "/Users/bdichter/dev/nwb.org/static/images/events/hck_2x_2026-janelia-ndrh/Agenda -- NeuroDataReHack 2026.pdf", dest: public/images/banners/agenda-2026.pdf, op: copy }
+
+# --- Sponsor logos -> public/images/sponsors/ ---
+- { src: /Users/bdichter/dev/nwb.org/static/images/sponsor-hhmi.png, dest: public/images/sponsors/hhmi-janelia.png, op: logo }
+- { src: /Users/bdichter/dev/nwb.org/static/images/sponsor-kavli.png, dest: public/images/sponsors/kavli.png, op: logo }
+- { src: /Users/bdichter/dev/nwb.org/static/images/sponsor-lbnl.png, dest: public/images/sponsors/lbnl.png, op: logo }
+- { src: /Users/bdichter/dev/nwb.org/static/images/sponsor-allen-institute.png, dest: public/images/sponsors/allen.png, op: logo }
+- { src: /Users/bdichter/dev/nwb.org/static/images/dandi-logo-square_sw.png, dest: public/images/sponsors/dandi.png, op: logo }
+- { src: /Users/bdichter/dev/ndrh2026/figs/nwb_logo_brain_text_transp_hor.png, dest: public/images/sponsors/nwb.png, op: logo }
+- { src: /Users/bdichter/dev/catalystneuro.github.io/public/images/sponsors/nih_logo.png, dest: public/images/sponsors/nih.png, op: logo }
+- { src: /Users/bdichter/dev/catalystneuro.github.io/public/images/logo.png, dest: public/images/sponsors/catalystneuro.png, op: logo }

@@ -1,0 +1,129 @@
+- id: program
+  title: Program materials
+  blurb: Code, tutorials, and slides produced for and during the school.
+  items:
+    - title: Program materials on GitHub
+      description: Tutorials, notebooks, and project templates from every installment, in the NWB hackathons repository.
+      url: https://github.com/NeurodataWithoutBorders/nwb_hackathons
+      kind: repo
+    - title: Slides from NeuroDataReHack 2025
+      url: https://drive.google.com/drive/folders/1vMrX99qLi_bdiEBo3IPeuA1Emx_Vac1w
+      kind: slides
+      year: "2025"
+    - title: Slides from NeuroDataReHack 2024
+      url: https://drive.google.com/drive/folders/1DAmQr4qWCamhj_2Zyke0kkHGvV8Kyq13
+      kind: slides
+      year: "2024"
+    - title: Recorded lectures
+      description: Every recording from the 2025 and 2026 installments, filterable by year and topic.
+      url: https://catalystneuro.github.io/neurodata-ai-website/lectures/
+      kind: video
+- id: tutorials
+  title: Tutorials you can run now
+  blurb: Notebooks that open directly in a cloud environment, no installation required.
+  items:
+    - title: Reading NWB files and streaming from DANDI
+      description: Open a Dandiset, stream a file without downloading it, and read the core data types.
+      url: https://github.com/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK24_2025_Janelia_NDRH/notebooks/read_basics_and_stream.ipynb
+      kind: tutorial
+      colabUrl: https://colab.research.google.com/github/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK24_2025_Janelia_NDRH/notebooks/read_basics_and_stream.ipynb
+      dandihubUrl: https://hub.dandiarchive.org/
+    - title: Searching DANDI with the API, basic
+      url: https://github.com/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK21_2024_Janelia_NDRH/tutorials/simple_dandiset_search.ipynb
+      kind: tutorial
+      colabUrl: https://colab.research.google.com/github/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK21_2024_Janelia_NDRH/tutorials/simple_dandiset_search.ipynb
+    - title: Searching DANDI with the API, advanced
+      url: https://github.com/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK21_2024_Janelia_NDRH/tutorials/advanced_asset_search.ipynb
+      kind: tutorial
+      colabUrl: https://colab.research.google.com/github/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK21_2024_Janelia_NDRH/tutorials/advanced_asset_search.ipynb
+    - title: OpenScope DataBook
+      description: Executable tutorials for the Allen Institute OpenScope datasets, from data access to analysis.
+      url: https://alleninstitute.github.io/openscope_databook/
+      kind: tutorial
+    - title: DANDI example notebooks
+      description: Community-contributed notebooks for individual Dandisets.
+      url: https://github.com/dandi/example-notebooks
+      kind: repo
+- id: data
+  title: Data standards and archives
+  items:
+    - title: NWB overview
+      description: Start here if NWB is new to you.
+      url: https://nwb-overview.readthedocs.io/
+      kind: docs
+    - title: PyNWB documentation
+      description: Installation and tutorials for the Python API.
+      url: https://pynwb.readthedocs.io/en/stable/install_users.html
+      kind: docs
+    - title: MatNWB documentation
+      url: https://matnwb.readthedocs.io/
+      kind: docs
+    - title: DANDI Archive
+      url: https://dandiarchive.org/
+      kind: dataset
+    - title: DANDI documentation
+      url: https://docs.dandiarchive.org/
+      kind: docs
+    - title: DANDI Hub
+      description: A free JupyterHub with the archive mounted, for analysis without downloads.
+      url: https://hub.dandiarchive.org/
+      kind: tool
+    - title: Neurosift
+      description: Browse Dandisets and visualize NWB files in the browser.
+      url: https://neurosift.app/
+      kind: tool
+- id: tools
+  title: Analysis tools taught at the school
+  items:
+    - title: SpikeInterface
+      description: Spike sorting and extracellular electrophysiology analysis.
+      url: https://spikeinterface.readthedocs.io/
+      kind: tool
+    - title: Kilosort
+      url: https://github.com/MouseLand/Kilosort
+      kind: tool
+    - title: Pynapple
+      description: Time series analysis for neurophysiology.
+      url: https://pynapple.org/
+      kind: tool
+    - title: NeMoS
+      description: Generalized linear models for neural data.
+      url: https://nemos.readthedocs.io/
+      kind: tool
+    - title: suite2p, rastermap, Facemap, Cellpose
+      description: Calcium imaging processing, dimensionality reduction, behavior, and segmentation.
+      url: https://github.com/MouseLand
+      kind: tool
+    - title: Spyglass
+      description: NWB plus DataJoint for reproducible analysis pipelines.
+      url: https://lorenfranklab.github.io/spyglass/
+      kind: tool
+    - title: torch_brain
+      description: Neural foundation models, including POYO.
+      url: https://github.com/neuro-galaxy/torch_brain
+      kind: tool
+    - title: IBL Brain Wide Map
+      url: https://dandiarchive.org/dandiset/000409
+      kind: dataset
+- id: prep
+  title: Pre-course preparation
+  blurb: Accepted participants receive a skills assessment and personalized recommendations from these free NeuroHackademy modules, each about ninety minutes.
+  items:
+    - title: Introduction to programming in Python
+      url: https://neurohackademy.org/neurohack_year/2023/
+      kind: course
+    - title: Scientific computing in Python (NumPy, pandas, SciPy)
+      url: https://neurohackademy.org/neurohack_year/2023/
+      kind: course
+    - title: Version control with git and GitHub
+      url: https://neurohackademy.org/neurohack_year/2023/
+      kind: course
+    - title: Data visualization in Python
+      url: https://neurohackademy.org/neurohack_year/2023/
+      kind: course
+    - title: Designing and implementing Python libraries
+      url: https://neurohackademy.org/neurohack_year/2023/
+      kind: course
+    - title: Introduction to machine learning
+      url: https://neurohackademy.org/neurohack_year/2023/
+      kind: course

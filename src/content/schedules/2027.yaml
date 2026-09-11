@@ -1,0 +1,73 @@
+event: "2027"
+tentative: true
+timezone: America/New_York
+note: This is a tentative outline based on the program's curriculum. A detailed schedule with confirmed speakers will be posted closer to the event. For a sense of the format, see the 2026 schedule and recordings.
+days:
+  - date: 2027-07-18
+    label: Day 0
+    theme: Arrival
+    items:
+      - { id: 2027-arrival-reception, start: "18:30", title: Arrival, check-in, and welcome reception, type: arrival }
+  - date: 2027-07-19
+    label: Day 1
+    theme: Data foundations and standards
+    items:
+      - { id: 2027-welcome, start: "09:00", title: Welcome and program overview, type: talk, speakers: [{ person: ben-dichter, name: Ben Dichter, affiliation: CatalystNeuro }], topics: [welcome] }
+      - { id: 2027-intro-nwb-dandi, start: "09:30", title: Introduction to NWB and DANDI, type: talk, speakers: [{ person: ryan-ly, name: Ryan Ly, affiliation: Lawrence Berkeley National Laboratory }], topics: [nwb, dandi] }
+      - { id: 2027-reading-nwb, start: "10:30", title: How to read NWB files, including streaming, type: talk, topics: [nwb, streaming] }
+      - { id: 2027-dandiset-tour, start: "11:30", title: A tour of NWB Dandisets and searching tools, type: talk, speakers: [{ person: ben-dichter, name: Ben Dichter, affiliation: CatalystNeuro }], topics: [dandi] }
+      - { id: 2027-lunch-1, start: "12:30", title: Lunch, type: meal }
+      - { id: 2027-ibl, start: "13:30", title: Data from the International Brain Laboratory, type: talk, topics: [ibl, ephys] }
+      - { id: 2027-openscope, start: "14:30", title: Introduction to OpenScope and the DataBook, type: talk, speakers: [{ person: carter-peene, name: Carter Peene, affiliation: Allen Institute for Neural Dynamics }], topics: [openscope] }
+      - { id: 2027-roundtable, start: "15:30", title: Project roundtable, type: discussion }
+      - { id: 2027-speed-networking, start: "17:30", title: Speed networking, type: social }
+  - date: 2027-07-20
+    label: Day 2
+    theme: Analysis tools
+    items:
+      - { id: 2027-spikeinterface, start: "09:15", title: Spike sorting with SpikeInterface, type: talk, topics: [spike-sorting, ephys] }
+      - { id: 2027-pynapple, start: "10:15", title: Neural data analysis with Pynapple, type: talk, topics: [pynapple] }
+      - { id: 2027-nemos, start: "11:15", title: Fitting generalized linear models with NeMoS, type: talk, speakers: [{ person: edoardo-balzani, name: Edoardo Balzani, affiliation: Flatiron Institute }, { person: sarah-jo-venditto, name: Sarah Jo Venditto, affiliation: Flatiron Institute }], topics: [pynapple] }
+      - { id: 2027-lunch-2, start: "12:30", title: Lunch, type: meal }
+      - { id: 2027-databook-ephys, start: "13:30", title: OpenScope DataBook, electrophysiology, type: talk, speakers: [{ person: carter-peene, name: Carter Peene, affiliation: Allen Institute for Neural Dynamics }], topics: [openscope, ephys] }
+      - { id: 2027-imaging-tools, start: "14:30", title: Calcium imaging and behavior tools (suite2p, rastermap, Facemap, Cellpose), type: talk, topics: [ophys, behavior] }
+      - { id: 2027-neurosift, start: "15:30", title: Neurosift visualizations and AI-assisted exploration, type: talk, topics: [neurosift] }
+      - { id: 2027-open-source, start: "16:30", title: Contributing to open source, type: talk, topics: [open-source] }
+      - { id: 2027-hack-2, start: "17:00", title: Hacking on projects, type: hack }
+  - date: 2027-07-21
+    label: Day 3
+    theme: AI methods and project development
+    items:
+      - { id: 2027-checkins-3, start: "09:00", title: Project check-ins, type: checkin }
+      - { id: 2027-llms, start: "09:30", title: Developing with LLMs and AI agents, type: talk, speakers: [{ person: ben-dichter, name: Ben Dichter, affiliation: CatalystNeuro }], topics: [llm, agents] }
+      - { id: 2027-foundation-models, start: "11:00", title: Foundation models for neurophysiology, type: talk, topics: [foundation-models] }
+      - { id: 2027-lunch-3, start: "12:30", title: Lunch, type: meal }
+      - { id: 2027-state-space, start: "13:30", title: State space models for neural population dynamics, type: talk, topics: [state-space, dimensionality-reduction] }
+      - { id: 2027-hack-3, start: "15:00", title: Hacking on projects, type: hack }
+  - date: 2027-07-22
+    label: Day 4
+    theme: Project development
+    items:
+      - { id: 2027-checkins-4, start: "09:00", title: Project check-ins, type: checkin }
+      - { id: 2027-hack-4a, start: "09:30", title: Hacking on projects, type: hack }
+      - { id: 2027-lunch-4, start: "12:30", title: Lunch, type: meal }
+      - { id: 2027-lab-tour, start: "13:30", title: Laboratory tour, type: tour }
+      - { id: 2027-rcr, start: "14:30", title: Responsible conduct of research with open data, type: discussion }
+      - { id: 2027-hack-4b, start: "15:15", title: Hacking on projects, type: hack }
+  - date: 2027-07-23
+    label: Day 5
+    theme: Project development
+    items:
+      - { id: 2027-checkins-5, start: "09:00", title: Project check-ins, type: checkin }
+      - { id: 2027-hack-5a, start: "09:30", title: Hacking on projects, type: hack }
+      - { id: 2027-lunch-5, start: "12:30", title: Lunch, type: meal }
+      - { id: 2027-group-photo, start: "13:30", title: Group photo, type: social }
+      - { id: 2027-hack-5b, start: "13:45", title: Hacking on projects, type: hack }
+  - date: 2027-07-24
+    label: Day 6
+    theme: Presentations
+    items:
+      - { id: 2027-hack-6, start: "09:00", title: Final project hacking, type: hack }
+      - { id: 2027-lunch-6, start: "12:30", title: Lunch, type: meal }
+      - { id: 2027-presentations, start: "13:30", title: Project presentations, type: presentations }
+      - { id: 2027-feedback, start: "16:30", title: Discussion and feedback, type: discussion }

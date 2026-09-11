@@ -1,0 +1,45 @@
+- id: nih
+  name: National Institute of Neurological Disorders and Stroke, NIH
+  logo: /images/sponsors/nih.png
+  url: https://www.ninds.nih.gov/
+  kind: funder
+  note: R25 research education grant R25NS149357
+- id: hhmi-janelia
+  name: HHMI Janelia Research Campus
+  logo: /images/sponsors/hhmi-janelia.png
+  url: https://www.janelia.org/
+  kind: host
+  note: Host and sponsor since 2024
+- id: kavli
+  name: The Kavli Foundation
+  logo: /images/sponsors/kavli.png
+  url: https://www.kavlifoundation.org/
+  kind: partner
+  note: Neurodata Discovery Awards, 2022 to 2025
+- id: allen
+  name: Allen Institute
+  logo: /images/sponsors/allen.png
+  url: https://alleninstitute.org/
+  kind: partner
+  note: Host of the first NeuroDataReHack, 2022
+- id: catalystneuro
+  name: CatalystNeuro
+  logo: /images/sponsors/catalystneuro.png
+  url: https://catalystneuro.com/
+  kind: partner
+  note: Organizer and grantee institution
+- id: lbnl
+  name: Lawrence Berkeley National Laboratory
+  logo: /images/sponsors/lbnl.png
+  url: https://www.lbl.gov/
+  kind: partner
+- id: dandi
+  name: DANDI Archive
+  logo: /images/sponsors/dandi.png
+  url: https://dandiarchive.org/
+  kind: partner
+- id: nwb
+  name: Neurodata Without Borders
+  logo: /images/sponsors/nwb.png
+  url: https://nwb.org/
+  kind: partner

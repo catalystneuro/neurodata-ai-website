@@ -1,0 +1,757 @@
+event: "2026"
+tentative: false
+timezone: America/New_York
+days:
+  - date: "2026-07-11"
+    label: Day 0
+    theme: Arrival
+    items:
+      - id: 2026-arrival-and-dinner
+        start: "19:00"
+        end: "20:30"
+        title: Arrival and dinner
+        type: arrival
+        room: Dining Room
+  - date: "2026-07-12"
+    label: Day 1
+    theme: Accessing data and starting projects
+    items:
+      - id: 2026-breakfast
+        start: "08:15"
+        end: "09:00"
+        title: Breakfast
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-welcome-to-neurodatarehack-2026
+        start: "09:00"
+        end: "09:30"
+        title: Welcome to NeuroDataReHack 2026
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        youtubeId: gT3Vj8NGAKA
+        recordingStatus: available
+        topics:
+          - welcome
+      - id: 2026-introduction-to-nwb-and-dandi
+        start: "09:30"
+        end: "10:30"
+        title: Introduction to NWB and DANDI
+        type: talk
+        speakers:
+          - person: ryan-ly
+            name: Ryan Ly
+            affiliation: Lawrence Berkeley National Laboratory
+        room: Synapse
+        youtubeId: ow4olemw8MQ
+        recordingStatus: available
+        topics:
+          - nwb
+          - dandi
+        featured: true
+      - id: 2026-how-to-read-nwb-files-including-streaming
+        start: "10:30"
+        end: "11:30"
+        title: How to read NWB files (including streaming)
+        type: talk
+        speakers:
+          - person: oliver-ruebel
+            name: Oliver Ruebel
+            affiliation: Lawrence Berkeley National Laboratory
+        room: Synapse
+        youtubeId: sXHLbhdC0Pk
+        recordingStatus: available
+        topics:
+          - nwb
+          - streaming
+      - id: 2026-a-tour-of-nwb-dandisets-and-searching-tools
+        start: "11:30"
+        end: "12:30"
+        title: A tour of NWB Dandisets and searching tools
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        youtubeId: cFyh45TA0J0
+        recordingStatus: available
+        topics:
+          - dandi
+      - id: 2026-lunch
+        start: "12:30"
+        end: "13:30"
+        title: Lunch
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-data-from-the-international-brain-laboratory
+        start: "13:30"
+        end: "14:15"
+        title: Data from the International Brain Laboratory
+        type: talk
+        speakers:
+          - person: pranav-rai
+            name: Pranav Rai
+            affiliation: International Brain Laboratory
+        room: Synapse
+        youtubeId: pMK0w5l7XcM
+        recordingStatus: available
+        topics:
+          - ibl
+          - ephys
+      - id: 2026-openscope-predictive-processing-and-the-global-brain-observatory
+        start: "14:15"
+        end: "15:00"
+        title: OpenScope Predictive Processing and the Global Brain Observatory
+        type: talk
+        speakers:
+          - person: jerome-lecoq
+            name: Jerome Lecoq
+            affiliation: Allen Institute for Neural Dynamics
+            remote: true
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - openscope
+          - showcase
+      - id: 2026-introduction-to-openscope-data-and-the-databook
+        start: "15:00"
+        end: "15:20"
+        title: Introduction to OpenScope data and the DataBook
+        type: talk
+        speakers:
+          - person: carter-peene
+            name: Carter Peene
+            affiliation: Allen Institute for Neural Dynamics
+        room: Synapse
+        youtubeId: hfLHUzd-i3Y
+        recordingStatus: available
+        topics:
+          - openscope
+      - id: 2026-project-roundtable
+        start: "15:20"
+        end: "16:50"
+        title: Project roundtable
+        type: discussion
+        speakers:
+          - person: ryan-ly
+            name: Ryan Ly
+            affiliation: Lawrence Berkeley National Laboratory
+        room: Synapse
+        topics: []
+      - id: 2026-hacking-on-projects
+        start: "16:50"
+        end: "17:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-speed-networking
+        start: "17:30"
+        end: "18:30"
+        title: Speed networking
+        type: social
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Lobby
+        topics: []
+      - id: 2026-dinner
+        start: "18:30"
+        end: "19:30"
+        title: Dinner
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+  - date: "2026-07-13"
+    label: Day 2
+    theme: Analyzing data
+    items:
+      - id: 2026-breakfast-2
+        start: "08:15"
+        end: "09:00"
+        title: Breakfast
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-introduction-to-day-2
+        start: "09:00"
+        end: "09:15"
+        title: Introduction to Day 2
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        topics: []
+      - id: 2026-openscope-databook-electrophysiology
+        start: "09:15"
+        end: "09:45"
+        title: OpenScope DataBook (electrophysiology)
+        type: talk
+        speakers:
+          - person: carter-peene
+            name: Carter Peene
+            affiliation: Allen Institute for Neural Dynamics
+        room: Synapse
+        youtubeId: K6tvv8x8QIU
+        recordingStatus: available
+        topics:
+          - openscope
+          - ephys
+      - id: 2026-how-to-write-good-issues
+        start: "09:45"
+        end: "10:15"
+        title: How to write good issues
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        youtubeId: I-L-5U3-_j8
+        recordingStatus: available
+        topics:
+          - open-source
+      - id: 2026-reuse-showcase-neural-population-geometry-and-optimal-coding-of-tasks-with-shared-latent-structure
+        start: "10:30"
+        end: "11:00"
+        title: "Reuse showcase: Neural population geometry and optimal coding of tasks with shared latent structure"
+        type: talk
+        speakers:
+          - person: will-slatton
+            name: Will Slatton
+            affiliation: Harvard University
+            remote: true
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - showcase
+      - id: 2026-hacking-on-projects-2
+        start: "11:00"
+        end: "12:00"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-openscope-databook-calcium-imaging
+        start: "12:00"
+        end: "12:30"
+        title: OpenScope DataBook (calcium imaging)
+        type: talk
+        speakers:
+          - person: carter-peene
+            name: Carter Peene
+            affiliation: Allen Institute for Neural Dynamics
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - openscope
+          - ophys
+      - id: 2026-lunch-2
+        start: "12:30"
+        end: "13:30"
+        title: Lunch
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-neural-data-analysis-with-pynapple
+        start: "13:30"
+        end: "15:15"
+        title: Neural Data Analysis with Pynapple
+        type: talk
+        speakers:
+          - person: guillaume-viejo
+            name: Guillaume Viejo
+            affiliation: Flatiron Institute
+        room: Synapse
+        youtubeId: TxLuUwS2FeA
+        recordingStatus: available
+        topics:
+          - pynapple
+      - id: 2026-hacking-on-projects-3
+        start: "15:15"
+        end: "17:15"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-dandiset-showcase-glia-accumulate-evidence-that-actions-are-futile-and-suppress-unsuccessful-behavior
+        start: "17:15"
+        end: "18:00"
+        title: "Dandiset showcase: Glia Accumulate Evidence that Actions Are Futile and Suppress Unsuccessful Behavior"
+        type: talk
+        speakers:
+          - person: misha-ahrens
+            name: Misha Ahrens
+            affiliation: HHMI Janelia Research Campus
+        room: Synapse
+        youtubeId: ozu-r9XaW-8
+        recordingStatus: available
+        topics:
+          - showcase
+      - id: 2026-hacking-on-projects-4
+        start: "18:00"
+        end: "18:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-dinner-2
+        start: "18:30"
+        end: "19:30"
+        title: Dinner
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+  - date: "2026-07-14"
+    label: Day 3
+    theme: Advanced analysis
+    items:
+      - id: 2026-breakfast-3
+        start: "08:15"
+        end: "09:00"
+        title: Breakfast
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-introduction-to-day-3
+        start: "09:00"
+        end: "09:10"
+        title: Introduction to Day 3
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        topics: []
+      - id: 2026-project-check-ins
+        start: "09:10"
+        end: "09:25"
+        title: Project check-ins
+        type: discussion
+        speakers: []
+        room: Synapse
+        topics: []
+      - id: 2026-developing-with-llms
+        start: "09:25"
+        end: "10:25"
+        title: Developing with LLMs
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        youtubeId: rn2AowyiJ8c
+        recordingStatus: available
+        topics:
+          - llm
+        featured: true
+      - id: 2026-applying-neural-foundation-models-torch-brain
+        start: "10:55"
+        end: "12:00"
+        title: Applying Neural Foundation Models (torch_brain)
+        type: talk
+        speakers:
+          - person: alexandre-andre
+            name: Alexandre Andre
+            affiliation: University of Pennsylvania
+        room: Synapse
+        youtubeId: PB275Ik4-3M
+        recordingStatus: available
+        topics:
+          - foundation-models
+        featured: true
+      - id: 2026-lunch-3
+        start: "12:30"
+        end: "13:30"
+        title: Lunch
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-virtual-datasets-and-lindi
+        start: "13:30"
+        end: "14:10"
+        title: Virtual datasets and LINDI
+        type: talk
+        speakers:
+          - person: ryan-ly
+            name: Ryan Ly
+            affiliation: Lawrence Berkeley National Laboratory
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - streaming
+          - nwb
+      - id: 2026-hacking-on-projects-5
+        start: "14:10"
+        end: "18:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-dinner-3
+        start: "18:30"
+        end: "19:30"
+        title: Dinner
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+  - date: "2026-07-15"
+    label: Day 4
+    theme: Hacking on projects
+    items:
+      - id: 2026-breakfast-4
+        start: "08:15"
+        end: "09:00"
+        title: Breakfast
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-introduction-to-day-4
+        start: "09:00"
+        end: "09:10"
+        title: Introduction to Day 4
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        topics: []
+      - id: 2026-project-check-ins-2
+        start: "09:10"
+        end: "09:30"
+        title: Project check-ins
+        type: discussion
+        speakers: []
+        room: Synapse
+        topics: []
+      - id: 2026-converting-data-to-nwb
+        start: "09:30"
+        end: "10:15"
+        title: Converting data to NWB
+        type: talk
+        speakers:
+          - person: ryan-ly
+            name: Ryan Ly
+            affiliation: Lawrence Berkeley National Laboratory
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - conversion
+      - id: 2026-neurosift-and-ai-for-analysis
+        start: "10:15"
+        end: "11:00"
+        title: Neurosift and AI for analysis
+        type: talk
+        speakers:
+          - person: jeremy-magland
+            name: Jeremy Magland
+            affiliation: Flatiron Institute
+            remote: true
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - neurosift
+          - llm
+      - id: 2026-nwb-analysis-pipelines-with-cicada
+        start: "11:00"
+        title: NWB analysis pipelines with CICADA
+        type: talk
+        speakers:
+          - person: robin-dard
+            name: Robin Dard
+            affiliation: Ecole Polytechnique Federale de Lausanne
+            remote: true
+        recordingStatus: unavailable
+        topics:
+          - nwb
+      - id: 2026-hacking-on-projects-6
+        start: "11:30"
+        end: "12:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-lunch-4
+        start: "12:30"
+        end: "13:30"
+        title: Lunch
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-lab-tour
+        start: "13:30"
+        end: "14:10"
+        title: Lab tour
+        type: tour
+        speakers:
+          - person: jakob-voigts
+            name: Jakob Voigts
+            affiliation: HHMI Janelia Research Campus
+        recordingStatus: unavailable
+        topics: []
+      - id: 2026-hacking-on-projects-7
+        start: "14:10"
+        end: "15:00"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-getting-started-with-ai-agents
+        start: "15:00"
+        title: Getting started with AI agents
+        type: breakout
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        youtubeId: s9uiJMa_TaU
+        recordingStatus: available
+        topics:
+          - agents
+          - llm
+      - id: 2026-agent-skills
+        start: "16:00"
+        title: Agent skills
+        type: breakout
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        youtubeId: CqFGg6sBXf4
+        recordingStatus: available
+        topics:
+          - agents
+          - llm
+      - id: 2026-hacking-on-projects-8
+        start: "17:00"
+        end: "18:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-dinner-4
+        start: "18:30"
+        end: "19:30"
+        title: Dinner
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+  - date: "2026-07-16"
+    label: Day 5
+    theme: Data processing
+    items:
+      - id: 2026-breakfast-5
+        start: "08:15"
+        end: "09:00"
+        title: Breakfast
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-introduction-to-day-5
+        start: "09:00"
+        end: "09:10"
+        title: Introduction to Day 5
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        topics: []
+      - id: 2026-visual-computations-in-large-scale-recordings
+        start: "09:10"
+        end: "09:40"
+        title: Visual computations in large-scale recordings
+        type: talk
+        speakers:
+          - person: carsen-stringer
+            name: Carsen Stringer
+            affiliation: HHMI Janelia Research Campus
+        room: Synapse
+        youtubeId: QxARfHWa_7M
+        recordingStatus: available
+        topics:
+          - showcase
+          - ophys
+      - id: 2026-facemap-quantifying-orofacial-behavior
+        start: "09:40"
+        title: "Facemap: quantifying orofacial behavior"
+        type: talk
+        speakers:
+          - person: atika-syeda
+            name: Atika Syeda
+            affiliation: HHMI Janelia Research Campus
+        youtubeId: Bfw4dT0tIrc
+        recordingStatus: available
+        topics:
+          - behavior
+      - id: 2026-spike-sorting-with-kilosort
+        start: "10:10"
+        end: "10:40"
+        title: Spike sorting with Kilosort
+        type: talk
+        speakers:
+          - person: jacob-pennington
+            name: Jacob Pennington
+            affiliation: HHMI Janelia Research Campus
+        room: Synapse
+        youtubeId: Ded91tKTMwU
+        recordingStatus: available
+        topics:
+          - spike-sorting
+          - ephys
+      - id: 2026-spikeinterface
+        start: "10:40"
+        end: "11:25"
+        title: SpikeInterface
+        type: talk
+        speakers:
+          - person: alessio-buccino
+            name: Alessio Buccino
+            affiliation: Allen Institute for Neural Dynamics
+            remote: true
+        room: Synapse
+        recordingStatus: unavailable
+        topics:
+          - spike-sorting
+          - ephys
+      - id: 2026-hacking-on-projects-9
+        start: "11:25"
+        end: "12:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-lunch-5
+        start: "12:30"
+        end: "13:30"
+        title: Lunch
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-group-photo
+        start: "13:30"
+        end: "13:45"
+        title: Group photo
+        type: social
+        speakers: []
+        topics: []
+      - id: 2026-hacking-on-projects-10
+        start: "13:45"
+        end: "18:30"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-dinner-5
+        start: "18:30"
+        end: "19:30"
+        title: Dinner
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+  - date: "2026-07-17"
+    label: Day 6
+    theme: Presentations
+    items:
+      - id: 2026-breakfast-6
+        start: "08:15"
+        end: "09:00"
+        title: Breakfast
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-introduction-to-day-6
+        start: "09:00"
+        end: "09:10"
+        title: Introduction to Day 6
+        type: talk
+        speakers:
+          - person: ben-dichter
+            name: Ben Dichter
+            affiliation: CatalystNeuro
+        room: Synapse
+        topics: []
+      - id: 2026-hacking-on-projects-11
+        start: "09:10"
+        end: "12:15"
+        title: Hacking on projects
+        type: hack
+        speakers: []
+        topics: []
+      - id: 2026-project-presentations
+        start: "12:15"
+        end: "12:30"
+        title: Project presentations
+        type: presentations
+        speakers: []
+        room: Synapse
+        topics: []
+      - id: 2026-lunch-6
+        start: "12:30"
+        end: "13:30"
+        title: Lunch
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
+      - id: 2026-project-presentations-2
+        start: "13:30"
+        end: "15:15"
+        title: Project presentations
+        type: presentations
+        speakers: []
+        room: Synapse
+        topics: []
+      - id: 2026-project-presentations-3
+        start: "15:15"
+        end: "17:00"
+        title: Project presentations
+        type: presentations
+        speakers: []
+        room: Synapse
+        topics: []
+      - id: 2026-discussion-and-feedback
+        start: "17:00"
+        end: "18:30"
+        title: Discussion and feedback
+        type: discussion
+        speakers: []
+        room: Synapse
+        topics: []
+      - id: 2026-dinner-6
+        start: "18:30"
+        end: "19:30"
+        title: Dinner
+        type: meal
+        speakers: []
+        room: Dining Room
+        topics: []
