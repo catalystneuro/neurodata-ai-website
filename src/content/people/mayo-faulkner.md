@@ -1,6 +1,7 @@
 ---
 name: Mayo Faulkner
 affiliation: International Brain Laboratory
+photo: /images/people/mayo-faulkner.jpg
 roles: [faculty, instructor]
 tools: [IBL Brain Wide Map, ONE]
 order: 18

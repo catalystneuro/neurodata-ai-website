@@ -1,6 +1,7 @@
 ---
 name: Ariel Rokem
 affiliation: University of Washington
+photo: /images/people/ariel-rokem.jpg
 # Prospective advisory committee member. Add the "advisory" role once the committee is confirmed.
 roles: []
 ---

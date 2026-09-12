@@ -1,6 +1,7 @@
 ---
 name: Scott Linderman
 affiliation: Stanford University
+photo: /images/people/scott-linderman.jpg
 roles: [faculty]
 tools: [Dynamax, SSM]
 order: 22

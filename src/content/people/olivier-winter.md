@@ -1,6 +1,7 @@
 ---
 name: Olivier Winter
 affiliation: International Brain Laboratory
+photo: /images/people/olivier-winter.jpg
 # Prospective advisory committee member. Add the "advisory" role once the committee is confirmed.
 roles: []
 ---

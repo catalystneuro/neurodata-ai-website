@@ -77,3 +77,16 @@
 - { src: /Users/bdichter/dev/ndrh2026/figs/nwb_logo_brain_text_transp_hor.png, dest: public/images/sponsors/nwb.png, op: logo }
 - { src: /Users/bdichter/dev/catalystneuro.github.io/public/images/sponsors/nih_logo.png, dest: public/images/sponsors/nih.png, op: logo }
 - { src: /Users/bdichter/dev/catalystneuro.github.io/public/images/logo.png, dest: public/images/sponsors/catalystneuro.png, op: logo }
+# Headshots added 2026-09-11 from public institutional pages (already cropped into public/images/people/; listed here for provenance).
+# mayo-faulkner: https://www.internationalbrainlab.com/our-team
+# alison-comrie: https://www.voigtslab.org/people
+# scott-linderman: https://statistics.stanford.edu/people/scott-linderman
+# olivier-winter: https://www.internationalbrainlab.com/our-team
+# ariel-rokem: https://arokem.org/
+# atika-syeda: https://www.janelia.org/people/atika-ibrahim-syeda
+# pranav-rai: https://www.internationalbrainlab.com/our-team
+# will-slatton: https://www.sychunglab.org/people
+# alexandre-andre: https://nerdslab.github.io/people.html
+# robin-dard: https://people.epfl.ch/robin.dard
+# chris-halcrow: https://nolansurmelilab.github.io/nolan-lab/
+# jerome-lecoq: Allen Institute profile photo supplied by Ben
