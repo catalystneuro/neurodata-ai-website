@@ -91,7 +91,7 @@ const jsonLd = {
         <nav>
           <a href="#about">About</a>
           {instructors.length > 0 && <a href="#instructors">Instructors</a>}
-          {schedule && <a href="#schedule">Schedule</a>}
+          {(schedule || !isPast) && <a href="#schedule">Schedule</a>}
           {lectures.length > 0 && <a href="#recordings">Recordings</a>}
           {projects.length > 0 && <a href="#projects">Projects</a>}
           {(photos.length > 0 || lead) && <a href="#photos">Photos</a>}
@@ -118,6 +118,13 @@ const jsonLd = {
             {e.recordingsNote && lectures.length > 0 && <p class="soft mb small">{e.recordingsNote}</p>}
             {schedule.data.days.map((d) => <ScheduleTable day={d} tentative={schedule.data.tentative} />)}
             {schedule.data.unscheduled.length > 0 && <ScheduleTable day={{ label: "Recorded talks", items: schedule.data.unscheduled }} />}
+          </>
+        )}
+
+        {!schedule && !isPast && (
+          <>
+            <h2 id="schedule" class="h2">Schedule</h2>
+            <p class="muted">The schedule will be posted closer to the event. For a sense of the shape of the week, see the <a href={withBase("/events/2026/")} class="text-link">2026 schedule and recordings</a>.</p>
           </>
         )}
 
