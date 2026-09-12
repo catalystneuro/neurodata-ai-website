@@ -3,13 +3,14 @@ import type { Lecture } from "../lib/derive";
 import { withBase } from "../lib/url";
 import { topicLabel } from "../lib/format";
 import YouTubeEmbed from "./YouTubeEmbed.astro";
+import Icon from "./Icon.astro";
 interface Props { lecture: Lecture; showEvent?: boolean; embed?: boolean }
 const { lecture: l, showEvent = true, embed = true } = Astro.props;
 const speakers = l.speakers.map((s) => s.name).filter(Boolean).join(", ");
 const href = withBase(`/lectures/${l.id}/`);
 ---
 <article class="vc" data-year={l.year} data-topics={l.topics.join(" ")} data-search={`${l.title} ${speakers}`.toLowerCase()}>
-  {embed ? <YouTubeEmbed id={l.youtubeId} title={l.title} /> : <a href={href} class="vc-thumb"><img src={`https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" /></a>}
+  {embed ? <YouTubeEmbed id={l.youtubeId} title={l.title} /> : <a href={href} class="vc-thumb" aria-label={`Watch: ${l.title}`}><img src={`https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" /><span class="vc-play"><Icon name="play" size={26} /></span></a>}
   <div class="vc-body">
     <h3 class="vc-title"><a href={href}>{l.title}</a></h3>
     <p class="vc-meta">{speakers}{speakers && l.speakers[0]?.affiliation ? `, ${l.speakers[0].affiliation}` : ""}</p>
@@ -22,8 +23,12 @@ const href = withBase(`/lectures/${l.id}/`);
 
 <style>
   .vc { display: flex; flex-direction: column; gap: 0.75rem; }
-  .vc-thumb { display: block; aspect-ratio: 16/9; border-radius: 0.6rem; overflow: hidden; border: 1px solid var(--color-line); background: #000; }
-  .vc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .vc-thumb { position: relative; display: block; aspect-ratio: 16/9; border-radius: 0.6rem; overflow: hidden; border: 1px solid var(--color-line); background: #000; }
+  .vc-thumb img { width: 100%; height: 100%; object-fit: cover; opacity: 0.95; transition: opacity 0.15s; }
+  .vc-thumb:hover img { opacity: 1; }
+  .vc-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .vc-play :global(svg) { width: 60px; height: 60px; padding: 15px; border-radius: 50%; background: rgba(20,86,63,0.92); color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: background 0.15s; }
+  .vc-thumb:hover .vc-play :global(svg) { background: var(--color-pine); }
   .vc-title { font-family: var(--font-sans); font-size: 1.08rem; font-weight: 600; line-height: 1.3; letter-spacing: 0; }
   .vc-title a:hover { color: var(--color-pine); }
   .vc-meta { color: var(--color-ink-muted); font-size: 0.95rem; margin-top: 0.15rem; line-height: 1.35; }
