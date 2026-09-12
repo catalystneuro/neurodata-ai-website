@@ -37,6 +37,7 @@ const advisory = (await getCollection("people")).filter((p) => p.data.roles.incl
           <a href="#format">Format</a>
           <a href="#history">History</a>
           <a href="#funding">Funding and hosting</a>
+          <a href="#janelia">Janelia as a partner</a>
           <a href="#advisory">Advisory committee</a>
           <a href="#conduct">Code of conduct and contact</a>
         </nav>
@@ -83,7 +84,7 @@ const advisory = (await getCollection("people")).filter((p) => p.data.roles.incl
 
 <script>
   // Give the prose headings the ids the sidebar links to.
-  const map: Record<string, string> = { "aims": "Aims", "format": "Format", "funding": "Funding and hosting" };
+  const map: Record<string, string> = { "aims": "Aims", "format": "Format", "funding": "Funding and hosting", "janelia": "Janelia as a partner" };
   document.querySelectorAll<HTMLHeadingElement>(".prose h2").forEach((h) => {
     for (const [id, text] of Object.entries(map)) if (h.textContent?.trim() === text) h.id = id;
   });

@@ -26,7 +26,7 @@ const LINK_ICON: Record<string, string> = { website: "link", github: "github", s
     <div class="container-x">
       <a href={withBase("/faculty/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All faculty</a>
       <div class="pp">
-        {p.photo ? <img class="pp-photo" src={withBase(p.photo)} alt="" width="160" height="160" /> : <span class="pp-photo pp-initials">{initials(p.name)}</span>}
+        {p.photo ? <img class="pp-photo" src={withBase(p.photo)} alt="" width="208" height="208" /> : <span class="pp-photo pp-initials">{initials(p.name)}</span>}
         <div class="pp-body">
           <span class="eyebrow">{roleLabel}</span>
           <h1>{p.name}</h1>
@@ -53,7 +53,7 @@ const LINK_ICON: Record<string, string> = { website: "link", github: "github", s
   .back :global(.flip) { transform: rotate(180deg); }
   .pp { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: start; }
   @media (min-width: 640px) { .pp { grid-template-columns: 160px 1fr; gap: 2.5rem; } }
-  .pp-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 1px solid var(--color-line); background: var(--color-pine-50); }
+  .pp-photo { width: 208px; height: 208px; border-radius: 50%; object-fit: cover; border: 1px solid var(--color-line); background: var(--color-pine-50); }
   .pp-initials { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 2.5rem; color: var(--color-pine); background: var(--color-pine-100); }
   .pp h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
   .pp-aff { font-size: 1.1rem; color: var(--color-ink-muted); margin-top: 0.4rem; }
