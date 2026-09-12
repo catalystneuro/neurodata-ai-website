@@ -4,6 +4,7 @@ import Base from "../../layouts/Base.astro";
 import PageHeader from "../../components/PageHeader.astro";
 import PersonCard from "../../components/PersonCard.astro";
 import { CURRENT_EVENT } from "../../consts";
+import { yearsFor } from "../../lib/derive";
 
 const people = await getCollection("people");
 const current = (await getEntry("events", CURRENT_EVENT))!;
@@ -12,7 +13,10 @@ const director = people.filter((p) => p.data.roles.includes("director"));
 const currentIds = new Set(current.data.instructors.map((r) => r.id));
 const currentInstructors = people.filter((p) => currentIds.has(p.id) && !p.data.roles.includes("director")).sort(byName);
 const advisory = people.filter((p) => p.data.roles.includes("advisory")).sort((a, b) => a.data.name.localeCompare(b.data.name));
-const past = people.filter((p) => (p.data.roles.includes("faculty") || p.data.roles.includes("guest")) && !currentIds.has(p.id) && !p.data.roles.includes("director")).sort((a, b) => a.data.name.localeCompare(b.data.name));
+// Past faculty are people who taught, organized, or spoke at a past installment, not people named for a future one.
+const taughtBefore = new Set<string>();
+for (const p of people) if ((await yearsFor(p.id)).some((y) => y < CURRENT_EVENT)) taughtBefore.add(p.id);
+const past = people.filter((p) => (p.data.roles.includes("faculty") || p.data.roles.includes("guest")) && taughtBefore.has(p.id) && !currentIds.has(p.id) && !p.data.roles.includes("director")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
 <Base title="Faculty and advisory committee" description="The director, instructors, faculty, and advisory committee of the NeuroData AI Summer School.">
   <PageHeader eyebrow="People" title="Faculty and advisory committee" subtitle="Instructors include the developers of NWB, DANDI, SpikeInterface, Pynapple, Neurosift, and suite2p, alongside researchers applying AI methods to neural data. Each faculty member gives one or two sessions and stays on site for at least three days to mentor projects." />
