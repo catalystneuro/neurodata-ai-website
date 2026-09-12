@@ -1,0 +1,11 @@
+---
+import { getEntry, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
+const page = (await getEntry("pages", "code-of-conduct"))!;
+const { Content } = await render(page);
+---
+<Base title="Code of conduct" description="The code of conduct for the NeuroData AI Summer School: expectations, enforcement, and how to report a problem.">
+  <PageHeader eyebrow="Policy" title="Code of conduct" subtitle="Applies to everyone at the school, including organizers, faculty, and presenters, at all venues and social activities." />
+  <section class="section"><div class="container-x"><div class="prose"><Content /></div></div></section>
+</Base>

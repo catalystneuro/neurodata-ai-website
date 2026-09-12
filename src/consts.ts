@@ -12,7 +12,7 @@ export const SITE = {
   github: "https://github.com/catalystneuro/neurodata-ai-website",
   youtube: "https://www.youtube.com/@NeurodataWithoutBorders",
   mailingList: "https://mailchi.mp/fe2a9bc55a1a/nwb-signup",
-  codeOfConduct: "https://neurodatawithoutborders.github.io/nwb_hackathons/code_of_conduct",
+  codeOfConduct: "/code-of-conduct/",
   grant: {
     number: "R25NS149357",
     funder: "National Institute of Neurological Disorders and Stroke",
@@ -65,7 +65,7 @@ export const FOOTER = [
       { label: "Mailing list", href: SITE.mailingList, external: true },
       { label: "YouTube", href: SITE.youtube, external: true },
       { label: "GitHub", href: SITE.github, external: true },
-      { label: "Code of conduct", href: SITE.codeOfConduct, external: true },
+      { label: "Code of conduct", href: "/code-of-conduct/" },
     ],
   },
 ];

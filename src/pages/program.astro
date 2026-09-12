@@ -5,6 +5,7 @@ import PageHeader from "../components/PageHeader.astro";
 import Timeline from "../components/Timeline.astro";
 import LogoRow from "../components/LogoRow.astro";
 import { SITE } from "../consts";
+import { withBase } from "../lib/url";
 
 import { dateRange } from "../lib/format";
 
@@ -47,7 +48,7 @@ const sponsors = await getCollection("sponsors");
         <Timeline items={timeline} />
 
         <h2 id="conduct" class="h2">Code of conduct and contact</h2>
-        <p class="muted intro">The school follows the <a href={SITE.codeOfConduct} class="text-link" target="_blank" rel="noopener">code of conduct for NWB events</a>. Questions about the program or an application can go to <a href={`mailto:${SITE.email}`} class="text-link">{SITE.email}</a>.</p>
+        <p class="muted intro">Everyone at the school, organizers and faculty included, is bound by the <a href={withBase("/code-of-conduct/")} class="text-link">code of conduct</a>. Questions about the program or an application can go to <a href={`mailto:${SITE.email}`} class="text-link">{SITE.email}</a>.</p>
 
         <div class="sponsors">
           <LogoRow title="Supported by" sponsors={sponsors.filter((s) => ["nih", "hhmi-janelia", "catalystneuro", "kavli", "allen"].includes(s.id))} size="sm" />
