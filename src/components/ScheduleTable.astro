@@ -7,8 +7,8 @@ type Day = CollectionEntry<"schedules">["data"]["days"][number];
 interface Props { day: Day; tentative?: boolean }
 const { day, tentative = false } = Astro.props;
 const QUIET = new Set(["meal", "break", "arrival"]);
-const speakerLine = (it: Day["items"][number]) => it.speakers.map((s) => s.name).filter(Boolean).join(", ");
 const affLine = (it: Day["items"][number]) => [...new Set(it.speakers.map((s) => s.affiliation).filter(Boolean))].join("; ");
+const namedSpeakers = (it: Day["items"][number]) => it.speakers.filter((s) => s.name);
 ---
 <section class="sched">
   <h3 class="sched-h"><span class="sched-day">{day.label}</span>{day.date && <span class="sched-date">{weekdayDate(day.date)}</span>}{day.theme && <span class="sched-theme">{day.theme}</span>}</h3>
@@ -25,7 +25,7 @@ const affLine = (it: Day["items"][number]) => [...new Set(it.speakers.map((s) =>
             {it.recordingStatus === "unavailable" && <span class="sched-note"> (not recorded)</span>}
             {it.speakers.some((s) => s.remote) && <span class="sched-note"> (remote)</span>}
           </td>
-          <td class="sched-speaker" data-label="Speaker">{speakerLine(it) && <span>{speakerLine(it)}</span>}{affLine(it) && <span class="sched-aff">{affLine(it)}</span>}</td>
+          <td class="sched-speaker" data-label="Speaker">{namedSpeakers(it).length > 0 && <span>{namedSpeakers(it).map((s, i) => <>{s.person ? <a href={withBase(`/faculty/${s.person}/`)} class="sched-person">{s.name}</a> : s.name}{i < namedSpeakers(it).length - 1 ? ", " : ""}</>)}</span>}{affLine(it) && <span class="sched-aff">{affLine(it)}</span>}</td>
         </tr>
       ))}
     </tbody>
@@ -50,7 +50,9 @@ const affLine = (it: Day["items"][number]) => [...new Set(it.speakers.map((s) =>
   .sched-link { color: var(--color-pine); display: inline-flex; align-items: center; gap: 0.35rem; }
   .sched-link:hover { text-decoration: underline; text-underline-offset: 3px; }
   .sched-note { color: var(--color-ink-soft); font-size: 0.9em; }
-  .sched-speaker span { display: block; }
+  .sched-speaker > span { display: block; }
+  .sched-person { color: var(--color-pine); }
+  .sched-person:hover { text-decoration: underline; text-underline-offset: 3px; }
   .sched-aff { color: var(--color-ink-soft); font-size: 0.88rem; }
   @media (max-width: 700px) {
     .sched-table, .sched-table tbody, .sched-table tr, .sched-table td { display: block; }
