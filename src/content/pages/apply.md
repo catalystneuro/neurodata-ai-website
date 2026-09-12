@@ -28,7 +28,7 @@ Admission proceeds in order of average summary score, with limited adjustments t
 
 ## Cost and travel
 
-There is no registration or application fee. Lodging in a private room on the Janelia campus and all meals are provided. Travel support is available for accepted participants under the NINDS award. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months, and ask us for a letter of invitation if you need one.
+There is no registration or application fee. Lodging in a private room on the Janelia campus and all meals are provided. We reimburse up to $550 of travel costs per participant, and participants who need more than that can apply for additional support. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months, and ask us for a letter of invitation if you need one.
 
 ## Timeline
 

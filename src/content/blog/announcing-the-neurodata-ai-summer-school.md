@@ -22,7 +22,7 @@ The second is continuity. Until now the program ran one year at a time. Janelia'
 
 ## The 2027 school
 
-The first installment under the new name will be held at HHMI Janelia Research Campus in Ashburn, Virginia, from Monday, July 19 through Saturday, July 24, 2027, with participants arriving the evening of Sunday, July 18. The school is free to attend, including lodging on campus and meals, and travel support is available under the award. Applications will open in early 2027; the [application page](/apply/) describes what the form asks for and how applications are reviewed, and the [mailing list](https://mailchi.mp/fe2a9bc55a1a/nwb-signup) is the way to hear when it opens.
+The first installment under the new name will be held at HHMI Janelia Research Campus in Ashburn, Virginia, from Monday, July 19 through Saturday, July 24, 2027, with participants arriving the evening of Sunday, July 18. The school is free to attend, including lodging on campus and meals, and travel is reimbursed up to $550 per participant, with additional support available on request. Applications will open in early 2027; the [application page](/apply/) describes what the form asks for and how applications are reviewed, and the [mailing list](https://mailchi.mp/fe2a9bc55a1a/nwb-signup) is the way to hear when it opens.
 
 ## Acknowledgments
 

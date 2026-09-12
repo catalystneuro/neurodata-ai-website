@@ -15,7 +15,7 @@ const current = (await getEntry("events", CURRENT_EVENT))!;
 const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
 ---
 <Base title="Apply" description="Who should apply to the NeuroData AI Summer School, what the application asks for, how applications are reviewed, and when to expect decisions.">
-  <PageHeader eyebrow="Applications" title={`Apply to the ${CURRENT_EVENT} school`} subtitle={`${dateRange(current.data.startDate, current.data.endDate)} at ${current.data.venue.name}. No fee, lodging and meals provided, travel support available.`} />
+  <PageHeader eyebrow="Applications" title={`Apply to the ${CURRENT_EVENT} school`} subtitle={`${dateRange(current.data.startDate, current.data.endDate)} at ${current.data.venue.name}. No fee, lodging and meals provided, travel reimbursed up to $550.`} />
   <section class="section">
     <div class="container-x layout">
       <div class="main">
@@ -32,7 +32,7 @@ const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
             <dt>Arrive</dt><dd>{current.data.arrivalDate ? `Evening of ${dateRange(current.data.arrivalDate)}` : ""}</dd>
             <dt>Where</dt><dd>{current.data.venue.name}, {current.data.venue.city}</dd>
             <dt>Places</dt><dd>About {current.data.stats.participants}</dd>
-            <dt>Cost</dt><dd>None. Lodging and meals provided.</dd>
+            <dt>Cost</dt><dd>None. Lodging and meals provided; travel reimbursed up to $550, more on request.</dd>
             <dt>Status</dt><dd>{cta.state === "open" ? "Applications open" : cta.state === "closed" ? "Applications closed" : `Opens ${current.data.applications?.opensOn ?? "soon"}`}</dd>
           </dl>
           {cta.state === "open" ? (
