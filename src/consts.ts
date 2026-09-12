@@ -11,7 +11,7 @@ export const SITE = {
   email: "ben.dichter@catalystneuro.com",
   github: "https://github.com/catalystneuro/neurodata-ai-website",
   youtube: "https://www.youtube.com/@NeurodataWithoutBorders",
-  mailingList: "https://mailchi.mp/fe2a9bc55a1a/nwb-signup",
+  mailingList: "https://gmail.us3.list-manage.com/subscribe?u=eacaccc485a4e5f36034bbdbd&id=cad842f402",
   codeOfConduct: "/code-of-conduct/",
   grant: {
     number: "R25NS149357",

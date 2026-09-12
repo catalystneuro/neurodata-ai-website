@@ -26,7 +26,7 @@ Participants apply through an online form (CV, list of contributions, a 300-word
 
 ## Capabilities and Constraints
 
-Static site built with Astro, deployed to GitHub Pages under a project path (`/neurodata-ai-website/`) with a later move to a custom domain; no server, no forms of its own (applications use an external form, notifications use the NWB Mailchimp list). Content lives in Markdown and YAML collections: events, schedules (from which lectures are derived), people, projects, testimonials, sponsors, resources, outcomes, blog. Lazy YouTube embeds only. Undecided: the custom domain, the 2027 application form URL and deadline, a school-specific mailing list, analytics (none at launch).
+Static site built with Astro, deployed to GitHub Pages under a project path (`/neurodata-ai-website/`) with a later move to a custom domain; no server, no forms of its own (applications use an external form, notifications use the school's own Mailchimp audience). Content lives in Markdown and YAML collections: events, schedules (from which lectures are derived), people, projects, testimonials, sponsors, resources, outcomes, blog. Lazy YouTube embeds only. Undecided: the custom domain, the 2027 application form URL and deadline, a school-specific mailing list, analytics (none at launch).
 
 Terminology: "NeuroData AI Summer School" is the program; past installments keep the name "NeuroDataReHack 20XX"; "installment" or "school" for a year's event; "participants" not "students"; "faculty" and "instructors"; "Dandiset"; "NWB" and "DANDI" are used unexpanded after first mention.
 
