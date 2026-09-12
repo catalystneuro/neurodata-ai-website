@@ -1,8 +1,9 @@
 ---
 name: Ariel Rokem
-affiliation: University of Washington
+affiliation: Krembil Centre for Neuroinformatics, CAMH, and University of Toronto
 photo: /images/people/ariel-rokem.jpg
-# Prospective advisory committee member. Add the "advisory" role once the committee is confirmed.
-roles: []
+roles: [advisory]
+links:
+  website: https://arokem.org/
 ---
-Ariel Rokem is an associate professor at the University of Washington and principal investigator of NeuroHackademy, the neuroimaging summer school whose preparatory materials the program uses.
+Ariel Rokem is a senior scientist at the Krembil Centre for Neuroinformatics at the Centre for Addiction and Mental Health and a professor in the Department of Psychiatry at the University of Toronto. He founded NeuroHackademy, the neuroimaging and data science summer school, and directed it for a decade; the school draws on its preparatory materials and its experience with selection, pacing, and evaluation. He serves on the advisory committee.

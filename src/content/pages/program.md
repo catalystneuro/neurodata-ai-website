@@ -32,8 +32,6 @@ Accepted participants complete a short skills assessment covering Python, versio
 
 ## Funding and hosting
 
-An external advisory committee will review the curriculum each year, advise on selection criteria, and evaluate outcomes; its membership will be announced once it is confirmed.
-
 The school is supported by a five-year research education grant (R25NS149357) from the National Institute of Neurological Disorders and Stroke, awarded to CatalystNeuro in 2026. The award covers participant travel, faculty, and the production of recorded lectures and open educational materials, and it lets the curriculum accumulate across years instead of being rebuilt each spring.
 
 HHMI Janelia Research Campus has hosted and sponsored the program since 2024, providing housing, meals, and meeting space, which is what allows the school to be offered at no cost to participants. The Kavli Foundation supported the first four installments and offered Neurodata Discovery Awards to continue projects begun at the workshop. The first NeuroDataReHack was hosted by the Allen Institute in Seattle.

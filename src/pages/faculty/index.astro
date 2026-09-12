@@ -11,10 +11,11 @@ const byName = (a: { data: { name: string; order?: number } }, b: { data: { name
 const director = people.filter((p) => p.data.roles.includes("director"));
 const currentIds = new Set(current.data.instructors.map((r) => r.id));
 const currentInstructors = people.filter((p) => currentIds.has(p.id) && !p.data.roles.includes("director")).sort(byName);
+const advisory = people.filter((p) => p.data.roles.includes("advisory")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 const past = people.filter((p) => (p.data.roles.includes("faculty") || p.data.roles.includes("guest")) && !currentIds.has(p.id) && !p.data.roles.includes("director")).sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
-<Base title="Faculty" description="The director, instructors, and faculty of the NeuroData AI Summer School.">
-  <PageHeader eyebrow="People" title="Faculty" subtitle="Instructors include the developers of NWB, DANDI, SpikeInterface, Pynapple, Neurosift, and suite2p, alongside researchers applying AI methods to neural data. Each faculty member gives one or two sessions and stays on site for at least three days to mentor projects." />
+<Base title="Faculty and advisory committee" description="The director, instructors, faculty, and advisory committee of the NeuroData AI Summer School.">
+  <PageHeader eyebrow="People" title="Faculty and advisory committee" subtitle="Instructors include the developers of NWB, DANDI, SpikeInterface, Pynapple, Neurosift, and suite2p, alongside researchers applying AI methods to neural data. Each faculty member gives one or two sessions and stays on site for at least three days to mentor projects." />
   <section class="section">
     <div class="container-x">
       <h2 class="section-title">Program director</h2>
@@ -24,11 +25,16 @@ const past = people.filter((p) => (p.data.roles.includes("faculty") || p.data.ro
       <div class="grid-3 mb">{currentInstructors.map((p) => <PersonCard person={p} />)}</div>
 
       <h2 class="section-title">Past faculty</h2>
-      <div class="grid-3">{past.map((p) => <PersonCard person={p} />)}</div>
+      <div class="grid-3 mb">{past.map((p) => <PersonCard person={p} />)}</div>
+
+      <h2 class="section-title">Advisory committee</h2>
+      <p class="muted intro">The committee reviews the curriculum and selection criteria each year, evaluates outcomes, and helps the school reach the right applicants. Further members will be announced as they are confirmed.</p>
+      <div class="grid-3">{advisory.map((p) => <PersonCard person={p} />)}</div>
     </div>
   </section>
 </Base>
 
 <style>
   .mb { margin-bottom: 3rem; }
+  .intro { margin-bottom: 1.25rem; margin-top: -0.75rem; }
 </style>

@@ -2,7 +2,6 @@
 name: Olivier Winter
 affiliation: International Brain Laboratory
 photo: /images/people/olivier-winter.jpg
-# Prospective advisory committee member. Add the "advisory" role once the committee is confirmed.
-roles: []
+roles: [advisory]
 ---
 Olivier Winter leads data science for the International Brain Laboratory, overseeing data management and analysis for the Brain Wide Map,.
