@@ -40,7 +40,7 @@ HHMI Janelia Research Campus has hosted and sponsored the program since 2024, pr
 
 ## How the school fits alongside other programs
 
-Two other programs cover adjacent ground and both are excellent. [Neuromatch Academy](https://neuromatch.io/) teaches computational neuroscience and NeuroAI at a far larger scale and with no travel required. [NeuroHackademy](https://neurohackademy.org/) covers scientific computing, reproducibility, and data science for neuroimaging. This school does something narrower: reanalysis of neurophysiology data in the NWB format on the DANDI Archive, for people who arrive with a programming background and some neurophysiology behind them. We schedule around these programs so that anyone who would benefit from more than one can attend more than one.
+Two other programs cover adjacent ground and both are excellent. [Neuromatch Academy](https://neuromatch.io/) teaches computational neuroscience and NeuroAI at a far larger scale and with no travel required. [NeuroHackademy](https://neurohackademy.org/) covers scientific computing, reproducibility, and data science for neuroimaging. This school is focused on reanalysis of neurophysiology data in the NWB format on the DANDI Archive, and on the AI methods now being applied to it, for people who arrive with a programming background and some neurophysiology behind them. We schedule around these programs so that anyone who would benefit from more than one can attend more than one.
 
 ## Materials and licensing
 

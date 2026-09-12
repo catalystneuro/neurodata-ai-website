@@ -18,7 +18,7 @@ The NeuroData AI Summer School is a one-week residential program at HHMI Janelia
 
 ## Positioning
 
-The school is the only intensive, residential, project-based program devoted specifically to reanalysis of standardized open neurophysiology data, with the analysis tools taught by the people who wrote them and a curriculum strand on AI methods for neural data. Neuromatch Academy teaches computational neuroscience online at scale; NeuroHackademy teaches data science for neuroimaging. This school is narrower: NWB data on DANDI, in person, with a week of real project work on real files.
+The school is the only intensive, residential, project-based program devoted specifically to reanalysis of standardized open neurophysiology data, with the analysis tools taught by the people who wrote them and a curriculum strand on AI methods for neural data. Neuromatch Academy teaches computational neuroscience online at scale; NeuroHackademy teaches data science for neuroimaging. This school is specific to NWB data on DANDI and the AI methods applied to it, in person, with a week of real project work on real files.
 
 ## Operating Context
 
