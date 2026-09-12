@@ -8,7 +8,7 @@ import { withBase } from "../lib/url";
 const groups = await getCollection("resources");
 const order = ["program", "tutorials", "data", "tools", "prep"];
 groups.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
-const fix = (url: string) => url.replace("https://catalystneuro.github.io/neurodata-ai-website/", withBase("/"));
+const fix = (url: string) => url.replace("https://neurodata-ai.org/", withBase("/"));
 ---
 <Base title="Resources" description="Tutorials that run in the cloud, program materials on GitHub, documentation for NWB and DANDI, the analysis tools taught at the school, and pre-course preparation.">
   <PageHeader eyebrow="Resources" title="Materials, tutorials, and documentation" subtitle="Everything the school teaches is built on public data and open software. Most of these links are usable without attending." />

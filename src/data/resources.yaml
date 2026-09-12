@@ -16,7 +16,7 @@
       year: "2024"
     - title: Recorded lectures
       description: Every recording from the 2025 and 2026 installments, filterable by year and topic.
-      url: https://catalystneuro.github.io/neurodata-ai-website/lectures/
+      url: https://neurodata-ai.org/lectures/
       kind: video
 - id: tutorials
   title: Tutorials you can run now

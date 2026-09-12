@@ -15,9 +15,9 @@ Node 22 or newer is required (`.nvmrc`).
 
 ## Base path and custom domain
 
-The site is served from `https://catalystneuro.github.io/neurodata-ai-website/` by default. Every internal link goes through `withBase()` in `src/lib/url.ts`, root-relative links in Markdown bodies are prefixed by `src/plugins/remark-base-links.mjs`, and `scripts/check-links.mjs` fails the build if an un-prefixed or dangling internal link appears in `dist/`.
+The site is served at `https://neurodata-ai.org/` (repository variables `SITE_URL` and `BASE_PATH=/`, plus `public/CNAME`); without those variables a build targets the GitHub Pages project path `https://catalystneuro.github.io/neurodata-ai-website/`. Every internal link goes through `withBase()` in `src/lib/url.ts`, root-relative links in Markdown bodies are prefixed by `src/plugins/remark-base-links.mjs`, and `scripts/check-links.mjs` fails the build if an un-prefixed or dangling internal link appears in `dist/`.
 
-To move to a custom domain: set the repository variables `SITE_URL` (for example `https://example.org`) and `BASE_PATH` (`/`), add `public/CNAME` containing the domain, and enable the domain under Settings, Pages. No code changes are needed.
+To change the domain: update the repository variables `SITE_URL` and `BASE_PATH`, the `public/CNAME` file, and the custom domain under Settings, Pages. No code changes are needed. neurodataai.org redirects to neurodata-ai.org at the registrar.
 
 ## Editing content
 
