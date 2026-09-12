@@ -6,7 +6,8 @@
 
 /*
   NeuroData AI Summer School design tokens. See DESIGN.md.
-  One brand color (pine) on a near-white ground; gold is a status color only.
+  Two colors on a near-white ground: pine for anything interactive (links, buttons,
+  navigation) and clay for editorial accents (eyebrows, rules, icons). Gold is status only.
 */
 @theme {
   --color-ink: #16211d;
@@ -16,6 +17,11 @@
   --color-pine-400: #3c8f6f;
   --color-pine-100: #d9ece2;
   --color-pine-50: #eef6f1;
+  --color-clay: #b0502d;
+  --color-clay-700: #93401f;
+  --color-clay-300: #e8a88e;
+  --color-clay-100: #f3ddd3;
+  --color-clay-50: #faf1ec;
   --color-sun: #d9a441;
   --color-sun-100: #f7ecd0;
   --color-paper: #f7f8f6;
@@ -57,7 +63,7 @@
   .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
   .section-head p { color: var(--color-ink-muted); max-width: 40rem; }
 
-  .eyebrow { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-pine); display: block; margin-bottom: 0.6rem; }
+  .eyebrow { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-clay); display: block; margin-bottom: 0.6rem; }
   .label { font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-ink-soft); }
   .muted { color: var(--color-ink-muted); }
   .soft { color: var(--color-ink-soft); }
@@ -116,7 +122,7 @@
 .prose ol { list-style: decimal; }
 .prose li + li { margin-top: 0.35em; }
 .prose li::marker { color: var(--color-pine); }
-.prose blockquote { border-left: 3px solid var(--color-pine-100); padding-left: 1.2rem; color: var(--color-ink-muted); }
+.prose blockquote { border-left: 3px solid var(--color-clay); padding-left: 1.2rem; color: var(--color-ink-muted); }
 .prose img { border-radius: 0.6rem; border: 1px solid var(--color-line); margin-block: 1.5em; width: 100%; }
 .prose figure figcaption { font-size: 0.9rem; color: var(--color-ink-soft); margin-top: 0.5rem; }
 .prose table { width: 100%; border-collapse: collapse; font-size: 0.95rem; display: block; overflow-x: auto; }

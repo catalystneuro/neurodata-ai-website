@@ -9,6 +9,11 @@ colors:
   pine-400: "#3c8f6f"
   pine-100: "#d9ece2"
   pine-50: "#eef6f1"
+  clay: "#b0502d"
+  clay-700: "#93401f"
+  clay-300: "#e8a88e"
+  clay-100: "#f3ddd3"
+  clay-50: "#faf1ec"
   sun: "#d9a441"
   sun-100: "#f7ecd0"
   paper: "#f7f8f6"
@@ -75,13 +80,14 @@ spacing:
 
 The site plays the category straight: an academic program site in the register of the Flatiron Institute CCN workshop pages, Neuromatch Academy, and NeuroHackademy, executed carefully. The identity comes from restraint and craft, not from a concept. A visitor should feel that a serious, well-run program produced this page and should be able to find dates, cost, eligibility, and the application from any event page in seconds.
 
-The palette is deliberately distinct from the two sibling sites: nwb.org (orange and blue, Inter) and catalystneuro.com (navy and cyan, Figtree and Inter). Here there is one color, a deep pine green, on a near-white ground, with a small amount of warm gold reserved for status.
+The palette is deliberately distinct from the two sibling sites: nwb.org (orange and blue, Inter) and catalystneuro.com (navy and cyan, Figtree and Inter). Here there are two colors on a near-white ground: a deep pine green for everything interactive and a warm clay for editorial accents, with a small amount of gold reserved for status.
 
 ## Colors
 
-Strategy: restrained. Neutrals plus one accent.
+Strategy: restrained. Neutrals plus two accents with distinct jobs.
 
-- `pine` is the only brand color. It is used for links, primary buttons, active navigation, section eyebrows, and the occasional filled band. `pine-700` is the hover state, `pine-100` and `pine-50` are tints for chips and subtle backgrounds.
+- `pine` is the interactive color: links, primary buttons, active navigation, hover borders, topic chips, and the occasional filled band. `pine-700` is the hover state, `pine-100` and `pine-50` are tints for chips and subtle backgrounds.
+- `clay` is the editorial accent and never interactive: eyebrows, the top rules on stat tiles and testimonials, blockquote bars, timeline years, the icons in the home page's how-it-works row, and the "Summer School" line of the wordmark. On the dark footer it appears as `clay-300` for column headings. Clay is AA on white and paper at text sizes; do not put clay text on dark.
 - `sun` is a status color only: "applications open" badges, the tentative-schedule notice, the featured marker. Never for buttons or links.
 - `ink` for headings and body, `ink-muted` for secondary text, `ink-soft` for tertiary text (dates, counts) and it stays AA on `paper` and `surface`.
 - `dark` is the footer ground and the only dark surface on the site. Text on it is white at 0.75 alpha, headings at full white.
@@ -110,7 +116,7 @@ Strategy: restrained. Neutrals plus one accent.
 
 ## Components
 
-- Eyebrow: uppercase label in pine, no leading rule.
+- Eyebrow: uppercase label in clay, no leading rule.
 - Stats tile: large tabular number in serif, label below in the label style, one thin top rule.
 - Schedule table: time column in tabular sans, session title, speaker; talk rows link to the recording when one exists; meals and breaks are muted rows; the whole table becomes stacked rows on phones.
 - Video card: 16:9 thumbnail with a centered play glyph, title, speaker, year chip. Clicking swaps in the embed.
@@ -125,6 +131,6 @@ Strategy: restrained. Neutrals plus one accent.
 
 - Do use real photographs from Janelia and Granada; do caption them.
 - Do show numbers only when they change what the reader does or believes.
-- Don't add a second accent color, decorative grids, or glows.
+- Don't add a third accent color, decorative grids, or glows. Don't use clay for anything clickable.
 - Don't use bold inside prose for emphasis.
 - Don't introduce monospace labels; the sibling sites own that device.

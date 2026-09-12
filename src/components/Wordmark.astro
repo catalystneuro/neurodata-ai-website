@@ -10,8 +10,8 @@ const { ondark = false, size = "md" } = Astro.props;
 <style>
   .wm { display: inline-flex; flex-direction: column; line-height: 1; gap: 0.15rem; }
   .wm-main { font-family: var(--font-display); font-weight: 600; font-size: 1.35rem; letter-spacing: -0.01em; color: var(--color-pine); }
-  .wm-sub { font-family: var(--font-sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-soft); }
+  .wm-sub { font-family: var(--font-sans); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-clay); }
   .wm--dark .wm-main { color: #fff; }
-  .wm--dark .wm-sub { color: rgba(255,255,255,0.7); }
+  .wm--dark .wm-sub { color: var(--color-clay-300); }
   .wm--sm .wm-main { font-size: 1.15rem; }
 </style>
