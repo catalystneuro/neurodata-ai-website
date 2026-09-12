@@ -107,23 +107,33 @@
       kind: dataset
 - id: prep
   title: Pre-course preparation
-  blurb: Accepted participants receive a skills assessment and personalized recommendations from these free NeuroHackademy lectures, each about ninety minutes, in the NeuroHackademy archive.
+  blurb: Accepted participants receive a skills assessment and personalized recommendations from these free NeuroHackademy lectures, each about ninety minutes. All NeuroHackademy recordings are on the UW eScience Institute YouTube channel.
   items:
     - title: Introduction to programming in Python
-      url: https://neurohackademy.org/archive/#div-cctag-2023week1Monday-KellyChang-IntroductiontoPython
-      kind: course
+      url: https://www.youtube.com/watch?v=8SkoZzX3tf4
+      kind: video
+      description: Kelly Chang, NeuroHackademy 2025
     - title: Scientific computing in Python (NumPy, pandas, SciPy)
-      url: https://neurohackademy.org/archive/#div-cctag-2025week1Tuesday-NoahC.Benson-ScientificcomputinginPython
-      kind: course
+      url: https://www.youtube.com/watch?v=jyIe-aIm-3U
+      kind: video
+      description: Noah Benson, NeuroHackademy 2025
     - title: Version control with git and GitHub
-      url: https://neurohackademy.org/archive/#div-cctag-2025week1Tuesday-JohnKruper-IntroductiontoversioncontrolwithgitandGitHub
-      kind: course
+      url: https://www.youtube.com/watch?v=WmduHVg_5kA
+      kind: video
+      description: John Kruper, NeuroHackademy 2025
     - title: Data visualization in Python
-      url: https://neurohackademy.org/archive/#div-cctag-2024week1Wednesday-KellyChang-DatavisualizationinPython
-      kind: course
+      url: https://www.youtube.com/watch?v=CZhmwzoyBLQ
+      kind: video
+      description: Kelly Chang, NeuroHackademy 2024
     - title: Designing and implementing Python libraries
-      url: https://neurohackademy.org/archive/#div-cctag-2025week1Tuesday-ArielRokem-DesigningandimplementingPythonlibraries
-      kind: course
+      url: https://www.youtube.com/watch?v=Kw-Pb7tAkbg
+      kind: video
+      description: Ariel Rokem, NeuroHackademy 2025
     - title: Introduction to machine learning
-      url: https://neurohackademy.org/archive/#div-cctag-2025week1Tuesday-ArielRokem-Introductiontomachinelearning%28scikitlearn%29
-      kind: course
+      url: https://www.youtube.com/watch?v=7dODjKDgjAo
+      kind: video
+      description: Ariel Rokem, NeuroHackademy 2025
+    - title: All NeuroHackademy lecture playlists
+      url: https://www.youtube.com/@UWeScienceInstitute/playlists
+      kind: video
+      description: The UW eScience Institute channel, where every NeuroHackademy year is a playlist.
