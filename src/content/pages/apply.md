@@ -11,14 +11,9 @@ Preference is given to applicants who have a specific project in mind that invol
 
 ## What the application asks for
 
-The application is a single online form. It asks for:
+The application is a single online form and takes about twenty minutes. Beyond your contact details, institution, position, and the programming languages and data modalities you work with, the substantive part is a project proposal: a title, an abstract of up to 1,500 characters, and the DANDI IDs of the Dandiset or Dandisets you would analyze. The proposal should describe a scientific question you could pursue by reanalyzing one or more specific existing datasets on the DANDI Archive. We use it to judge your understanding of the data and your readiness for the week. You will not be required to carry out this project at the school; many participants change projects or join a different team once they have seen what is possible.
 
-1. A curriculum vitae.
-2. A list of scientific contributions: peer-reviewed publications, publicly available software, data analysis projects, or other relevant work.
-3. A short statement (300 words at most) of how you hope to benefit from the school.
-4. A short description (300 words at most) of a project you are considering proposing or contributing to during the week. This is not binding; many participants change projects or join a different team once they have seen what is possible.
-
-The form also collects dietary restrictions and whether you need a letter of invitation for a visa application.
+The form also asks whether you would need travel support in order to attend and gives you space for anything else you want considered, such as publications, software, or circumstances relevant to your application.
 
 ## How applications are reviewed
 
@@ -32,4 +27,4 @@ There is no registration or application fee. Lodging in a private room on the Ja
 
 ## Timeline
 
-Applications open in early 2027 and close in the spring. Decisions go out about four months before the school so that participants have time to arrange travel and visas, and preparatory materials are sent six to eight weeks before arrival. Exact dates will be posted here when the form opens; join the mailing list to be notified.
+Applications are open now and close on Friday, January 29, 2027. They are reviewed on a rolling basis, so applying early helps, and it gives accepted participants more time to arrange travel and visas. Preparatory materials are sent six to eight weeks before arrival.
