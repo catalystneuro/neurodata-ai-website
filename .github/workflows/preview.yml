@@ -1,0 +1,137 @@
+name: PR preview
+
+# Builds every pull request and, for PRs from this repository, publishes the
+# build to catalystneuro/neurodata-ai-website-previews under pr-<number>/ so
+# reviewers can click through the rendered site. The directory is removed when
+# the PR closes. Publishing needs the PREVIEW_DEPLOY_KEY secret (a write deploy
+# key on the previews repository); scripts/setup-pr-previews.sh creates it.
+# Without the secret the build still runs as a check and the PR comment says
+# what is missing.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  PREVIEW_REPO: catalystneuro/neurodata-ai-website-previews
+  PREVIEW_DIR: pr-${{ github.event.pull_request.number }}
+  PREVIEW_URL: https://catalystneuro.github.io/neurodata-ai-website-previews/pr-${{ github.event.pull_request.number }}/
+  # Build-time settings picked up by astro.config.mjs and the layout.
+  SITE_URL: https://catalystneuro.github.io
+  BASE_PATH: /neurodata-ai-website-previews/pr-${{ github.event.pull_request.number }}
+  PREVIEW: "1"
+
+jobs:
+  build:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview
+          path: dist
+          retention-days: 3
+
+  publish:
+    needs: build
+    if: >-
+      always()
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && github.actor != 'dependabot[bot]'
+      && (github.event.action == 'closed' || needs.build.result == 'success')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for the deploy key
+        id: key
+        env:
+          KEY: ${{ secrets.PREVIEW_DEPLOY_KEY }}
+        run: |
+          if [ -n "$KEY" ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Check out the previews repository
+        if: steps.key.outputs.present == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PREVIEW_REPO }}
+          ref: gh-pages
+          ssh-key: ${{ secrets.PREVIEW_DEPLOY_KEY }}
+          path: previews
+          fetch-depth: 0
+
+      - name: Download the build
+        if: steps.key.outputs.present == 'true' && github.event.action != 'closed'
+        uses: actions/download-artifact@v4
+        with:
+          name: preview
+          path: dist
+
+      - name: Update the preview directory
+        if: steps.key.outputs.present == 'true'
+        env:
+          ACTION: ${{ github.event.action }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          rm -rf "previews/$PREVIEW_DIR"
+          if [ "$ACTION" != "closed" ]; then
+            cp -r dist "previews/$PREVIEW_DIR"
+            rm -f "previews/$PREVIEW_DIR/CNAME"
+          fi
+          cd previews
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to publish."
+            exit 0
+          fi
+          git commit -q -m "PR #$NUMBER: $ACTION (${SHA:0:12})"
+          # Another PR's run may have pushed in the meantime; rebase and retry.
+          for attempt in 1 2 3 4 5; do
+            if git push origin gh-pages; then exit 0; fi
+            git fetch origin gh-pages
+            git rebase origin/gh-pages
+          done
+          echo "Could not push after five attempts." >&2
+          exit 1
+
+      - name: Comment on the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTION: ${{ github.event.action }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          KEY_PRESENT: ${{ steps.key.outputs.present }}
+        run: |
+          set -euo pipefail
+          MARK="<!-- pr-preview -->"
+          if [ "$ACTION" = "closed" ]; then
+            BODY="The preview for this PR has been removed."
+          elif [ "$KEY_PRESENT" = "true" ]; then
+            BODY="Preview of ${SHA:0:12}: $PREVIEW_URL"$'\n\n'"Updated on every push; removed when the PR closes."
+          else
+            BODY="The build passed, but preview publishing is not set up: the PREVIEW_DEPLOY_KEY secret is missing. Run scripts/setup-pr-previews.sh once from a machine with gh logged in as an org admin."
+          fi
+          ID=$(gh api "repos/$GITHUB_REPOSITORY/issues/$NUMBER/comments" --paginate \
+               -q ".[] | select(.body | startswith(\"$MARK\")) | .id" | head -n 1)
+          if [ -n "$ID" ]; then
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$ID" -f body="$MARK"$'\n'"$BODY" > /dev/null
+          elif [ "$ACTION" != "closed" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/issues/$NUMBER/comments" -f body="$MARK"$'\n'"$BODY" > /dev/null
+          fi

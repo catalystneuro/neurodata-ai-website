@@ -19,6 +19,18 @@ The site is served at `https://neurodata-ai.org/` (repository variables `SITE_UR
 
 To change the domain: update the repository variables `SITE_URL` and `BASE_PATH`, the `public/CNAME` file, and the custom domain under Settings, Pages. No code changes are needed. neurodataai.org redirects to neurodata-ai.org at the registrar.
 
+## PR previews
+
+Every pull request is built by `.github/workflows/preview.yml`. For PRs from this
+repository the build is published to
+https://catalystneuro.github.io/neurodata-ai-website-previews/pr-NUMBER/ and the
+workflow leaves a comment on the PR with the link, updated on each push and removed
+when the PR closes. Preview builds carry a `noindex` meta tag and the previews
+repository's robots.txt keeps search engines out. Publishing needs the
+`PREVIEW_DEPLOY_KEY` secret; `scripts/setup-pr-previews.sh` creates the previews
+repository, enables Pages on it, and installs the key, and only needs to be run once
+by an org admin.
+
 ## Editing content
 
 Content editing recipes are documented below as the site takes shape.
