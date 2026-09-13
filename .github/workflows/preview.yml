@@ -18,7 +18,7 @@ env:
   PREVIEW_DIR: pr-${{ github.event.pull_request.number }}
   # Build-time settings picked up by astro.config.mjs and the layout.
   SITE_URL: ${{ vars.SITE_URL || 'https://catalystneuro.github.io' }}
-  BASE_PATH: ${{ vars.BASE_PATH == '/' && '' || vars.BASE_PATH || '/neurodata-ai-website' }}/pr-${{ github.event.pull_request.number }}
+  PROD_BASE_PATH: ${{ vars.BASE_PATH || '/neurodata-ai-website' }}
   PREVIEW: "1"
 
 jobs:
@@ -35,6 +35,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Set the preview base path
+        run: echo "BASE_PATH=${PROD_BASE_PATH%/}/$PREVIEW_DIR" >> "$GITHUB_ENV"
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
@@ -85,7 +87,7 @@ jobs:
         run: |
           set -euo pipefail
           MARK="<!-- pr-preview -->"
-          URL="${SITE_URL%/}${BASE_PATH}/"
+          URL="${SITE_URL%/}${PROD_BASE_PATH%/}/$PREVIEW_DIR/"
           if [ "$ACTION" = "closed" ]; then
             BODY="The preview for this PR has been removed."
           else
