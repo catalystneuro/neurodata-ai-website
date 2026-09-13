@@ -1,18 +1,17 @@
 name: Build and deploy
 
+# Builds main with the production settings and publishes it to the root of the
+# gh-pages branch, which GitHub Pages serves at neurodata-ai.org. PR previews
+# live in pr-<number>/ directories on the same branch (see preview.yml) and are
+# left untouched by production deploys.
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
   build:
@@ -28,17 +27,30 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
+          name: site
           path: dist
+          retention-days: 3
 
-  deploy:
-    if: github.event_name != 'pull_request'
+  publish:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # One writer to gh-pages at a time, shared with the preview workflow. Runs queue
+    # rather than cancel so a production deploy is never dropped.
+    concurrency:
+      group: gh-pages
+      cancel-in-progress: false
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/publish-gh-pages.sh
+          sparse-checkout-cone-mode: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: dist
+      - name: Publish to the root of gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/publish-gh-pages.sh root dist

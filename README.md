@@ -22,14 +22,18 @@ To change the domain: update the repository variables `SITE_URL` and `BASE_PATH`
 ## PR previews
 
 Every pull request is built by `.github/workflows/preview.yml`. For PRs from this
-repository the build is published to
-https://catalystneuro.github.io/neurodata-ai-website-previews/pr-NUMBER/ and the
+repository the build is published to `https://neurodata-ai.org/pr-NUMBER/` and the
 workflow leaves a comment on the PR with the link, updated on each push and removed
-when the PR closes. Preview builds carry a `noindex` meta tag and the previews
-repository's robots.txt keeps search engines out. Publishing needs the
-`PREVIEW_DEPLOY_KEY` secret; `scripts/setup-pr-previews.sh` creates the previews
-repository, enables Pages on it, and installs the key, and only needs to be run once
-by an org admin.
+when the PR closes. Preview builds carry a `noindex` meta tag and `robots.txt`
+disallows `/pr-` paths.
+
+Production and previews share one `gh-pages` branch in this repository, which is
+what GitHub Pages serves: `.github/workflows/deploy.yml` writes the root on every
+push to `main` and leaves `pr-*/` directories alone; the preview workflow writes
+only its own `pr-NUMBER/` directory. Both go through `scripts/publish-gh-pages.sh`,
+which creates the branch on first use and serializes pushes. One-time setup after
+merging: under Settings, Pages, set the source to "Deploy from a branch",
+`gh-pages`, `/ (root)`. The custom domain and HTTPS settings are unaffected.
 
 ## Editing content
 
