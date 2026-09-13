@@ -1,0 +1,102 @@
+name: PR preview
+
+# Builds every pull request and, for PRs from this repository, publishes the
+# build to pr-<number>/ on the gh-pages branch, so reviewers can click through
+# the rendered site at https://neurodata-ai.org/pr-<number>/. The directory is
+# removed when the PR closes. Preview builds carry a noindex meta tag and the
+# production robots.txt disallows /pr-* paths.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  PREVIEW_DIR: pr-${{ github.event.pull_request.number }}
+  # Build-time settings picked up by astro.config.mjs and the layout.
+  SITE_URL: ${{ vars.SITE_URL || 'https://catalystneuro.github.io' }}
+  PROD_BASE_PATH: ${{ vars.BASE_PATH || '/neurodata-ai-website' }}
+  PREVIEW: "1"
+
+jobs:
+  build:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: preview-build-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Set the preview base path
+        run: echo "BASE_PATH=${PROD_BASE_PATH%/}/$PREVIEW_DIR" >> "$GITHUB_ENV"
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview
+          path: dist
+          retention-days: 3
+
+  publish:
+    needs: build
+    if: >-
+      always()
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && github.actor != 'dependabot[bot]'
+      && (github.event.action == 'closed' || needs.build.result == 'success')
+    runs-on: ubuntu-latest
+    concurrency:
+      group: gh-pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/publish-gh-pages.sh
+          sparse-checkout-cone-mode: false
+      - name: Download the build
+        if: github.event.action != 'closed'
+        uses: actions/download-artifact@v4
+        with:
+          name: preview
+          path: dist
+      - name: Update the preview directory on gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTION: ${{ github.event.action }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          if [ "$ACTION" = "closed" ]; then
+            bash scripts/publish-gh-pages.sh remove "$PREVIEW_DIR"
+          else
+            bash scripts/publish-gh-pages.sh dir "$PREVIEW_DIR" dist
+          fi
+      - name: Comment on the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ACTION: ${{ github.event.action }}
+          NUMBER: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          MARK="<!-- pr-preview -->"
+          URL="${SITE_URL%/}${PROD_BASE_PATH%/}/$PREVIEW_DIR/"
+          if [ "$ACTION" = "closed" ]; then
+            BODY="The preview for this PR has been removed."
+          else
+            BODY="Preview of ${SHA:0:12}: $URL"$'\n\n'"Updated on every push; removed when the PR closes."
+          fi
+          ID=$(gh api "repos/$GITHUB_REPOSITORY/issues/$NUMBER/comments" --paginate \
+               -q ".[] | select(.body | startswith(\"$MARK\")) | .id" | head -n 1)
+          if [ -n "$ID" ]; then
+            gh api -X PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$ID" -f body="$MARK"$'\n'"$BODY" > /dev/null
+          elif [ "$ACTION" != "closed" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/issues/$NUMBER/comments" -f body="$MARK"$'\n'"$BODY" > /dev/null
+          fi

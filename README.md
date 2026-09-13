@@ -19,6 +19,22 @@ The site is served at `https://neurodata-ai.org/` (repository variables `SITE_UR
 
 To change the domain: update the repository variables `SITE_URL` and `BASE_PATH`, the `public/CNAME` file, and the custom domain under Settings, Pages. No code changes are needed. neurodataai.org redirects to neurodata-ai.org at the registrar.
 
+## PR previews
+
+Every pull request is built by `.github/workflows/preview.yml`. For PRs from this
+repository the build is published to `https://neurodata-ai.org/pr-NUMBER/` and the
+workflow leaves a comment on the PR with the link, updated on each push and removed
+when the PR closes. Preview builds carry a `noindex` meta tag and `robots.txt`
+disallows `/pr-` paths.
+
+Production and previews share one `gh-pages` branch in this repository, which is
+what GitHub Pages serves: `.github/workflows/deploy.yml` writes the root on every
+push to `main` and leaves `pr-*/` directories alone; the preview workflow writes
+only its own `pr-NUMBER/` directory. Both go through `scripts/publish-gh-pages.sh`,
+which creates the branch on first use and serializes pushes. One-time setup after
+merging: under Settings, Pages, set the source to "Deploy from a branch",
+`gh-pages`, `/ (root)`. The custom domain and HTTPS settings are unaffected.
+
 ## Editing content
 
 Content editing recipes are documented below as the site takes shape.

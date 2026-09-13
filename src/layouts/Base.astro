@@ -15,6 +15,8 @@ const { title, description = SITE.description, image = SITE.ogImage, jsonLd } = 
 const pageTitle = title ? SITE.titleTemplate(title) : SITE.defaultTitle;
 const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/?$/, "/");
 const ogImage = new URL(withBase(image), Astro.site).href;
+// Set by the PR preview workflow so preview builds are never indexed.
+const preview = Boolean(process.env.PREVIEW);
 ---
 <!doctype html>
 <html lang="en">
@@ -24,6 +26,7 @@ const ogImage = new URL(withBase(image), Astro.site).href;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {preview && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} blog`} href={withBase("/rss.xml")} />
     <meta property="og:type" content="website" />
