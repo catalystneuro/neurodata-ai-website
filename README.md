@@ -83,3 +83,5 @@ Playlist id and recording ids into the schedule; report PDF, slides folder, part
 ## Design
 
 `PRODUCT.md` records what the site is for and `DESIGN.md` records the visual system (one pine green on a near-white ground, Source Serif 4 headings, Source Sans 3 text). Tokens are in `src/styles/global.css`.
+
+<!-- preview test 2026-09-13T23:35:31Z -->
