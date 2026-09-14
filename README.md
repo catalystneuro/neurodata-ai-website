@@ -35,6 +35,13 @@ which creates the branch on first use and serializes pushes. One-time setup afte
 merging: under Settings, Pages, set the source to "Deploy from a branch",
 `gh-pages`, `/ (root)`. The custom domain and HTTPS settings are unaffected.
 
+## Traffic analytics
+
+Page views are counted with GoatCounter (cookie-free, no consent banner needed). The site code
+lives in `src/consts.ts` as `SITE.goatcounter`, and `src/layouts/Base.astro` emits the script only
+in production builds, so local development and PR previews never count. The dashboard is at
+https://neurodata-ai.goatcounter.com/. To turn tracking off, set `goatcounter` to an empty string.
+
 ## Editing content
 
 Content editing recipes are documented below as the site takes shape.

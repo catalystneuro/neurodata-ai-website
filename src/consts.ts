@@ -13,6 +13,8 @@ export const SITE = {
   youtube: "https://www.youtube.com/@NeurodataWithoutBorders",
   mailingList: "https://gmail.us3.list-manage.com/subscribe?u=eacaccc485a4e5f36034bbdbd&id=cad842f402",
   codeOfConduct: "/code-of-conduct/",
+  // GoatCounter site code (public). The script is emitted only in production builds; see Base.astro.
+  goatcounter: "neurodata-ai",
   grant: {
     number: "R25NS149357",
     funder: "National Institute of Neurological Disorders and Stroke",

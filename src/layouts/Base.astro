@@ -17,6 +17,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/?$/, "
 const ogImage = new URL(withBase(image), Astro.site).href;
 // Set by the PR preview workflow so preview builds are never indexed.
 const preview = Boolean(process.env.PREVIEW);
+// Traffic is counted only on production builds, never in local dev or PR previews.
+const trackTraffic = import.meta.env.PROD && !preview && Boolean(SITE.goatcounter);
+const goatcounterEndpoint = `https://${SITE.goatcounter}.goatcounter.com/count`;
 ---
 <!doctype html>
 <html lang="en">
@@ -27,6 +30,7 @@ const preview = Boolean(process.env.PREVIEW);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {preview && <meta name="robots" content="noindex, nofollow" />}
+    {trackTraffic && <script data-goatcounter={goatcounterEndpoint} async src="https://gc.zgo.at/count.js" is:inline></script>}
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} blog`} href={withBase("/rss.xml")} />
     <meta property="og:type" content="website" />
