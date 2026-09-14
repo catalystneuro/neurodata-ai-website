@@ -246,7 +246,7 @@ const outcomes = defineCollection({
   schema: z.object({
     id: z.string(),
     year: z.string(),
-    kind: z.enum(["paper", "repo", "award", "talk", "tool", "pr"]),
+    kind: z.enum(["paper", "poster", "repo", "award", "talk", "tool", "pr"]),
     title: z.string(),
     url: z.string().url().optional(),
     people: z.string().optional(),

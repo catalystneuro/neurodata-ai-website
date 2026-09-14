@@ -11,7 +11,7 @@ import { siteStats } from "../lib/derive";
 const events = (await getCollection("events")).filter((e) => e.data.status === "past").sort((a, b) => b.data.year.localeCompare(a.data.year));
 const outcomes = (await getCollection("outcomes")).sort((a, b) => b.data.year.localeCompare(a.data.year));
 const stats = await siteStats();
-const KIND: Record<string, string> = { paper: "doc", repo: "github", award: "check", talk: "video", tool: "tool", pr: "code" };
+const KIND: Record<string, string> = { paper: "doc", poster: "doc", repo: "github", award: "check", talk: "video", tool: "tool", pr: "code" };
 ---
 <Base title="Outcomes" description="Participation, exit-survey results, and public outputs from every installment of the school and of NeuroDataReHack.">
   <PageHeader eyebrow="Archive" title="Outcomes" subtitle="What five installments have produced so far. Survey numbers are aggregates from the anonymous exit survey sent one week after each event; the event reports have the full results." />
