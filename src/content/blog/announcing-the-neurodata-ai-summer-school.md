@@ -22,7 +22,7 @@ The second is continuity. Until now the program ran one year at a time. HHMI-Jan
 
 ## The 2027 school
 
-The first installment under the new name will be held at HHMI's Janelia Research Campus in Ashburn, Virginia, from Monday, July 19 through Saturday, July 24, 2027, with participants arriving the evening of Sunday, July 18 and departing on Saturday, July 24 or Sunday, July 25. The school is free to attend, including lodging on campus and meals, and travel is reimbursed up to $550 per participant, with additional support available on request. Applications are open until January 29, 2027; the [application page](/apply/) describes what the form asks for and how applications are reviewed.
+The first installment under the new name will be held at HHMI's Janelia Research Campus in Ashburn, Virginia, from Monday, July 19 through Saturday, July 24, 2027, with participants arriving the evening of Sunday, July 18 and departing on Saturday, July 24 or Sunday, July 25. The school is free to attend, including lodging on campus and meals, and travel is reimbursed. Applications are open until January 29, 2027; the [application page](/apply/) describes what the form asks for and how applications are reviewed.
 
 ## Acknowledgments
 
