@@ -10,25 +10,6 @@
   title: Poster at ICLR 2026
   people: Noga Mudrik
   note: Participant in NeuroDataReHack 2022.
-- id: aqnwb-ros3-2026
-  year: "2026"
-  kind: pr
-  title: S3 streaming support in the AqNWB C++ API (three merged pull requests)
-  url: https://github.com/NeurodataWithoutBorders/aqnwb/pull/307
-  people: Oliver Rübel, Ben Dichter
-- id: remfile-cpp-2026
-  year: "2026"
-  kind: tool
-  title: remfile ported to C++
-  url: https://github.com/catalystneuro/remfile-cpp
-  people: Oliver Rübel, Ben Dichter
-- id: mec-replication-2026
-  year: "2026"
-  kind: repo
-  title: Public pipeline and walkthrough for a replication study of minute-scale oscillatory sequences in entorhinal cortex
-  url: https://github.com/catalystneuro/mec-ultraslow-replication
-  people: Ben Dichter, Ryan Ly
-  note: A negative result, published with the validation work.
 - id: proskurin-2026
   year: "2026"
   kind: repo
