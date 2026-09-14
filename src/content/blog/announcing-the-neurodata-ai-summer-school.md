@@ -26,4 +26,4 @@ The first installment under the new name will be held at HHMI's Janelia Research
 
 ## Acknowledgments
 
-Thanks to HHMI-Janelia for hosting and sponsoring the program, to the faculty from the NWB and DANDI teams, Allen Institute OpenScope, and the International Brain Laboratory, and to the reviewers and program staff at NINDS. Most of all, thank you to the participants of the past five installments. The evidence that this program works came from your project outcomes and your survey responses, and the application would not have been competitive without you.
+Thanks to HHMI-Janelia for hosting and sponsoring the program, to the Janelia scientists who teach and mentor project teams through the week, to the faculty from the NWB and DANDI teams, Allen Institute OpenScope, and the International Brain Laboratory, and to the reviewers and program staff at NINDS. Most of all, thank you to the participants of the past five installments. The evidence that this program works came from your project outcomes and your survey responses, and the application would not have been competitive without you.
