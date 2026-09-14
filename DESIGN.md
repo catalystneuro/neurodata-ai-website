@@ -126,7 +126,7 @@ Strategy: restrained. Neutrals plus two accents with distinct jobs.
 
 ## Do's and don'ts
 
-- Do use real photographs from Janelia and Granada; do caption them.
+- Do use real photographs from HHMI-Janelia and Granada; do caption them.
 - Do show numbers only when they change what the reader does or believes.
 - Don't add a third accent color, decorative grids, or glows. Don't use sun for anything clickable.
 - Don't use bold inside prose for emphasis.

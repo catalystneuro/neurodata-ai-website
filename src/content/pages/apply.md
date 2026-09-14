@@ -23,7 +23,7 @@ Admission proceeds in order of average summary score, with limited adjustments t
 
 ## Cost and travel
 
-There is no registration or application fee. Lodging in a private room on the Janelia campus and all meals are provided. We reimburse up to $550 of travel costs per participant. A limited amount of additional support is available, used primarily for international participants who could not attend without it; the form asks whether you would need it. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months, and ask us for a letter of invitation if you need one.
+There is no registration or application fee. Lodging in a private room on the HHMI-Janelia campus and all meals are provided. We reimburse up to $550 of travel costs per participant. A limited amount of additional support is available, used primarily for international participants who could not attend without it; the form asks whether you would need it. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months, and ask us for a letter of invitation if you need one.
 
 ## Timeline
 

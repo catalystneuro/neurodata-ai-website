@@ -28,8 +28,8 @@ function svg({ w, h, title, sub, meta, dark = false }) {
 
 mkdirSync("public/images/banners", { recursive: true });
 const jobs = [
-  { out: "public/social-card.png", w: 1200, h: 630, meta: "NEURODATA AI SUMMER SCHOOL", title: ["Reanalyze open", "neurophysiology data."], sub: "A residential week at HHMI Janelia. Formerly NeuroDataReHack.", dark: true },
-  { out: "public/images/banners/2027.png", w: 2000, h: 667, meta: "NEURODATA AI SUMMER SCHOOL 2027", title: ["July 19–24, 2027"], sub: "HHMI Janelia Research Campus, Ashburn, Virginia", dark: true },
+  { out: "public/social-card.png", w: 1200, h: 630, meta: "NEURODATA AI SUMMER SCHOOL", title: ["Reanalyze open", "neurophysiology data."], sub: "A residential week at HHMI-Janelia. Formerly NeuroDataReHack.", dark: true },
+  { out: "public/images/banners/2027.png", w: 2000, h: 667, meta: "NEURODATA AI SUMMER SCHOOL 2027", title: ["July 19–24, 2027"], sub: "HHMI's Janelia Research Campus, Ashburn, Virginia", dark: true },
   { out: "public/images/banners/2022.png", w: 2000, h: 667, meta: "NEURODATAREHACK 2022", title: ["October 3–5, 2022"], sub: "Allen Institute, Seattle. The first NeuroDataReHack.", dark: false },
 ];
 for (const j of jobs) {

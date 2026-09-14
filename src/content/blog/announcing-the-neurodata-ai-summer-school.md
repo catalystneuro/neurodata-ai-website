@@ -6,7 +6,7 @@ author: Ben Dichter
 tags: [announcement, funding]
 event: "2027"
 ---
-The National Institute of Neurological Disorders and Stroke has awarded CatalystNeuro a five-year R25 research education grant (R25NS149357) for the NeuroData AI Summer School. This is the program we have run as NeuroDataReHack every year since 2022, first at the Allen Institute in Seattle, then in Granada as a satellite of the IBRO World Congress, and since 2024 at HHMI Janelia Research Campus. For the first time it has stable, multi-year funding behind it, and this site is its new home.
+The National Institute of Neurological Disorders and Stroke has awarded CatalystNeuro a five-year R25 research education grant (R25NS149357) for the NeuroData AI Summer School. This is the program we have run as NeuroDataReHack every year since 2022, first at the Allen Institute in Seattle, then in Granada as a satellite of the IBRO World Congress, and since 2024 at HHMI's Janelia Research Campus. For the first time it has stable, multi-year funding behind it, and this site is its new home.
 
 ## What the program does
 
@@ -18,12 +18,12 @@ The reason the program matters goes past the week itself. Publishing a dataset i
 
 The award funds two things in particular. The first is a longer week with a substantially larger share of the curriculum devoted to AI methods for neural data: foundation models, coding with large language models and AI agents, dimensionality reduction and neural decoding, and transfer learning across datasets. The 2026 workshop already gave a section of the schedule to this material, and it landed harder than almost anything else we taught. When we asked what participants wanted more of, tutorials on using AI agents effectively came back more often than any other answer.
 
-The second is continuity. Until now the program ran one year at a time. Janelia's support has been generous and unwavering, but everything else was assembled annually, which meant the curriculum was largely rebuilt each spring and we could not commit to much beyond the coming summer. A five-year award lets teaching materials accumulate instead of resetting, lets us invite faculty further in advance and give applicants an answer earlier, and lets us follow what participants do after they leave, which is the measure that counts.
+The second is continuity. Until now the program ran one year at a time. HHMI-Janelia's support has been generous and unwavering, but everything else was assembled annually, which meant the curriculum was largely rebuilt each spring and we could not commit to much beyond the coming summer. A five-year award lets teaching materials accumulate instead of resetting, lets us invite faculty further in advance and give applicants an answer earlier, and lets us follow what participants do after they leave, which is the measure that counts.
 
 ## The 2027 school
 
-The first installment under the new name will be held at HHMI Janelia Research Campus in Ashburn, Virginia, from Monday, July 19 through Saturday, July 24, 2027, with participants arriving the evening of Sunday, July 18. The school is free to attend, including lodging on campus and meals, and travel is reimbursed up to $550 per participant, with additional support available on request. Applications are open until January 29, 2027; the [application page](/apply/) describes what the form asks for and how applications are reviewed.
+The first installment under the new name will be held at HHMI's Janelia Research Campus in Ashburn, Virginia, from Monday, July 19 through Saturday, July 24, 2027, with participants arriving the evening of Sunday, July 18. The school is free to attend, including lodging on campus and meals, and travel is reimbursed up to $550 per participant, with additional support available on request. Applications are open until January 29, 2027; the [application page](/apply/) describes what the form asks for and how applications are reviewed.
 
 ## Acknowledgments
 
-Thanks to HHMI Janelia for hosting and sponsoring the program, to the faculty from the NWB and DANDI teams, Allen Institute OpenScope, and the International Brain Laboratory, and to the reviewers and program staff at NINDS. Most of all, thank you to the participants of the past five installments. The evidence that this program works came from your project outcomes and your survey responses, and the application would not have been competitive without you.
+Thanks to HHMI-Janelia for hosting and sponsoring the program, to the faculty from the NWB and DANDI teams, Allen Institute OpenScope, and the International Brain Laboratory, and to the reviewers and program staff at NINDS. Most of all, thank you to the participants of the past five installments. The evidence that this program works came from your project outcomes and your survey responses, and the application would not have been competitive without you.

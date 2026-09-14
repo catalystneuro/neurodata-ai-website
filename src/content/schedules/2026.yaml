@@ -296,7 +296,7 @@ days:
         speakers:
           - person: misha-ahrens
             name: Misha Ahrens
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         room: Synapse
         youtubeId: ozu-r9XaW-8
         recordingStatus: available
@@ -509,7 +509,7 @@ days:
         speakers:
           - person: jakob-voigts
             name: Jakob Voigts
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         recordingStatus: unavailable
         topics: []
       - id: 2026-hacking-on-projects-7
@@ -591,7 +591,7 @@ days:
         speakers:
           - person: carsen-stringer
             name: Carsen Stringer
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         room: Synapse
         youtubeId: QxARfHWa_7M
         recordingStatus: available
@@ -605,7 +605,7 @@ days:
         speakers:
           - person: atika-syeda
             name: Atika Syeda
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         youtubeId: Bfw4dT0tIrc
         recordingStatus: available
         topics:
@@ -618,7 +618,7 @@ days:
         speakers:
           - person: jacob-pennington
             name: Jacob Pennington
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         room: Synapse
         youtubeId: Ded91tKTMwU
         recordingStatus: available

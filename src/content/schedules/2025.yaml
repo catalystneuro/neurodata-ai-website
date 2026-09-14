@@ -247,7 +247,7 @@ days:
         speakers:
           - person: misha-ahrens
             name: Misha Ahrens
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         room: Synapse
         topics:
           - showcase
@@ -506,7 +506,7 @@ days:
         speakers:
           - person: jakob-voigts
             name: Jakob Voigts
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         topics: []
       - id: 2025-hacking-on-projects-8
         start: "14:00"
@@ -568,7 +568,7 @@ days:
         speakers:
           - person: carsen-stringer
             name: Carsen Stringer
-            affiliation: HHMI Janelia Research Campus
+            affiliation: HHMI's Janelia Research Campus
         room: Synapse
         topics:
           - ophys

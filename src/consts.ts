@@ -6,7 +6,7 @@ export const SITE = {
   defaultTitle: "NeuroData AI Summer School",
   titleTemplate: (t: string) => `${t} · NeuroData AI Summer School`,
   description:
-    "A one-week residential summer school at HHMI Janelia on reanalysis of open neurophysiology data and AI methods for neural data. Formerly NeuroDataReHack.",
+    "A one-week residential summer school at HHMI-Janelia on reanalysis of open neurophysiology data and AI methods for neural data. Formerly NeuroDataReHack.",
   ogImage: "/social-card.png",
   email: "ben.dichter@catalystneuro.com",
   github: "https://github.com/catalystneuro/neurodata-ai-website",
