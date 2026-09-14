@@ -12,6 +12,7 @@ import Testimonial from "../../components/Testimonial.astro";
 import LogoRow from "../../components/LogoRow.astro";
 import Icon from "../../components/Icon.astro";
 import { withBase } from "../../lib/url";
+import { SITE } from "../../consts";
 import { dateRange, weekdayDate } from "../../lib/format";
 import { allLectures } from "../../lib/derive";
 import { photo } from "../../lib/photos";
@@ -42,16 +43,32 @@ const tiles = [
   lectures.length && { value: lectures.length, label: "recordings" },
   e.survey?.overall && { value: `${e.survey.overall}/5`, label: "overall rating", sub: e.survey.respondents ? `n = ${e.survey.respondents}` : undefined },
 ].filter(Boolean) as { value: string | number; label: string; sub?: string }[];
+const siteUrl = (path: string) => new URL(withBase(path), Astro.site).href;
+const janelia = /janelia/i.test(e.venue.name);
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "EducationEvent",
   name: e.name,
+  url: siteUrl(`/events/${event.id}/`),
   startDate: e.startDate,
   endDate: e.endDate,
-  eventStatus: isPast ? "https://schema.org/EventScheduled" : "https://schema.org/EventScheduled",
-  location: { "@type": "Place", name: e.venue.name, address: `${e.venue.city}, ${e.venue.country}` },
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  image: e.banner ? siteUrl(e.banner) : siteUrl(SITE.ogImage),
+  location: {
+    "@type": "Place",
+    name: e.venue.name,
+    url: e.venue.url,
+    address: janelia
+      ? { "@type": "PostalAddress", streetAddress: "19700 Helix Drive", addressLocality: "Ashburn", addressRegion: "VA", postalCode: "20147", addressCountry: "US" }
+      : { "@type": "PostalAddress", addressLocality: e.venue.city, addressCountry: e.venue.country },
+  },
   organizer: { "@type": "Organization", name: "CatalystNeuro", url: "https://catalystneuro.com" },
+  funder: { "@type": "Organization", name: SITE.grant.funder, url: SITE.grant.url },
   isAccessibleForFree: true,
+  offers: isPast
+    ? undefined
+    : { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock", url: siteUrl("/apply/"), validFrom: "2026-09-12" },
   description: e.tagline,
 };
 ---

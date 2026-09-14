@@ -19,9 +19,20 @@ const years = await yearsFor(person.id);
 const events = (await getCollection("events")).filter((e) => years.includes(e.data.year)).sort((a, b) => b.data.year.localeCompare(a.data.year));
 const roleLabel = p.roles.includes("director") ? "Program director" : p.roles.includes("advisory") && p.roles.includes("faculty") ? "Faculty and advisory committee" : p.roles.includes("advisory") ? "Advisory committee" : p.roles.includes("faculty") ? "Faculty" : p.roles.includes("organizer") ? "Organizer" : "Guest speaker";
 const links = Object.entries(p.links).filter(([, v]) => v) as [string, string][];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: p.name,
+  url: new URL(withBase(`/faculty/${person.id}/`), Astro.site).href,
+  image: p.photo ? new URL(withBase(p.photo), Astro.site).href : undefined,
+  jobTitle: p.title,
+  affiliation: { "@type": "Organization", name: p.affiliation },
+  sameAs: links.map(([, v]) => v),
+  memberOf: { "@type": "EducationalOrganization", name: "NeuroData AI Summer School", url: new URL(withBase("/"), Astro.site).href },
+};
 const LINK_ICON: Record<string, string> = { website: "link", github: "github", scholar: "book", orcid: "orcid", bluesky: "bluesky", linkedin: "linkedin" };
 ---
-<Base title={p.name} description={`${p.name}, ${p.affiliation}. ${roleLabel} at the NeuroData AI Summer School.`}>
+<Base title={p.name} description={`${p.name}, ${p.affiliation}. ${roleLabel} at the NeuroData AI Summer School.`} jsonLd={jsonLd}>
   <section class="section">
     <div class="container-x">
       <a href={withBase("/faculty/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All faculty</a>

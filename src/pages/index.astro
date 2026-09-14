@@ -30,13 +30,28 @@ const byId = (ids: string[]) => ids.map((id) => sponsors.find((s) => s.id === id
 const instructors = await getEntries(current.data.instructors);
 const hero = photo("2026/w2-room-working.jpg");
 const campus = photo("2024/08-rainbow-over-pond.jpg");
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: SITE.name,
-  url: new URL(withBase("/"), Astro.site).href,
-  description: SITE.description,
-};
+const homeUrl = new URL(withBase("/"), Astro.site).href;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: SITE.name,
+    alternateName: ["NeuroData AI", "NeuroDataReHack"],
+    url: homeUrl,
+    logo: new URL(withBase("/favicon.svg"), Astro.site).href,
+    description: SITE.description,
+    email: SITE.email,
+    sameAs: [SITE.github, SITE.youtube],
+    parentOrganization: { "@type": "Organization", name: "CatalystNeuro", url: "https://catalystneuro.com" },
+    funder: { "@type": "Organization", name: SITE.grant.funder, url: SITE.grant.url },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: homeUrl,
+  },
+];
 ---
 <Base description={SITE.description} jsonLd={jsonLd}>
   <section class="hero">

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import { SITE } from "../../consts";
 import Icon from "../../components/Icon.astro";
 import { withBase } from "../../lib/url";
 import { longDate } from "../../lib/format";
@@ -11,9 +12,22 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
-const jsonLd = { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.data.title, datePublished: post.data.date, author: post.data.author ? { "@type": "Person", name: post.data.author } : undefined, description: post.data.description };
+const postUrl = new URL(withBase(`/blog/${post.id}/`), Astro.site).href;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date,
+  dateModified: post.data.date,
+  author: post.data.author ? { "@type": "Person", name: post.data.author } : undefined,
+  publisher: { "@type": "Organization", name: SITE.name, url: new URL(withBase("/"), Astro.site).href },
+  image: new URL(withBase(post.data.image ?? SITE.ogImage), Astro.site).href,
+  url: postUrl,
+  mainEntityOfPage: postUrl,
+};
 ---
-<Base title={post.data.title} description={post.data.description} image={post.data.image} jsonLd={jsonLd}>
+<Base title={post.data.title} description={post.data.description} image={post.data.image} type="article" publishedTime={post.data.date} author={post.data.author} jsonLd={jsonLd}>
   <article class="section">
     <div class="container-x wrap">
       <a href={withBase("/blog/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All posts</a>

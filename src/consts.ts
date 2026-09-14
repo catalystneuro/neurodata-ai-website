@@ -3,7 +3,7 @@ export const CURRENT_EVENT = "2027";
 export const SITE = {
   name: "NeuroData AI Summer School",
   shortName: "NeuroData AI",
-  defaultTitle: "NeuroData AI Summer School",
+  defaultTitle: "NeuroData AI Summer School at HHMI-Janelia",
   titleTemplate: (t: string) => `${t} · NeuroData AI Summer School`,
   description:
     "A one-week residential summer school at HHMI-Janelia on reanalysis of open neurophysiology data and AI methods for neural data. Formerly NeuroDataReHack.",
