@@ -15,12 +15,6 @@ The application is a single online form and takes about twenty minutes. It asks 
 
 The form also asks for up to three publications and up to three software tools you have contributed to, an optional link to your CV, and an optional statement of up to 300 words on how you hope to benefit from participating. It asks whether you would need travel support beyond the $550 reimbursement in order to attend, and gives you space for anything else you want considered.
 
-## How applications are reviewed
-
-Each application is read independently by four to six reviewers drawn from the course faculty and external experts. Reviewers score five dimensions on a ten-point scale: scientific productivity and contributions to date; the relevance of your research background to neurophysiology and computational methods; the degree to which your participation would advance neurophysiology research and the NIH mission; the appropriateness and feasibility of your proposed project within the week; and your technical preparation. Each reviewer also gives a single summary score, and reviewers recuse themselves from anyone they have mentored, taught, or collaborated with.
-
-Admission proceeds in order of average summary score, with limited adjustments to keep the balance between neuroscience and computational backgrounds. We expect roughly 80 to 120 applications for 35 places.
-
 ## Cost and travel
 
 There is no registration or application fee. Lodging in a private room on the HHMI-Janelia campus and all meals are provided. We reimburse up to $550 of travel costs per participant. A limited amount of additional support is available, used primarily for international participants who could not attend without it; the form asks whether you would need it. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months, and ask us for a letter of invitation if you need one.
