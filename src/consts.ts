@@ -8,7 +8,7 @@ export const SITE = {
   description:
     "A one-week residential summer school at HHMI-Janelia on reanalysis of open neurophysiology data and AI methods for neural data. Formerly NeuroDataReHack.",
   ogImage: "/social-card.png",
-  email: "ben.dichter@catalystneuro.com",
+  email: "support@neurodata-ai.org",
   github: "https://github.com/catalystneuro/neurodata-ai-website",
   youtube: "https://www.youtube.com/@NeurodataWithoutBorders",
   mailingList: "https://gmail.us3.list-manage.com/subscribe?u=eacaccc485a4e5f36034bbdbd&id=cad842f402",

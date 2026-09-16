@@ -28,7 +28,7 @@ We expect participants to follow these rules at all venues and at school-related
 
 ## Reporting
 
-If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to the organizers. You can speak to any organizer in person during the school or write to [ben.dichter@catalystneuro.com](mailto:ben.dichter@catalystneuro.com), from your own address or from an anonymous one. Harassment and other violations reduce the value of the school for everyone, and we want you to be able to take part fully.
+If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to the organizers. You can speak to any organizer in person during the school or write to [support@neurodata-ai.org](mailto:support@neurodata-ai.org), from your own address or from an anonymous one. Harassment and other violations reduce the value of the school for everyone, and we want you to be able to take part fully.
 
 ## Credit
 
