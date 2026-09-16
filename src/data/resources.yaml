@@ -63,10 +63,6 @@
     - title: DANDI documentation
       url: https://docs.dandiarchive.org/
       kind: docs
-    - title: Neurosift
-      description: Browse Dandisets and visualize NWB files in the browser.
-      url: https://neurosift.app/
-      kind: tool
 - id: tools
   title: Analysis tools taught at the school
   items:
@@ -96,6 +92,10 @@
     - title: torch_brain
       description: Neural foundation models, including POYO.
       url: https://github.com/neuro-galaxy/torch_brain
+      kind: tool
+    - title: Neurosift
+      description: Browse Dandisets and visualize NWB files in the browser.
+      url: https://neurosift.app/
       kind: tool
 - id: prep
   title: Pre-course preparation
