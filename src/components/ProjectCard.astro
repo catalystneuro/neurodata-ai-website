@@ -10,10 +10,7 @@ const href = p.hasBody ? withBase(`/projects/${project.id.split("/").pop()}/`) :
 const inv = p.investigators.map((i) => i.name).join(", ");
 ---
 <article class:list={["pc card", href && "card-hover"]} data-year={year} data-topics={p.topics.join(" ")} data-search={`${p.title} ${inv}`.toLowerCase()}>
-  <div class="pc-top">
-    {showYear && <span class="chip chip--neutral">{eventName ?? `NeuroDataReHack ${year}`}</span>}
-    {p.featured && <span class="chip chip--sun">Highlight</span>}
-  </div>
+  {showYear && <div class="pc-top"><span class="chip chip--neutral">{eventName ?? `NeuroDataReHack ${year}`}</span></div>}
   <h3 class="pc-title">{href ? <a href={href}>{p.title}</a> : p.title}</h3>
   {inv && <p class="pc-inv">{inv}</p>}
   {p.summary && <p class="pc-sum">{p.summary}</p>}
