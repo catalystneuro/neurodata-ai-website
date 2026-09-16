@@ -4,14 +4,15 @@ import { SITE } from "../consts";
 import { withBase } from "../lib/url";
 import { applyState } from "../lib/apply";
 import { dateRange } from "../lib/format";
-interface Props { event: CollectionEntry<"events">; variant?: "inline" | "compact" }
-const { event, variant = "inline" } = Astro.props;
-const cta = applyState(event, withBase(`/events/${event.id}/`), SITE.mailingList);
-// This banner sits on the event page, which is where the application details live, so it links straight to the form.
-const direct = cta.state === "open" && cta.formUrl;
+interface Props { event: CollectionEntry<"events">; variant?: "inline" | "compact"; /** Set on the apply page itself: the button links straight to the form and the How to apply link is hidden. */ applyPage?: boolean }
+const { event, variant = "inline", applyPage = false } = Astro.props;
+const applyHref = withBase("/apply/");
+const cta = applyState(event, applyHref, SITE.mailingList);
+const direct = applyPage && cta.state === "open" && cta.formUrl;
 const href = direct ? cta.formUrl : cta.href;
 const label = direct ? "Apply now" : cta.label;
 const attrs = direct || cta.external ? { target: "_blank", rel: "noopener" } : {};
+const showHowTo = !applyPage && cta.href !== applyHref;
 ---
 <div class:list={["apply", `apply--${cta.state}`, variant === "compact" && "apply--compact"]}>
   <div class="apply-text">
@@ -20,6 +21,7 @@ const attrs = direct || cta.external ? { target: "_blank", rel: "noopener" } : {
   </div>
   <div class="apply-actions">
     <a href={href} class="btn btn-primary btn-sm" {...attrs}>{label}</a>
+    {showHowTo && <a href={applyHref} class="btn btn-secondary btn-sm">How to apply</a>}
   </div>
 </div>
 

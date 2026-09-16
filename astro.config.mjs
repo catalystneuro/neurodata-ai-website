@@ -17,8 +17,6 @@ export default defineConfig({
   site,
   base,
   trailingSlash: "always",
-  // The apply page was folded into the 2027 event page in September 2026; keep the old URL working.
-  redirects: { "/apply/": (base === "/" ? "" : base) + "/events/2027/" },
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

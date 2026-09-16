@@ -2,7 +2,7 @@
 import { getCollection, getEntry, getEntries } from "astro:content";
 import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
-import { SITE, CURRENT_EVENT, APPLY_PATH } from "../consts";
+import { SITE, CURRENT_EVENT } from "../consts";
 import { withBase } from "../lib/url";
 import { dateRange } from "../lib/format";
 import { applyState } from "../lib/apply";
@@ -17,7 +17,7 @@ import NewsletterCta from "../components/NewsletterCta.astro";
 import Icon from "../components/Icon.astro";
 
 const current = (await getEntry("events", CURRENT_EVENT))!;
-const cta = applyState(current, withBase(APPLY_PATH), SITE.mailingList);
+const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
 const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
 const stats = await siteStats();
 const lectures = await allLectures();
