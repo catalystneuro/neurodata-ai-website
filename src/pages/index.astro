@@ -57,9 +57,9 @@ const jsonLd = [
   <section class="hero">
     <div class="container-x hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">{current.data.name} · {dateRange(current.data.startDate, current.data.endDate)} · {current.data.venue.name}</span>
+        <span class="eyebrow">{dateRange(current.data.startDate, current.data.endDate)} · {current.data.venue.name}</span>
         <h1>Learn to reanalyze open neurophysiology data, from the people who built the tools.</h1>
-        <p class="lede">A one-week residential school at HHMI-Janelia on working with NWB data on the DANDI Archive: finding it, streaming it, analyzing it with community tools, and applying AI methods to it. Free to attend, including lodging and meals. Formerly NeuroDataReHack.</p>
+        <p class="lede">A one-week residential school on analyzing NWB data from the DANDI Archive with community tools and AI methods. Free to attend, including lodging and meals.</p>
         <div class="hero-actions">
           <a href={cta.href} class="btn btn-primary" {...ctaAttrs}>{cta.label}</a>
           <a href={withBase(`/events/${CURRENT_EVENT}/`)} class="btn btn-secondary">About the {CURRENT_EVENT} school</a>
