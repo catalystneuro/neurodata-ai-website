@@ -8,7 +8,10 @@ import Wordmark from "./Wordmark.astro";
 
 const path = Astro.url.pathname;
 const rel = path.startsWith(basePath) ? "/" + path.slice(basePath.length) : path;
-const isActive = (href: string) => rel === href || (href !== "/" && rel.startsWith(href));
+// The most specific nav entry wins, so /events/2027/ lights up "2027 School" and not "Past events" under Archive.
+const hrefs = NAV.flatMap((i) => [i.href, ...(i.children ?? []).map((c) => c.href)]);
+const best = hrefs.filter((h) => h !== "/" && rel.startsWith(h)).sort((a, b) => b.length - a.length)[0];
+const isActive = (href: string) => href === best;
 const current = await getEntry("events", CURRENT_EVENT);
 const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
 const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
