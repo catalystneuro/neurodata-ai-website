@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import { SITE, CURRENT_EVENT } from "../consts";
 import { withBase } from "../lib/url";
-import { dateRange } from "../lib/format";
 import { applyState } from "../lib/apply";
 import { allLectures, siteStats } from "../lib/derive";
 import { photo } from "../lib/photos";
@@ -57,7 +56,6 @@ const jsonLd = [
   <section class="hero">
     <div class="container-x hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">{dateRange(current.data.startDate, current.data.endDate)} · {current.data.venue.name}</span>
         <h1>Learn to reanalyze open neurophysiology data, from the people who built the tools.</h1>
         <p class="lede">A one-week residential school on analyzing NWB data from the DANDI Archive with community tools and AI methods. Free to attend, including lodging and meals.</p>
         <div class="hero-actions">
