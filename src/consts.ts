@@ -25,7 +25,6 @@ export const SITE = {
 export const NAV = [
   { label: "Program", href: "/program/" },
   { label: `${CURRENT_EVENT} School`, href: `/events/${CURRENT_EVENT}/` },
-  { label: "Apply", href: "/apply/" },
   { label: "Faculty", href: "/faculty/" },
   {
     label: "Archive",
