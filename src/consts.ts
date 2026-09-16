@@ -22,10 +22,12 @@ export const SITE = {
   },
 };
 
+/** Where every Apply link on the site goes. The current event's page carries the application details and the only link to the form. */
+export const APPLY_PATH = `/events/${CURRENT_EVENT}/`;
+
 export const NAV = [
   { label: "Program", href: "/program/" },
   { label: `${CURRENT_EVENT} School`, href: `/events/${CURRENT_EVENT}/` },
-  { label: "Apply", href: "/apply/" },
   { label: "Faculty", href: "/faculty/" },
   {
     label: "Archive",
@@ -47,7 +49,6 @@ export const FOOTER = [
     links: [
       { label: "About the school", href: "/program/" },
       { label: `${CURRENT_EVENT} school`, href: `/events/${CURRENT_EVENT}/` },
-      { label: "Apply", href: "/apply/" },
       { label: "Faculty", href: "/faculty/" },
     ],
   },

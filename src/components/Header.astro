@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import { NAV, SITE, CURRENT_EVENT } from "../consts";
+import { NAV, SITE, CURRENT_EVENT, APPLY_PATH } from "../consts";
 import { withBase, basePath } from "../lib/url";
 import { applyState } from "../lib/apply";
 import Icon from "./Icon.astro";
@@ -10,7 +10,7 @@ const path = Astro.url.pathname;
 const rel = path.startsWith(basePath) ? "/" + path.slice(basePath.length) : path;
 const isActive = (href: string) => rel === href || (href !== "/" && rel.startsWith(href));
 const current = await getEntry("events", CURRENT_EVENT);
-const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
+const cta = applyState(current, withBase(APPLY_PATH), SITE.mailingList);
 const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
 ---
 <header class="hdr">

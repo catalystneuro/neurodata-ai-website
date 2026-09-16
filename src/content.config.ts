@@ -39,6 +39,7 @@ const events = defineCollection({
       city: z.string(),
       country: z.string(),
       url: z.string().url().optional(),
+      mapUrl: z.string().url().optional(),
       note: z.string().optional(),
     }),
     applications: z
