@@ -2,15 +2,17 @@
 import type { Lecture } from "../lib/derive";
 import { withBase } from "../lib/url";
 import { topicLabel } from "../lib/format";
-import YouTubeEmbed from "./YouTubeEmbed.astro";
 import Icon from "./Icon.astro";
-interface Props { lecture: Lecture; showEvent?: boolean; embed?: boolean }
-const { lecture: l, showEvent = true, embed = true } = Astro.props;
+interface Props { lecture: Lecture; showEvent?: boolean }
+const { lecture: l, showEvent = true } = Astro.props;
 const speakers = l.speakers.map((s) => s.name).filter(Boolean).join(", ");
 const href = withBase(`/lectures/${l.id}/`);
 ---
 <article class="vc" data-year={l.year} data-topics={l.topics.join(" ")} data-search={`${l.title} ${speakers}`.toLowerCase()}>
-  {embed ? <YouTubeEmbed id={l.youtubeId} title={l.title} /> : <a href={href} class="vc-thumb" aria-label={`Watch: ${l.title}`}><img src={`https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" /><span class="vc-play"><Icon name="play" size={26} /></span></a>}
+  <a href={href} class="vc-thumb" aria-label={l.title}>
+    <img src={`https://i.ytimg.com/vi/${l.youtubeId}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+    <span class="vc-play"><Icon name="play" size={26} /></span>
+  </a>
   <div class="vc-body">
     <h3 class="vc-title"><a href={href}>{l.title}</a></h3>
     <p class="vc-meta">{speakers}{speakers && l.speakers[0]?.affiliation ? `, ${l.speakers[0].affiliation}` : ""}</p>

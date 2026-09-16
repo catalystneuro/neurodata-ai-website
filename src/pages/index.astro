@@ -4,7 +4,6 @@ import { Image } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import { SITE, CURRENT_EVENT } from "../consts";
 import { withBase } from "../lib/url";
-import { dateRange } from "../lib/format";
 import { applyState } from "../lib/apply";
 import { allLectures, siteStats } from "../lib/derive";
 import { photo } from "../lib/photos";
@@ -57,9 +56,8 @@ const jsonLd = [
   <section class="hero">
     <div class="container-x hero-grid">
       <div class="hero-text">
-        <span class="eyebrow">{current.data.name} · {dateRange(current.data.startDate, current.data.endDate)} · {current.data.venue.name}</span>
         <h1>Learn to reanalyze open neurophysiology data, from the people who built the tools.</h1>
-        <p class="lede">A one-week residential school at HHMI-Janelia on working with NWB data on the DANDI Archive: finding it, streaming it, analyzing it with community tools, and applying AI methods to it. Free to attend, including lodging and meals. Formerly NeuroDataReHack.</p>
+        <p class="lede">A one-week residential school on analyzing NWB data from the DANDI Archive with community tools and AI methods. Free to attend, including lodging and meals.</p>
         <div class="hero-actions">
           <a href={cta.href} class="btn btn-primary" {...ctaAttrs}>{cta.label}</a>
           <a href={withBase(`/events/${CURRENT_EVENT}/`)} class="btn btn-secondary">About the {CURRENT_EVENT} school</a>
@@ -87,7 +85,6 @@ const jsonLd = [
     <div class="container-x">
       <div class="section-head">
         <h2>What you learn</h2>
-        <p>Two strands, taught side by side, and a week of project work to put them to use.</p>
       </div>
       <div class="grid-2 tracks">
         <div class="card track">
@@ -118,7 +115,7 @@ const jsonLd = [
           <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
         </div>
         <div class="grid-3">
-          {featured.map((l) => <VideoCard lecture={l} showEvent={false} embed={false} />)}
+          {featured.map((l) => <VideoCard lecture={l} showEvent={false} />)}
         </div>
       </div>
     </section>

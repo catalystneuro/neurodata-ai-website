@@ -13,7 +13,7 @@ Preference is given to applicants who have a specific project in mind that invol
 
 The application is a single online form and takes about twenty minutes. It asks for your contact details, institution, position, ORCID iD (required; creating one takes a few minutes), the programming languages and data modalities you work with, whether you have attended a previous NeuroDataReHack, and how you heard about the school. The substantive part is a project proposal: a title, an abstract of up to 1,500 characters, and the DANDI IDs of the Dandiset or Dandisets you would analyze. The proposal should describe a scientific question you could pursue by reanalyzing one or more specific existing datasets on the DANDI Archive; the [projects from past installments](/projects/) show the range of what teams have done. We use it to judge your understanding of the data and your readiness for the week. You will not be required to carry out this project at the school; many participants change projects or join a different team once they have seen what is possible.
 
-The form also asks for up to three publications and up to three software tools you have contributed to, an optional link to your CV, and an optional statement of up to 300 words on how you hope to benefit from participating. It asks whether you would need travel support beyond the $550 reimbursement in order to attend, and gives you space for anything else you want considered.
+The form also asks for up to three publications and up to three software tools you have contributed to, an optional link to your CV, and an optional statement of up to 300 words on how you hope to benefit from participating.
 
 ## Cost and travel
 

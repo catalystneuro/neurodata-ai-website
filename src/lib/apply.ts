@@ -7,6 +7,8 @@ export interface ApplyState {
   href: string;
   external: boolean;
   sentence: string;
+  /** The application form. Only the apply page links to it; everywhere else links to the apply page. */
+  formUrl?: string;
 }
 
 /** The single source of truth for the apply CTA across header, hero, and event page. */
@@ -25,9 +27,10 @@ export function applyState(event: CollectionEntry<"events"> | undefined, basePat
   if (a.state === "open") {
     return {
       state: "open",
-      label: "Apply now",
-      href: a.formUrl ?? basePathApply,
-      external: !!a.formUrl,
+      label: "Apply",
+      href: basePathApply,
+      external: false,
+      formUrl: a.formUrl,
       sentence: a.deadline ? `Applications for the ${year} school are open until ${longDate(a.deadline)}.` : `Applications for the ${year} school are open.`,
     };
   }

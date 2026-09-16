@@ -4,10 +4,15 @@ import { SITE } from "../consts";
 import { withBase } from "../lib/url";
 import { applyState } from "../lib/apply";
 import { dateRange } from "../lib/format";
-interface Props { event: CollectionEntry<"events">; variant?: "inline" | "compact"; /** Hide the link to the apply page, for use on that page itself. */ howTo?: boolean }
-const { event, variant = "inline", howTo = true } = Astro.props;
-const cta = applyState(event, withBase("/apply/"), SITE.mailingList);
-const attrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
+interface Props { event: CollectionEntry<"events">; variant?: "inline" | "compact"; /** Set on the apply page itself: the button links straight to the form and the How to apply link is hidden. */ applyPage?: boolean }
+const { event, variant = "inline", applyPage = false } = Astro.props;
+const applyHref = withBase("/apply/");
+const cta = applyState(event, applyHref, SITE.mailingList);
+const direct = applyPage && cta.state === "open" && cta.formUrl;
+const href = direct ? cta.formUrl : cta.href;
+const label = direct ? "Apply now" : cta.label;
+const attrs = direct || cta.external ? { target: "_blank", rel: "noopener" } : {};
+const showHowTo = !applyPage && cta.href !== applyHref;
 ---
 <div class:list={["apply", `apply--${cta.state}`, variant === "compact" && "apply--compact"]}>
   <div class="apply-text">
@@ -15,8 +20,8 @@ const attrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
     {event.data.applications?.note && cta.state === "not_open" && <span class="muted"> {event.data.applications.note}</span>}
   </div>
   <div class="apply-actions">
-    <a href={cta.href} class="btn btn-primary btn-sm" {...attrs}>{cta.label}</a>
-    {howTo && <a href={withBase("/apply/")} class="btn btn-secondary btn-sm">How to apply</a>}
+    <a href={href} class="btn btn-primary btn-sm" {...attrs}>{label}</a>
+    {showHowTo && <a href={applyHref} class="btn btn-secondary btn-sm">How to apply</a>}
   </div>
 </div>
 

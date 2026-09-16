@@ -24,7 +24,8 @@ export async function getStaticPaths() {
 }
 const { event } = Astro.props;
 const e = event.data;
-const { Content } = await render(event);
+const { Content, headings } = await render(event);
+const contentHeadings = headings.filter((h) => h.depth === 2);
 const schedule = await getEntry("schedules", event.id);
 const projects = (await getCollection("projects")).filter((p) => p.data.event.id === event.id).sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.title.localeCompare(b.data.title));
 const lectures = (await allLectures()).filter((l) => l.year === e.year);
@@ -80,7 +81,7 @@ const jsonLd = {
       <p class="lede">{e.tagline}</p>
       <dl class="kv ev-facts">
         <dt><Icon name="calendar" size={16} /> Dates</dt><dd>{dateRange(e.startDate, e.endDate)}{e.arrivalDate && <span class="soft"> · arrive {weekdayDate(e.arrivalDate)}</span>}</dd>
-        <dt><Icon name="map" size={16} /> Venue</dt><dd>{e.venue.url ? <a href={e.venue.url} class="text-link" target="_blank" rel="noopener">{e.venue.name}</a> : e.venue.name}, {e.venue.city}, {e.venue.country}{e.venue.note && <span class="soft"> · {e.venue.note}</span>}</dd>
+        <dt><Icon name="map" size={16} /> Venue</dt><dd>{e.venue.url ? <a href={e.venue.url} class="text-link" target="_blank" rel="noopener">{e.venue.name}</a> : e.venue.name}, {e.venue.city}, {e.venue.country}{e.venue.mapUrl && <span class="soft"> · <a href={e.venue.mapUrl} class="text-link" target="_blank" rel="noopener">Map</a></span>}{e.venue.note && <span class="soft"> · {e.venue.note}</span>}</dd>
         {!isPast && e.stats.participants && <><dt><Icon name="users" size={16} /> Places</dt><dd>About {e.stats.participants} participants</dd></>}
         {organizers.length > 0 && <><dt><Icon name="users" size={16} /> Organizers</dt><dd>{organizers.map((p, i) => <><a href={withBase(`/faculty/${p.id}/`)} class="text-link">{p.data.name}</a>{i < organizers.length - 1 ? ", " : ""}</>)}</dd></>}
       </dl>
@@ -106,7 +107,7 @@ const jsonLd = {
       <aside class="toc">
         <span class="label">On this page</span>
         <nav>
-          <a href="#about">About</a>
+          {contentHeadings.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}
           {instructors.length > 0 && <a href="#instructors">Instructors</a>}
           {(schedule || !isPast) && <a href="#schedule">Schedule</a>}
           {lectures.length > 0 && <a href="#recordings">Recordings</a>}
@@ -118,7 +119,7 @@ const jsonLd = {
       <div class="main">
         {tiles.length > 1 && <div class="mb"><StatsTiles tiles={tiles} columns={tiles.length > 4 ? 3 : tiles.length} /></div>}
 
-        <div class="prose" id="about"><Content /></div>
+        <div class="prose"><Content /></div>
 
         {instructors.length > 0 && (
           <>
@@ -206,6 +207,7 @@ const jsonLd = {
   .main { min-width: 0; }
   .main .prose { max-width: 46rem; }
   .h2 { margin-top: 3.5rem; margin-bottom: 1rem; scroll-margin-top: 5.5rem; }
+  .main .prose :global(h2) { scroll-margin-top: 5.5rem; }
   .mb { margin-bottom: 1.25rem; }
   .small { font-size: 0.92rem; }
   .sponsors { margin-top: 3.5rem; }
