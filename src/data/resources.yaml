@@ -97,9 +97,6 @@
       description: Neural foundation models, including POYO.
       url: https://github.com/neuro-galaxy/torch_brain
       kind: tool
-    - title: IBL Brain Wide Map
-      url: https://dandiarchive.org/dandiset/000409
-      kind: dataset
 - id: prep
   title: Pre-course preparation
   blurb: Accepted participants receive a skills assessment and personalized recommendations from these free NeuroHackademy lectures, each about ninety minutes. All NeuroHackademy recordings are on the UW eScience Institute YouTube channel.
