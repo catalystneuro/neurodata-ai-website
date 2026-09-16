@@ -19,7 +19,7 @@ const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
   <section class="section">
     <div class="container-x layout">
       <div class="main">
-        <ApplyBanner event={current} howTo={false} />
+        <ApplyBanner event={current} applyPage />
         <div class="prose mt">
           <Content />
         </div>
@@ -35,8 +35,8 @@ const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
             <dt>Cost</dt><dd>None. Lodging and meals provided; travel reimbursed up to $550, more on request.</dd>
             <dt>Status</dt><dd>{cta.state === "open" ? "Applications open" : cta.state === "closed" ? "Applications closed" : `Opens ${current.data.applications?.opensOn ?? "soon"}`}</dd>
           </dl>
-          {cta.state === "open" ? (
-            <a href={cta.href} class="btn btn-primary" target="_blank" rel="noopener">Apply now</a>
+          {cta.state === "open" && cta.formUrl ? (
+            <a href={cta.formUrl} class="btn btn-primary" target="_blank" rel="noopener">Apply now</a>
           ) : (
             <a href={cta.href} class="btn btn-primary" target="_blank" rel="noopener">Get notified</a>
           )}
