@@ -27,7 +27,6 @@
       url: https://github.com/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK24_2025_Janelia_NDRH/notebooks/read_basics_and_stream.ipynb
       kind: tutorial
       colabUrl: https://colab.research.google.com/github/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK24_2025_Janelia_NDRH/notebooks/read_basics_and_stream.ipynb
-      dandihubUrl: https://hub.dandiarchive.org/
     - title: Searching DANDI with the API, basic
       url: https://github.com/NeurodataWithoutBorders/nwb_hackathons/blob/main/HCK21_2024_Janelia_NDRH/tutorials/simple_dandiset_search.ipynb
       kind: tutorial
@@ -64,10 +63,6 @@
     - title: DANDI documentation
       url: https://docs.dandiarchive.org/
       kind: docs
-    - title: DANDI Hub
-      description: A free JupyterHub with the archive mounted, for analysis without downloads.
-      url: https://hub.dandiarchive.org/
-      kind: tool
     - title: Neurosift
       description: Browse Dandisets and visualize NWB files in the browser.
       url: https://neurosift.app/
