@@ -54,7 +54,7 @@ const jsonLd = {
           {related.length > 0 && (
             <>
               <h2 class="label">Related lectures</h2>
-              <div class="lec-related">{related.map((r) => <VideoCard lecture={r} embed={false} />)}</div>
+              <div class="lec-related">{related.map((r) => <VideoCard lecture={r} />)}</div>
             </>
           )}
         </aside>
