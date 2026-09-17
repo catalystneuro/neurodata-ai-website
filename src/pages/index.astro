@@ -8,7 +8,6 @@ import { applyState } from "../lib/apply";
 import { allLectures, siteStats } from "../lib/derive";
 import { photo } from "../lib/photos";
 import VideoCard from "../components/VideoCard.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import Testimonial from "../components/Testimonial.astro";
 import LogoRow from "../components/LogoRow.astro";
 import StatsTiles from "../components/StatsTiles.astro";
@@ -21,7 +20,6 @@ const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
 const stats = await siteStats();
 const lectures = await allLectures();
 const featured = lectures.filter((l) => l.featured).slice(0, 3);
-const projects = (await getCollection("projects")).filter((p) => p.data.featured).slice(0, 3);
 const testimonials = (await getCollection("testimonials")).filter((t) => t.data.featured).slice(0, 3);
 const posts = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 3);
 const sponsors = await getCollection("sponsors");
@@ -120,18 +118,6 @@ const jsonLd = [
       </div>
     </section>
   )}
-
-  <section class="section">
-    <div class="container-x">
-      <div class="section-head">
-        <h2>Projects from the last installment</h2>
-        <a href={withBase("/projects/")} class="arrow-link">All {stats.projects} projects <Icon name="arrow" size={16} /></a>
-      </div>
-      <div class="grid-3">
-        {projects.map((p) => <ProjectCard project={p} />)}
-      </div>
-    </div>
-  </section>
 
   <section class="section">
     <div class="container-x week-grid">
