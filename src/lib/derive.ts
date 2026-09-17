@@ -102,6 +102,17 @@ export async function siteStats() {
   return { years: events.length, alumni, projects: projects.length, lectures: lectures.length, countries };
 }
 
+/** Overall-experience rating pooled across every exit survey that reports both a mean and a response count. */
+export async function surveyRating() {
+  const rated = (await getCollection("events"))
+    .filter((e) => e.data.survey?.overall != null && e.data.survey?.respondents)
+    .sort((a, b) => a.data.year.localeCompare(b.data.year));
+  const responses = rated.reduce((n, e) => n + e.data.survey!.respondents!, 0);
+  if (!responses) return undefined;
+  const mean = rated.reduce((n, e) => n + e.data.survey!.overall! * e.data.survey!.respondents!, 0) / responses;
+  return { mean, responses, firstYear: rated[0].data.year, lastYear: rated[rated.length - 1].data.year };
+}
+
 export async function currentEvent(year: string) {
   return getEntry("events", year);
 }

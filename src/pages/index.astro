@@ -5,10 +5,9 @@ import Base from "../layouts/Base.astro";
 import { SITE, CURRENT_EVENT } from "../consts";
 import { withBase } from "../lib/url";
 import { applyState } from "../lib/apply";
-import { allLectures, siteStats } from "../lib/derive";
+import { allLectures, siteStats, surveyRating } from "../lib/derive";
 import { photo } from "../lib/photos";
 import VideoCard from "../components/VideoCard.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import Testimonial from "../components/Testimonial.astro";
 import LogoRow from "../components/LogoRow.astro";
 import StatsTiles from "../components/StatsTiles.astro";
@@ -19,9 +18,9 @@ const current = (await getEntry("events", CURRENT_EVENT))!;
 const cta = applyState(current, withBase("/apply/"), SITE.mailingList);
 const ctaAttrs = cta.external ? { target: "_blank", rel: "noopener" } : {};
 const stats = await siteStats();
+const rating = await surveyRating();
 const lectures = await allLectures();
 const featured = lectures.filter((l) => l.featured).slice(0, 3);
-const projects = (await getCollection("projects")).filter((p) => p.data.featured).slice(0, 3);
 const testimonials = (await getCollection("testimonials")).filter((t) => t.data.featured).slice(0, 3);
 const posts = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 3);
 const sponsors = await getCollection("sponsors");
@@ -56,7 +55,7 @@ const jsonLd = [
   <section class="hero">
     <div class="container-x hero-grid">
       <div class="hero-text">
-        <h1>Learn to reanalyze open neurophysiology data, from the people who built the tools.</h1>
+        <h1>Learn to analyze open neurophysiology data, from the people who built the tools.</h1>
         <p class="lede">A one-week residential school on analyzing NWB data from the DANDI Archive with community tools and AI methods. Free to attend, including lodging and meals.</p>
         <div class="hero-actions">
           <a href={cta.href} class="btn btn-primary" {...ctaAttrs}>{cta.label}</a>
@@ -107,32 +106,6 @@ const jsonLd = [
     </div>
   </section>
 
-  {featured.length > 0 && (
-    <section class="section band">
-      <div class="container-x">
-        <div class="section-head">
-          <h2>From the 2026 lectures</h2>
-          <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
-        </div>
-        <div class="grid-3">
-          {featured.map((l) => <VideoCard lecture={l} showEvent={false} />)}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <section class="section">
-    <div class="container-x">
-      <div class="section-head">
-        <h2>Projects from the last installment</h2>
-        <a href={withBase("/projects/")} class="arrow-link">All {stats.projects} projects <Icon name="arrow" size={16} /></a>
-      </div>
-      <div class="grid-3">
-        {projects.map((p) => <ProjectCard project={p} />)}
-      </div>
-    </div>
-  </section>
-
   <section class="section">
     <div class="container-x week-grid">
       <figure class="week-fig">
@@ -158,6 +131,13 @@ const jsonLd = [
   <section class="section band">
     <div class="container-x">
       <h2 class="section-title">What participants said</h2>
+      {rating && (
+        <p class="rating">
+          <span class="stars" role="img" aria-label={`${rating.mean.toFixed(1)} out of 5 stars`} style={`--fill:${((rating.mean / 5) * 100).toFixed(1)}%`}></span>
+          <strong class="rating-num tnum">{rating.mean.toFixed(1)} out of 5</strong>
+          <span class="muted">overall experience, from {rating.responses} <a href={withBase("/outcomes/")} class="text-link">exit survey</a> responses, {rating.firstYear} to {rating.lastYear}</span>
+        </p>
+      )}
       <div class="grid-3">
         {testimonials.map((t) => <Testimonial quote={t.data.quote} name={t.data.name} affiliation={t.data.affiliation} eventLabel={`NeuroDataReHack ${t.data.event.id}`} />)}
       </div>
@@ -182,6 +162,20 @@ const jsonLd = [
     </div>
   </section>
 
+  {featured.length > 0 && (
+    <section class="section band">
+      <div class="container-x">
+        <div class="section-head">
+          <h2>From the 2026 lectures</h2>
+          <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
+        </div>
+        <div class="grid-3">
+          {featured.map((l) => <VideoCard lecture={l} showEvent={false} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="section-tight">
     <div class="container-x">
       <NewsletterCta />
@@ -197,6 +191,11 @@ const jsonLd = [
 </Base>
 
 <style>
+  .rating { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.7rem; margin: -0.6rem 0 1.6rem; font-size: 1rem; }
+  .rating-num { font-weight: 600; }
+  .stars { position: relative; display: inline-block; font-size: 1.35rem; line-height: 1; letter-spacing: 0.08em; }
+  .stars::before { content: "★★★★★"; color: var(--color-line); }
+  .stars::after { content: "★★★★★"; position: absolute; inset: 0; width: var(--fill); overflow: hidden; white-space: nowrap; color: var(--color-sun); }
   .hero { background: var(--color-surface); border-bottom: 1px solid var(--color-line); padding: 3rem 0 3.5rem; }
   .hero-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: center; }
   @media (min-width: 960px) { .hero-grid { grid-template-columns: 1.15fr 1fr; gap: 3.5rem; } }
