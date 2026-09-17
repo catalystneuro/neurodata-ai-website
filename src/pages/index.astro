@@ -105,20 +105,6 @@ const jsonLd = [
     </div>
   </section>
 
-  {featured.length > 0 && (
-    <section class="section band">
-      <div class="container-x">
-        <div class="section-head">
-          <h2>From the 2026 lectures</h2>
-          <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
-        </div>
-        <div class="grid-3">
-          {featured.map((l) => <VideoCard lecture={l} showEvent={false} />)}
-        </div>
-      </div>
-    </section>
-  )}
-
   <section class="section">
     <div class="container-x week-grid">
       <figure class="week-fig">
@@ -167,6 +153,20 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  {featured.length > 0 && (
+    <section class="section band">
+      <div class="container-x">
+        <div class="section-head">
+          <h2>From the 2026 lectures</h2>
+          <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
+        </div>
+        <div class="grid-3">
+          {featured.map((l) => <VideoCard lecture={l} showEvent={false} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section-tight">
     <div class="container-x">
