@@ -24,11 +24,11 @@ The school runs once a year at HHMI's Janelia Research Campus. Participants arri
 
 Days one and two establish the foundations: the NWB standard, the DANDI Archive, streaming access, the flagship datasets, and the classic analysis tools, most of them taught by the people who wrote them. Day three introduces the AI methods and hands the week over to project work. Days four through six are devoted to projects, with daily check-ins, a laboratory tour, a session on the responsible conduct of research with open data, and the final presentations. The exact agenda changes from year to year based on participant feedback and on what is new in the field; the [2026 schedule](/events/2026/) is a good guide to the shape of the week.
 
-Throughout, we work with real files rather than tidy prepared examples. Nearly all the difficulty in reanalysis lives in the parts of a dataset that do not match your expectations, and that cannot be learned from a sanitized notebook.
+Throughout, we work with real files, not tidy prepared examples. Nearly all the difficulty in reanalysis lives in the parts of a dataset that do not match your expectations, and that cannot be learned from a sanitized notebook.
 
 ## Before you arrive
 
-Accepted participants complete a short skills assessment covering Python, version control, data visualization, and machine learning, and receive personalized recommendations from the free NeuroHackademy modules on those topics six to eight weeks before the school. The school is designed for people with foundational skills rather than complete beginners: we do not teach programming from scratch, and we do not offer an accelerated neuroscience course for computational researchers with no biological background.
+Accepted participants complete a short skills assessment covering Python, version control, data visualization, and machine learning, and receive personalized recommendations from the free NeuroHackademy modules on those topics six to eight weeks before the school. The school is designed for people with foundational skills, not complete beginners: we do not teach programming from scratch, and we do not offer an accelerated neuroscience course for computational researchers with no biological background.
 
 ## Funding and hosting
 
@@ -46,4 +46,4 @@ Two other programs cover adjacent ground and both are excellent. [Neuromatch Aca
 
 ## Materials and licensing
 
-All lectures are recorded and published on the [lectures page](/lectures/) within a few weeks of each installment. Tutorials, notebooks, and project code live in the program's GitHub repository, and project teams document their work in Jupyter notebooks that anyone can run, since every dataset used is public. Educational content is released under CC BY and software under permissive open source licenses.
+Lectures are recorded and published on the [lectures page](/lectures/) within a few weeks of each installment. Tutorials and notebooks live in the program's GitHub repository, and project write-ups and code are published where teams make them public. Every dataset used is public, so anyone can rerun the analyses. Educational content is released under CC BY and software under permissive open source licenses.
