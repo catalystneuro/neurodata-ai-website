@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /pr-
-
-Sitemap: https://neurodata-ai.org/sitemap-index.xml
