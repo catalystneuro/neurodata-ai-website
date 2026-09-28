@@ -52,8 +52,9 @@ jobs:
       && github.actor != 'dependabot[bot]'
       && (github.event.action == 'closed' || needs.build.result == 'success')
     runs-on: ubuntu-latest
+    # One publish per PR at a time; see deploy.yml for why this is not shared.
     concurrency:
-      group: gh-pages
+      group: gh-pages-${{ github.event.pull_request.number }}
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
@@ -67,18 +68,25 @@ jobs:
           name: preview
           path: dist
       - name: Update the preview directory on gh-pages
+        id: update
         env:
           GH_TOKEN: ${{ github.token }}
           ACTION: ${{ github.event.action }}
           SHA: ${{ github.event.pull_request.head.sha }}
+          NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -euo pipefail
           if [ "$ACTION" = "closed" ]; then
             bash scripts/publish-gh-pages.sh remove "$PREVIEW_DIR"
+          elif [ "$(gh pr view "$NUMBER" --repo "$GITHUB_REPOSITORY" --json state -q .state)" != "OPEN" ]; then
+            # The PR closed while this build ran; publishing now would recreate a removed preview.
+            echo "PR is no longer open; skipping."
+            echo "skipped=true" >> "$GITHUB_OUTPUT"
           else
             bash scripts/publish-gh-pages.sh dir "$PREVIEW_DIR" dist
           fi
       - name: Comment on the PR
+        if: steps.update.outputs.skipped != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           ACTION: ${{ github.event.action }}

@@ -12,7 +12,7 @@ export async function GET(context: APIContext) {
     site: new URL(withBase("/"), context.site).href,
     items: posts.map((p) => ({
       title: p.data.title,
-      pubDate: new Date(p.data.date),
+      pubDate: new Date(`${p.data.date}T12:00:00Z`),
       description: p.data.description,
       link: withBase(`/blog/${p.id}/`),
     })),

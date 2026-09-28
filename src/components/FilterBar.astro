@@ -63,7 +63,7 @@ const { facets, target, search = true, countLabel = "items" } = Astro.props;
         it.hidden = !ok;
         if (ok) shown++;
       }
-      grid.querySelectorAll<HTMLElement>("[data-group]").forEach((g) => { g.hidden = !g.querySelector("[data-year]:not([hidden])"); });
+      grid?.querySelectorAll<HTMLElement>("[data-group]").forEach((g) => { g.hidden = !g.querySelector("[data-year]:not([hidden])"); });
       const active = !!(qv || yv || tv);
       if (clear) clear.hidden = !active;
       if (count) count.textContent = active ? `${shown} of ${items.length} ${label}` : `${items.length} ${label}`;

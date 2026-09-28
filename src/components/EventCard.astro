@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { withBase } from "../lib/url";
 import { dateRange } from "../lib/format";
+import { effectiveState } from "../lib/apply";
 import Icon from "./Icon.astro";
 interface Props { event: CollectionEntry<"events">; lectures?: number; projects?: number }
 const { event, lectures = 0, projects = 0 } = Astro.props;
@@ -15,7 +16,7 @@ const href = withBase(`/events/${event.id}/`);
   <div class="ec-body">
     <div class="ec-top">
       <span class="label">{e.status === "upcoming" ? "Upcoming" : e.year}</span>
-      {e.status === "upcoming" && <span class="chip chip--sun">{e.applications?.state === "open" ? "Applications open" : "Applications soon"}</span>}
+      {e.status === "upcoming" && <span class="chip chip--sun">{{ open: "Applications open", closed: "Applications closed", not_open: "Applications soon" }[effectiveState(e.applications)]}</span>}
     </div>
     <h3 class="ec-title"><a href={href}>{e.name}</a></h3>
     <p class="ec-meta">{dateRange(e.startDate, e.endDate)} · {e.venue.name}, {e.venue.city}</p>
