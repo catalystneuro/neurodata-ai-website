@@ -21,6 +21,7 @@ const stats = await siteStats();
 const rating = await surveyRating();
 const lectures = await allLectures();
 const featured = lectures.filter((l) => l.featured).slice(0, 3);
+const featuredYears = [...new Set(featured.map((l) => l.year))].sort().join(" and ");
 const testimonials = (await getCollection("testimonials")).filter((t) => t.data.featured).slice(0, 3);
 const posts = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date)).slice(0, 3);
 const sponsors = await getCollection("sponsors");
@@ -72,7 +73,7 @@ const jsonLd = [
   <section class="section-tight">
     <div class="container-x">
       <StatsTiles tiles={[
-        { value: stats.years, label: "installments", sub: "2022 to 2026" },
+        { value: stats.years, label: "installments", sub: `${stats.firstYear} to ${stats.lastYear}` },
         { value: stats.alumni, label: "alumni" },
         { value: stats.projects, label: "projects" },
         { value: stats.lectures, label: "recorded lectures" },
@@ -166,7 +167,7 @@ const jsonLd = [
     <section class="section band">
       <div class="container-x">
         <div class="section-head">
-          <h2>From the 2026 lectures</h2>
+          <h2>From the {featuredYears} lectures</h2>
           <a href={withBase("/lectures/")} class="arrow-link">All {stats.lectures} recordings <Icon name="arrow" size={16} /></a>
         </div>
         <div class="grid-3">
