@@ -11,11 +11,21 @@ export interface ApplyState {
   formUrl?: string;
 }
 
+type Applications = NonNullable<CollectionEntry<"events">["data"]["applications"]>;
+
+/** The effective state: an "open" call counts as closed once its deadline day has ended everywhere (UTC-12). The site rebuilds daily so this takes effect on its own. */
+export function effectiveState(a: Applications | undefined): ApplyState["state"] {
+  if (!a) return "not_open";
+  if (a.state === "open" && a.deadline && Date.now() > Date.parse(`${a.deadline}T23:59:59-12:00`)) return "closed";
+  return a.state;
+}
+
 /** The single source of truth for the apply CTA across header, hero, and event page. */
 export function applyState(event: CollectionEntry<"events"> | undefined, basePathApply: string, mailingList: string): ApplyState {
   const a = event?.data.applications;
   const year = event?.data.year ?? "";
-  if (!a || a.state === "not_open") {
+  const state = effectiveState(a);
+  if (!a || state === "not_open") {
     return {
       state: "not_open",
       label: "Get notified",
@@ -24,7 +34,7 @@ export function applyState(event: CollectionEntry<"events"> | undefined, basePat
       sentence: a?.opensOn ? `Applications for the ${year} school open in ${a.opensOn}.` : `Applications for the ${year} school are not yet open.`,
     };
   }
-  if (a.state === "open") {
+  if (state === "open") {
     return {
       state: "open",
       label: "Apply",

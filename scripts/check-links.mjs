@@ -1,7 +1,8 @@
 /**
  * Post-build link check. Fails the build when a page in dist/ links to an
  * internal path that is not prefixed with the base path or that does not
- * resolve to a built file. Run automatically by `npm run build`.
+ * resolve to a built file, or links to a #fragment that no element on the
+ * target page has as its id. Run automatically by `npm run build`.
  */
 import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -20,10 +21,30 @@ function walk(dir, out = []) {
 }
 
 const attrRe = /\s(?:href|src|poster|content)=["']([^"']+)["']/g;
+const idRe = /\sid=["']([^"']+)["']/g;
+const idCache = new Map();
+const idsOf = (file) => {
+  if (!idCache.has(file)) idCache.set(file, new Set([...readFileSync(file, "utf8").matchAll(idRe)].map((m) => m[1])));
+  return idCache.get(file);
+};
+const hrefRe = /\shref=["']([^"']*#[^"']+)["']/g;
+
 const problems = [];
 const files = walk(DIST);
 for (const file of files) {
   const html = readFileSync(file, "utf8");
+  // In-page and cross-page fragments must match an id on the target page.
+  for (const m of html.matchAll(hrefRe)) {
+    const [path, frag] = m[1].split("#");
+    if (/^[a-z]+:/i.test(path) || path.startsWith("//")) continue;
+    let target = file;
+    if (path) {
+      const rel = (base ? path.slice(base.length) : path).split("?")[0];
+      target = [join(DIST, rel), join(DIST, rel, "index.html")].find((c) => existsSync(c) && c.endsWith(".html"));
+      if (!target) continue; // dangling paths are reported below
+    }
+    if (!idsOf(target).has(decodeURIComponent(frag))) problems.push(`${relative(DIST, file)}: no element with id "${frag}" for link ${m[1]}`);
+  }
   for (const m of html.matchAll(attrRe)) {
     const url = m[1];
     if (!url.startsWith("/") || url.startsWith("//")) continue;

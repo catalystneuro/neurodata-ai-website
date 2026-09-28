@@ -3,11 +3,14 @@ name: Build and deploy
 # Builds main with the production settings and publishes it to the root of the
 # gh-pages branch, which GitHub Pages serves at neurodata-ai.org. PR previews
 # live in pr-<number>/ directories on the same branch (see preview.yml) and are
-# left untouched by production deploys.
+# left untouched by production deploys. The daily run rebuilds the site so
+# date-dependent content, such as the application deadline, updates on its own.
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,10 +39,12 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    # One writer to gh-pages at a time, shared with the preview workflow. Runs queue
-    # rather than cancel so a production deploy is never dropped.
+    # One production publish at a time. GitHub keeps only the newest pending run in a
+    # group, so this group is not shared with previews, which could otherwise push a
+    # waiting production deploy out of the queue. Pushes from different groups are
+    # reconciled by the retry-and-rebase loop in publish-gh-pages.sh.
     concurrency:
-      group: gh-pages
+      group: gh-pages-production
       cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4

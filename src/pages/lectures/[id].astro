@@ -48,7 +48,7 @@ const jsonLd = {
             {l.dandihubUrl && <a href={l.dandihubUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener">Open in DANDI Hub</a>}
             {l.repoUrl && <a href={l.repoUrl} class="btn btn-secondary btn-sm" target="_blank" rel="noopener"><Icon name="github" size={16} /> Code</a>}
           </div>
-          {l.topics.length > 0 && <div class="lec-topics">{l.topics.map((t) => <a href={withBase(`/lectures/?topic=${t}`)} class="chip">{topicLabel(t)}</a>)}</div>}
+          {l.topics.some((t) => t !== "welcome") && <div class="lec-topics">{l.topics.filter((t) => t !== "welcome").map((t) => <a href={withBase(`/lectures/?topic=${t}`)} class="chip">{topicLabel(t)}</a>)}</div>}
         </div>
         <aside class="lec-side">
           {related.length > 0 && (

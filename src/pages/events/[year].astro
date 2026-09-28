@@ -17,6 +17,7 @@ import { dateRange, weekdayDate } from "../../lib/format";
 import { allLectures } from "../../lib/derive";
 import { photo } from "../../lib/photos";
 import { playlistUrl } from "../../lib/youtube";
+import { effectiveState } from "../../lib/apply";
 
 export async function getStaticPaths() {
   const events = await getCollection("events");
@@ -69,7 +70,7 @@ const jsonLd = {
   isAccessibleForFree: true,
   offers: isPast
     ? undefined
-    : { "@type": "Offer", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock", url: siteUrl("/apply/"), validFrom: "2026-09-12" },
+    : { "@type": "Offer", price: "0", priceCurrency: "USD", availability: `https://schema.org/${{ open: "InStock", closed: "SoldOut", not_open: "PreOrder" }[effectiveState(e.applications)]}`, url: siteUrl("/apply/"), validFrom: "2026-09-12" },
   description: e.tagline,
 };
 ---

@@ -20,19 +20,23 @@ const { id, title, class: cls = "" } = Astro.props;
 </style>
 
 <script>
+  // Plain clicks swap the link for the player; modified or middle clicks open YouTube as usual.
   document.addEventListener("click", (e) => {
     const a = (e.target as HTMLElement).closest<HTMLAnchorElement>("a[data-yt]");
-    if (!a || a.dataset.loaded) return;
+    if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     const id = a.dataset.yt!;
+    const title = (a.getAttribute("aria-label") ?? "Video").replace(/^Play: /, "");
     const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
-    iframe.title = a.getAttribute("aria-label") ?? "Video";
+    iframe.title = title;
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
     iframe.setAttribute("allowfullscreen", "");
-    a.innerHTML = "";
-    a.appendChild(iframe);
-    a.dataset.loaded = "1";
-    a.addEventListener("click", (ev) => ev.preventDefault());
+    // A div in place of the link, keeping its classes and Astro's scoping attribute so the styles still apply.
+    const box = document.createElement("div");
+    for (const attr of a.attributes) if (attr.name === "class" || attr.name.startsWith("data-astro-cid")) box.setAttribute(attr.name, attr.value);
+    box.appendChild(iframe);
+    a.replaceWith(box);
+    iframe.focus();
   });
 </script>
