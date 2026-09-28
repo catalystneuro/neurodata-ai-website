@@ -18,6 +18,7 @@
   --color-pine-100: #d9ece2;
   --color-pine-50: #eef6f1;
   --color-sun: #d9a441;
+  --color-sun-800: #7d5406;
   --color-sun-700: #946409;
   --color-sun-200: #ecd9a6;
   --color-sun-100: #f7ecd0;
@@ -85,7 +86,7 @@
 
   .chip { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 500; padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--color-pine-50); color: var(--color-pine-700); border: 1px solid var(--color-pine-100); white-space: nowrap; }
   .chip--neutral { background: var(--color-surface); color: var(--color-ink-muted); border-color: var(--color-line); }
-  .chip--sun { background: var(--color-sun-100); color: var(--color-sun-700); border-color: var(--color-sun-200); }
+  .chip--sun { background: var(--color-sun-100); color: var(--color-sun-800); border-color: var(--color-sun-200); }
   a.chip:hover { border-color: var(--color-pine-400); color: var(--color-pine); }
 
   .text-link { color: var(--color-pine); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: color-mix(in srgb, var(--color-pine) 40%, transparent); }

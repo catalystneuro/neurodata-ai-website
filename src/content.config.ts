@@ -52,6 +52,9 @@ const events = defineCollection({
         note: z.string().optional(),
       })
       .optional(),
+    // Short answers shown in the facts box of an upcoming event: who should apply and what it costs.
+    audience: z.string().optional(),
+    cost: z.string().optional(),
     banner: z.string().optional(),
     organizers: z.array(reference("people")).default([]),
     instructors: z.array(reference("people")).default([]),
