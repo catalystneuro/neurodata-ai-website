@@ -15,8 +15,10 @@ interface Props {
   publishedTime?: string;
   author?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** The 404 page is served at every missing URL, so it has no canonical address. */
+  noCanonical?: boolean;
 }
-const { title, description = SITE.description, image = SITE.ogImage, type = "website", publishedTime, author, jsonLd } = Astro.props;
+const { title, description = SITE.description, image = SITE.ogImage, type = "website", publishedTime, author, jsonLd, noCanonical = false } = Astro.props;
 const pageTitle = title ? SITE.titleTemplate(title) : SITE.defaultTitle;
 const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/?$/, "/");
 // Images from astro:assets arrive with the base path already applied.
@@ -34,10 +36,12 @@ const goatcounterEndpoint = `https://${SITE.goatcounter}.goatcounter.com/count`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {!noCanonical && <link rel="canonical" href={canonical} />}
     {preview && <meta name="robots" content="noindex, nofollow" />}
     {trackTraffic && <script data-goatcounter={goatcounterEndpoint} async src="https://gc.zgo.at/count.js" is:inline></script>}
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
+    <meta name="theme-color" content="#14563f" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} blog`} href={withBase("/rss.xml")} />
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={SITE.name} />

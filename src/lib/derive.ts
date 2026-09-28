@@ -99,7 +99,8 @@ export async function siteStats() {
   const lectures = await allLectures();
   const alumni = events.reduce((n, e) => n + (e.data.stats.participants ?? 0), 0);
   const countries = Math.max(...events.map((e) => e.data.stats.countries ?? 0));
-  return { years: events.length, alumni, projects: projects.length, lectures: lectures.length, countries };
+  const years = events.map((e) => e.data.year).sort();
+  return { years: events.length, firstYear: years[0], lastYear: years.at(-1), alumni, projects: projects.length, lectures: lectures.length, countries };
 }
 
 /** Overall-experience rating pooled across every exit survey that reports both a mean and a response count. */

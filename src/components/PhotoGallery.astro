@@ -11,7 +11,7 @@ const fullSrc = (i: number) => full[i]!.src;
 <div class="gal">
   {lead && (
     <figure class="gal-lead">
-      <a href={fullSrc(0)} data-lightbox data-alt={lead.alt} aria-label={`Enlarge: ${lead.alt}`}>
+      <a href={fullSrc(0)} data-lightbox data-alt={lead.alt} data-caption={lead.caption} aria-label={`Enlarge: ${lead.alt}`}>
         <Image src={lead.image} alt={lead.alt} widths={[800, 1200, 1800]} sizes="(min-width: 72rem) 72rem, 100vw" loading="lazy" />
       </a>
       {lead.caption && <figcaption>{lead.caption}</figcaption>}
@@ -21,7 +21,7 @@ const fullSrc = (i: number) => full[i]!.src;
     <div class="gal-grid">
       {photos.map((p, i) => (
         <figure class="gal-item">
-          <a href={fullSrc(i + (lead ? 1 : 0))} data-lightbox data-alt={p.alt} aria-label={`Enlarge: ${p.alt}`}>
+          <a href={fullSrc(i + (lead ? 1 : 0))} data-lightbox data-alt={p.alt} data-caption={p.caption} aria-label={`Enlarge: ${p.alt}`}>
             <Image src={p.image} alt={p.alt} widths={[400, 700, 1000]} sizes="(min-width: 960px) 24rem, (min-width: 640px) 50vw, 100vw" loading="lazy" />
           </a>
           {p.caption && <figcaption>{p.caption}</figcaption>}
@@ -74,7 +74,8 @@ const fullSrc = (i: number) => full[i]!.src;
       const a = links[index]!;
       img.src = a.href;
       img.alt = a.dataset.alt ?? "";
-      cap.textContent = a.dataset.alt ?? "";
+      cap.textContent = a.dataset.caption ?? "";
+      cap.hidden = !a.dataset.caption;
     };
     links.forEach((a, i) => a.addEventListener("click", (e) => { e.preventDefault(); show(i); dlg.showModal(); }));
     dlg.querySelector(".lb-close")!.addEventListener("click", () => dlg.close());
