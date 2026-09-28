@@ -1,7 +1,7 @@
 ---
 name: Atika Syeda
 affiliation: HHMI's Janelia Research Campus
-photo: /images/people/atika-syeda.jpg
+photo: atika-syeda.jpg
 roles: [guest]
 tools: [Facemap]
 ---

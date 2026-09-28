@@ -1,7 +1,7 @@
 ---
 name: Carsen Stringer
 affiliation: HHMI's Janelia Research Campus
-photo: /images/people/carsen-stringer.jpg
+photo: carsen-stringer.jpg
 roles: [faculty, instructor]
 tools: [suite2p, rastermap, Facemap, Cellpose]
 order: 16

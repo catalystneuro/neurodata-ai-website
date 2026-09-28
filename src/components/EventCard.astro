@@ -3,6 +3,8 @@ import type { CollectionEntry } from "astro:content";
 import { withBase } from "../lib/url";
 import { dateRange } from "../lib/format";
 import { effectiveState } from "../lib/apply";
+import { Image } from "astro:assets";
+import { banner } from "../lib/photos";
 import Icon from "./Icon.astro";
 interface Props { event: CollectionEntry<"events">; lectures?: number; projects?: number }
 const { event, lectures = 0, projects = 0 } = Astro.props;
@@ -11,7 +13,7 @@ const href = withBase(`/events/${event.id}/`);
 ---
 <article class="ec card card-hover">
   <a href={href} class="ec-banner" aria-hidden="true" tabindex="-1">
-    {e.banner ? <img src={withBase(e.banner)} alt="" loading="lazy" /> : <div class="ec-banner-fallback"><span>{e.year}</span></div>}
+    {e.banner ? <Image src={banner(e.banner)} alt="" widths={[600, 900, 1200]} sizes="(min-width: 1024px) 34rem, 100vw" /> : <div class="ec-banner-fallback"><span>{e.year}</span></div>}
   </a>
   <div class="ec-body">
     <div class="ec-top">

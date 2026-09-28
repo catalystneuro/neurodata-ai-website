@@ -5,7 +5,7 @@ interface Photo { image: ImageMetadata; alt: string; caption?: string }
 interface Props { photos: Photo[]; lead?: Photo }
 const { photos, lead } = Astro.props;
 const all = [...(lead ? [lead] : []), ...photos];
-const full = await Promise.all(all.map((p) => getImage({ src: p.image, width: 2000, format: "webp", quality: 85 })));
+const full = await Promise.all(all.map((p) => getImage({ src: p.image, width: 1600, format: "webp", quality: 75 })));
 const fullSrc = (i: number) => full[i]!.src;
 ---
 <div class="gal">

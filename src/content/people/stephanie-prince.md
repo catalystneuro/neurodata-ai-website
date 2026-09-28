@@ -1,7 +1,7 @@
 ---
 name: Stephanie Prince
 affiliation: Lawrence Berkeley National Laboratory
-photo: /images/people/stephanie-prince.jpg
+photo: stephanie-prince.jpg
 roles: [faculty, instructor, organizer]
 tools: [NWB, PyNWB]
 order: 10

@@ -1,7 +1,7 @@
 ---
 name: Ryan Ly
 affiliation: Lawrence Berkeley National Laboratory
-photo: /images/people/ryan-ly.jpg
+photo: ryan-ly.jpg
 roles: [faculty, instructor, organizer]
 tools: [NWB, PyNWB, HDMF]
 links:

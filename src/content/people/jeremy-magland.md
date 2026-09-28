@@ -1,7 +1,7 @@
 ---
 name: Jeremy Magland
 affiliation: Flatiron Institute
-photo: /images/people/jeremy-magland.jpg
+photo: jeremy-magland.jpg
 roles: [faculty, instructor]
 tools: [Neurosift, Dendro, LINDI]
 order: 15

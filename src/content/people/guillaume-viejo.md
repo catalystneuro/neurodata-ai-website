@@ -1,7 +1,7 @@
 ---
 name: Guillaume Viejo
 affiliation: Flatiron Institute
-photo: /images/people/guillaume-viejo.jpg
+photo: guillaume-viejo.jpg
 roles: [faculty, instructor]
 tools: [Pynapple]
 order: 14

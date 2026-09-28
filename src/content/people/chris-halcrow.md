@@ -1,7 +1,7 @@
 ---
 name: Chris Halcrow
 affiliation: University of Edinburgh
-photo: /images/people/chris-halcrow.jpg
+photo: chris-halcrow.jpg
 roles: [guest]
 tools: [SpikeInterface]
 ---

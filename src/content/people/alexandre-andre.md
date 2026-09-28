@@ -1,7 +1,7 @@
 ---
 name: Alexandre Andre
 affiliation: University of Pennsylvania
-photo: /images/people/alexandre-andre.jpg
+photo: alexandre-andre.jpg
 roles: [guest]
 tools: [torch_brain]
 ---

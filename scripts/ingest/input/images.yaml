@@ -1,23 +1,23 @@
 # Source manifest for scripts/prepare-images.mjs. Each entry: { src, dest, op }.
 # ops: headshot | photo | group | banner | logo | copy
 
-# --- Headshots -> public/images/people/<slug>.jpg ---
-- { src: /Users/bdichter/dev/nwb.org/static/images/ben-dichter.jpeg, dest: public/images/people/ben-dichter.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/ryan-ly.png, dest: public/images/people/ryan-ly.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/oliver-ruebel.png, dest: public/images/people/oliver-ruebel.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/eva-dyer.jpg, dest: public/images/people/eva-dyer.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/stephanie-prince.png, dest: public/images/people/stephanie-prince.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/satrajit.png, dest: public/images/people/satrajit-ghosh.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/jerome.png, dest: public/images/people/jerome-lecoq.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb.org/static/images/alessio.png, dest: public/images/people/alessio-buccino.jpg, op: headshot }
-- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/edoardo-balzani.png, dest: public/images/people/edoardo-balzani.jpg, op: headshot }
-- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/sarah-jo-venditto.jpg, dest: public/images/people/sarah-jo-venditto.jpg, op: headshot }
-- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/carter-peene.jpeg, dest: public/images/people/carter-peene.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/carsen_stringer.jpg, dest: public/images/people/carsen-stringer.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/guillaume_viejo.avif, dest: public/images/people/guillaume-viejo.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/jakob_voigts.jpg, dest: public/images/people/jakob-voigts.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/jeremy_magland.avif, dest: public/images/people/jeremy-magland.jpg, op: headshot }
-- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/misha-ahrens.jpg, dest: public/images/people/misha-ahrens.jpg, op: headshot }
+# --- Headshots -> src/assets/people/<slug>.jpg ---
+- { src: /Users/bdichter/dev/nwb.org/static/images/ben-dichter.jpeg, dest: src/assets/people/ben-dichter.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/ryan-ly.png, dest: src/assets/people/ryan-ly.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/oliver-ruebel.png, dest: src/assets/people/oliver-ruebel.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/eva-dyer.jpg, dest: src/assets/people/eva-dyer.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/stephanie-prince.png, dest: src/assets/people/stephanie-prince.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/satrajit.png, dest: src/assets/people/satrajit-ghosh.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/jerome.png, dest: src/assets/people/jerome-lecoq.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb.org/static/images/alessio.png, dest: src/assets/people/alessio-buccino.jpg, op: headshot }
+- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/edoardo-balzani.png, dest: src/assets/people/edoardo-balzani.jpg, op: headshot }
+- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/sarah-jo-venditto.jpg, dest: src/assets/people/sarah-jo-venditto.jpg, op: headshot }
+- { src: /Users/bdichter/dev/neurodatawithoutborders.github.io/public/images/carter-peene.jpeg, dest: src/assets/people/carter-peene.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/carsen_stringer.jpg, dest: src/assets/people/carsen-stringer.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/guillaume_viejo.avif, dest: src/assets/people/guillaume-viejo.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/jakob_voigts.jpg, dest: src/assets/people/jakob-voigts.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/jeremy_magland.avif, dest: src/assets/people/jeremy-magland.jpg, op: headshot }
+- { src: /Users/bdichter/dev/nwb_hackathons/HCK24_2025_Janelia_NDRH/images/instructors/misha-ahrens.jpg, dest: src/assets/people/misha-ahrens.jpg, op: headshot }
 
 # --- Photos 2026 -> src/assets/photos/2026/ ---
 - { src: /Users/bdichter/dev/ndrh2026/photos/group_photo_2026.jpg, dest: src/assets/photos/2026/group-photo.jpg, op: group }
@@ -58,11 +58,11 @@
 - { src: /Users/bdichter/dev/ndrh2026/_ref/2023/figs/ndrh_photos_2.jpg, dest: src/assets/photos/2023/02-sessions-collage.jpg, op: photo }
 
 # --- Banners and agendas -> public/images/banners/ ---
-- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck16-2023-granada-rh/NDRH2023_banner.png, dest: public/images/banners/2023.png, op: banner }
-- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck21-2024-janelia-ndrh/NDRH2024_banner.png, dest: public/images/banners/2024.png, op: banner }
-- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck24-2025-janelia-ndrh/NDRH2025_banner.png, dest: public/images/banners/2025.png, op: banner }
-- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck_2x_2026-janelia-ndrh/ndrh_2026_banner.png, dest: public/images/banners/2026.png, op: banner }
-- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck27-2027-janelia-ndrh/ndrh_2027_banner.png, dest: public/images/banners/2027.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck16-2023-granada-rh/NDRH2023_banner.png, dest: src/assets/banners/2023.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck21-2024-janelia-ndrh/NDRH2024_banner.png, dest: src/assets/banners/2024.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck24-2025-janelia-ndrh/NDRH2025_banner.png, dest: src/assets/banners/2025.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck_2x_2026-janelia-ndrh/ndrh_2026_banner.png, dest: src/assets/banners/2026.png, op: banner }
+- { src: /Users/bdichter/dev/nwb.org/static/images/events/hck27-2027-janelia-ndrh/ndrh_2027_banner.png, dest: src/assets/banners/2027.png, op: banner }
 - { src: /Users/bdichter/dev/nwb.org/static/images/events/hck16-2023-granada-rh/AgendaNeuroDataReHack2023.png, dest: public/images/banners/agenda-2023.png, op: copy }
 - { src: /Users/bdichter/dev/nwb.org/static/images/events/hck21-2024-janelia-ndrh/AgendaNeuroDataReHack2024.png, dest: public/images/banners/agenda-2024.png, op: copy }
 - { src: "/Users/bdichter/dev/nwb.org/static/images/events/hck24-2025-janelia-ndrh/Agenda -- NeuroDataReHack 2025.pdf", dest: public/images/banners/agenda-2025.pdf, op: copy }
@@ -77,7 +77,7 @@
 - { src: /Users/bdichter/dev/ndrh2026/figs/nwb_logo_brain_text_transp_hor.png, dest: public/images/sponsors/nwb.png, op: logo }
 - { src: /Users/bdichter/dev/catalystneuro.github.io/public/images/sponsors/nih_logo.png, dest: public/images/sponsors/nih.png, op: logo }
 - { src: /Users/bdichter/dev/catalystneuro.github.io/public/images/logo.png, dest: public/images/sponsors/catalystneuro.png, op: logo }
-# Headshots added 2026-09-11 from public institutional pages (already cropped into public/images/people/; listed here for provenance).
+# Headshots added 2026-09-11 from public institutional pages (already cropped into src/assets/people/; listed here for provenance).
 # mayo-faulkner: https://www.internationalbrainlab.com/our-team
 # alison-comrie: https://www.voigtslab.org/people
 # olivier-winter: https://www.internationalbrainlab.com/our-team

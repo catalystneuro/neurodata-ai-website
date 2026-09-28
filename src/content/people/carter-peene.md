@@ -1,7 +1,7 @@
 ---
 name: Carter Peene
 affiliation: Allen Institute for Neural Dynamics
-photo: /images/people/carter-peene.jpg
+photo: carter-peene.jpg
 roles: [faculty, instructor]
 tools: [OpenScope DataBook]
 order: 11

@@ -50,7 +50,7 @@ The site is content-driven. Almost every change for a new year is a file under `
 
 ### Add a new year
 
-1. Copy `src/content/events/2027.md` to `src/content/events/2028.md`. Set `year`, `name`, dates, `status: upcoming`, `applications`, `banner`, `organizers`, and `instructors` (people slugs).
+1. Copy `src/content/events/2027.md` to `src/content/events/2028.md`. Set `year`, `name`, dates, `status: upcoming`, `applications`, `banner` (a file name in `src/assets/banners/`), `organizers`, and `instructors` (people slugs).
 2. Add `src/content/schedules/2028.yaml` with `event: "2028"` and `tentative: true` until the agenda is confirmed (copy the 2027 file for the shape).
 3. Set `CURRENT_EVENT` in `src/consts.ts` to `"2028"`. The header label, the apply CTA, and the home hero follow it.
 4. When the previous year ends, set its `status: past`, fill in `stats`, `survey`, `playlistId`, `reportUrl`, `photos`, and run the post-event checklist below.
@@ -65,11 +65,11 @@ Create `src/content/projects/<year>/<slug>.md` with `title`, `event: "<year>"`, 
 
 ### Add a person
 
-Create `src/content/people/<first-last>.md` with `name`, `affiliation`, `roles` (`faculty`, `instructor`, `advisory`, `guest`, `organizer`), optional `tools` and `links`, and a one-paragraph bio as the body. Put a square headshot at `public/images/people/<first-last>.jpg` (480×480; `npm run images` with an entry in `scripts/ingest/input/images.yaml` will crop and resize) and reference it as `photo: /images/people/<first-last>.jpg`. People without a photo get initials.
+Create `src/content/people/<first-last>.md` with `name`, `affiliation`, `roles` (`faculty`, `instructor`, `advisory`, `guest`, `organizer`), optional `tools` and `links`, and a one-paragraph bio as the body. Put a square headshot at `src/assets/people/<first-last>.jpg` (480×480; `npm run images` with an entry in `scripts/ingest/input/images.yaml` will crop and resize) and reference it as `photo: <first-last>.jpg`. People without a photo get initials.
 
 ### Open and close applications
 
-In the current event file set `applications.state` to `open` with `formUrl` and `deadline`, or to `closed`. The header button, the home hero, the event page banner, and the apply page all change together.
+In the current event file set `applications.state` to `open` with `formUrl` and `deadline`, or to `closed`. The header button, the home hero, the event page banner, and the apply page all change together. Once the deadline day has passed, `open` is treated as `closed` without an edit, since the site rebuilds daily.
 
 ### Testimonials, sponsors, resources, outcomes
 

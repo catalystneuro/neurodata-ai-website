@@ -1,7 +1,7 @@
 ---
 name: Robin Dard
 affiliation: EPFL
-photo: /images/people/robin-dard.jpg
+photo: robin-dard.jpg
 roles: [guest]
 tools: [CICADA]
 ---

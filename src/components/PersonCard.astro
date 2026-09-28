@@ -2,6 +2,8 @@
 import type { CollectionEntry } from "astro:content";
 import { withBase } from "../lib/url";
 import { initials } from "../lib/format";
+import { Image } from "astro:assets";
+import { headshot } from "../lib/photos";
 interface Props { person: CollectionEntry<"people">; role?: string; size?: "md" | "sm"; link?: boolean; note?: string }
 const { person, role, size = "md", link = true, note } = Astro.props;
 const p = person.data;
@@ -9,7 +11,7 @@ const href = withBase(`/faculty/${person.id}/`);
 ---
 <div class:list={["person", size === "sm" && "person--sm"]}>
   {p.photo ? (
-    <img class="person-photo" src={withBase(p.photo)} alt="" width="94" height="94" loading="lazy" />
+    <Image class="person-photo" src={headshot(p.photo)} alt="" width={94} height={94} densities={[1, 2]} />
   ) : (
     <span class="person-photo person-initials" aria-hidden="true">{initials(p.name)}</span>
   )}
