@@ -25,7 +25,7 @@ export const PEOPLE_SLUGS = [
   "ben-dichter", "ryan-ly", "oliver-ruebel", "carter-peene", "guillaume-viejo", "misha-ahrens",
   "carsen-stringer", "atika-syeda", "jacob-pennington", "pranav-rai", "jerome-lecoq", "will-slatton",
   "alexandre-andre", "jeremy-magland", "robin-dard", "jakob-voigts", "alessio-buccino", "stephanie-prince",
-  "chris-halcrow", "mayo-faulkner", "alison-comrie", "eva-dyer", "scott-linderman", "edoardo-balzani",
+  "chris-halcrow", "mayo-faulkner", "alison-comrie", "eva-dyer", "edoardo-balzani",
   "sarah-jo-venditto", "satrajit-ghosh", "olivier-winter", "ariel-rokem",
 ];
 
