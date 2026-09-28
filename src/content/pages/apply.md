@@ -17,7 +17,7 @@ The form also asks for up to three publications and up to three software tools y
 
 ## Cost and travel
 
-There is no registration or application fee. Lodging in a private room on the HHMI-Janelia campus and all meals are provided. We reimburse up to $550 of travel costs per participant. A limited amount of additional support is available, used primarily for international participants who could not attend without it; the form asks whether you would need it. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months. We provide a letter of invitation on request.
+There is no registration or application fee. Participants stay in a private room on the HHMI-Janelia campus, checking in the evening of Sunday, July 18 and checking out on Saturday, July 24 or the morning of Sunday, July 25. Breakfast, lunch, dinner, and coffee breaks are provided, and the kitchen accommodates dietary restrictions; the form asks about yours. We reimburse up to $550 of travel costs per participant. A limited amount of additional support is available, used primarily for international participants who could not attend without it; the form asks whether you would need it. You book your own travel, and you are responsible for determining visa and healthcare requirements for travel to the United States; plan early, since visa processing can take several months. We provide a letter of invitation on request.
 
 ## Accessibility and attendance
 
