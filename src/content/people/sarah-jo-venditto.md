@@ -1,7 +1,7 @@
 ---
 name: Sarah Jo Venditto
 affiliation: Flatiron Institute
-photo: /images/people/sarah-jo-venditto.jpg
+photo: sarah-jo-venditto.jpg
 roles: [faculty, instructor]
 tools: [NeMoS, Pynapple]
 order: 13

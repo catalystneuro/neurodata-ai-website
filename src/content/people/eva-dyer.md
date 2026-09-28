@@ -1,7 +1,7 @@
 ---
 name: Eva Dyer
 affiliation: University of Pennsylvania
-photo: /images/people/eva-dyer.jpg
+photo: eva-dyer.jpg
 roles: [advisory]
 tools: [torch_brain, POYO]
 order: 21

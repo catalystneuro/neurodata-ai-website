@@ -1,7 +1,7 @@
 ---
 name: Jakob Voigts
 affiliation: HHMI's Janelia Research Campus
-photo: /images/people/jakob-voigts.jpg
+photo: jakob-voigts.jpg
 roles: [faculty, instructor]
 order: 20
 ---

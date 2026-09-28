@@ -1,7 +1,7 @@
 ---
 name: Alison Comrie
 affiliation: HHMI's Janelia Research Campus
-photo: /images/people/alison-comrie.jpg
+photo: alison-comrie.jpg
 roles: [faculty, instructor]
 tools: [Spyglass]
 order: 19

@@ -1,7 +1,7 @@
 ---
 name: Ariel Rokem
 affiliation: Krembil Centre for Neuroinformatics, CAMH, and University of Toronto
-photo: /images/people/ariel-rokem.jpg
+photo: ariel-rokem.jpg
 roles: [advisory]
 links:
   website: https://arokem.org/

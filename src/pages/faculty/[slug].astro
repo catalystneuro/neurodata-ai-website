@@ -5,6 +5,8 @@ import VideoCard from "../../components/VideoCard.astro";
 import Icon from "../../components/Icon.astro";
 import { withBase } from "../../lib/url";
 import { initials } from "../../lib/format";
+import { Image, getImage } from "astro:assets";
+import { headshot } from "../../lib/photos";
 import { lecturesBy, yearsFor } from "../../lib/derive";
 
 export async function getStaticPaths() {
@@ -13,6 +15,7 @@ export async function getStaticPaths() {
 }
 const { person } = Astro.props;
 const p = person.data;
+const shareImage = p.photo ? (await getImage({ src: headshot(p.photo), width: 480, format: "jpg" })).src : undefined;
 const { Content } = await render(person);
 const lectures = await lecturesBy(person.id);
 const years = await yearsFor(person.id);
@@ -24,7 +27,7 @@ const jsonLd = {
   "@type": "Person",
   name: p.name,
   url: new URL(withBase(`/faculty/${person.id}/`), Astro.site).href,
-  image: p.photo ? new URL(withBase(p.photo), Astro.site).href : undefined,
+  image: shareImage ? new URL(shareImage, Astro.site).href : undefined,
   jobTitle: p.title,
   affiliation: { "@type": "Organization", name: p.affiliation },
   sameAs: links.map(([, v]) => v),
@@ -37,7 +40,7 @@ const LINK_ICON: Record<string, string> = { website: "link", github: "github", s
     <div class="container-x">
       <a href={withBase("/faculty/")} class="arrow-link back"><Icon name="arrow" size={16} class="flip" /> All faculty</a>
       <div class="pp">
-        {p.photo ? <img class="pp-photo" src={withBase(p.photo)} alt="" width="208" height="208" /> : <span class="pp-photo pp-initials">{initials(p.name)}</span>}
+        {p.photo ? <Image class="pp-photo" src={headshot(p.photo)} alt="" width={208} height={208} densities={[1, 2]} loading="eager" /> : <span class="pp-photo pp-initials">{initials(p.name)}</span>}
         <div class="pp-body">
           <span class="eyebrow">{roleLabel}</span>
           <h1>{p.name}</h1>

@@ -3,7 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE } from "../consts";
-import { withBase } from "../lib/url";
+import { withBase, basePath } from "../lib/url";
 
 interface Props {
   title?: string;
@@ -19,7 +19,8 @@ interface Props {
 const { title, description = SITE.description, image = SITE.ogImage, type = "website", publishedTime, author, jsonLd } = Astro.props;
 const pageTitle = title ? SITE.titleTemplate(title) : SITE.defaultTitle;
 const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/?$/, "/");
-const ogImage = new URL(withBase(image), Astro.site).href;
+// Images from astro:assets arrive with the base path already applied.
+const ogImage = new URL(image.startsWith(basePath) ? image : withBase(image), Astro.site).href;
 // Set by the PR preview workflow so preview builds are never indexed.
 const preview = Boolean(process.env.PREVIEW);
 // Traffic is counted only on production builds, never in local dev or PR previews.

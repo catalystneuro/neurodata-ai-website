@@ -1,7 +1,7 @@
 ---
 name: Edoardo Balzani
 affiliation: Flatiron Institute
-photo: /images/people/edoardo-balzani.jpg
+photo: edoardo-balzani.jpg
 roles: [faculty, instructor]
 tools: [NeMoS, Pynapple]
 order: 12

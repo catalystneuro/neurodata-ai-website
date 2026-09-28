@@ -1,7 +1,7 @@
 ---
 name: Alessio Buccino
 affiliation: Allen Institute for Neural Dynamics
-photo: /images/people/alessio-buccino.jpg
+photo: alessio-buccino.jpg
 roles: [faculty, instructor]
 tools: [SpikeInterface]
 order: 17

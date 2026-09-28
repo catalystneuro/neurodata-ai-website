@@ -1,7 +1,7 @@
 ---
 name: Oliver Rübel
 affiliation: Lawrence Berkeley National Laboratory
-photo: /images/people/oliver-ruebel.jpg
+photo: oliver-ruebel.jpg
 roles: [faculty, instructor, organizer, advisory]
 tools: [NWB, HDMF, AqNWB]
 links:

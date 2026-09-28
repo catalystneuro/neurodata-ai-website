@@ -15,7 +15,8 @@ import { withBase } from "../../lib/url";
 import { SITE } from "../../consts";
 import { dateRange, weekdayDate } from "../../lib/format";
 import { allLectures } from "../../lib/derive";
-import { photo } from "../../lib/photos";
+import { photo, banner } from "../../lib/photos";
+import { Image, getImage } from "astro:assets";
 import { playlistUrl } from "../../lib/youtube";
 import { effectiveState } from "../../lib/apply";
 
@@ -25,6 +26,8 @@ export async function getStaticPaths() {
 }
 const { event } = Astro.props;
 const e = event.data;
+// A 1200px JPEG of the banner for link previews; social sites do not reliably take large PNGs.
+const shareImage = e.banner ? (await getImage({ src: banner(e.banner), width: 1200, format: "jpg" })).src : undefined;
 const { Content, headings } = await render(event);
 const contentHeadings = headings.filter((h) => h.depth === 2);
 const schedule = await getEntry("schedules", event.id);
@@ -56,7 +59,7 @@ const jsonLd = {
   endDate: e.endDate,
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-  image: e.banner ? siteUrl(e.banner) : siteUrl(SITE.ogImage),
+  image: new URL(shareImage ?? withBase(SITE.ogImage), Astro.site).href,
   location: {
     "@type": "Place",
     name: e.venue.name,
@@ -74,7 +77,7 @@ const jsonLd = {
   description: e.tagline,
 };
 ---
-<Base title={e.name} description={`${e.name}, ${dateRange(e.startDate, e.endDate)} at ${e.venue.name}. ${e.tagline}`} image={e.banner} jsonLd={jsonLd}>
+<Base title={e.name} description={`${e.name}, ${dateRange(e.startDate, e.endDate)} at ${e.venue.name}. ${e.tagline}`} image={shareImage} jsonLd={jsonLd}>
   <section class="ev-head">
     <div class="container-x">
       <span class="eyebrow">{isPast ? "Past installment" : "Upcoming"} · {e.series === "ndrh" ? "NeuroDataReHack" : "NeuroData AI Summer School"}</span>
@@ -102,7 +105,7 @@ const jsonLd = {
   </section>
 
   {e.banner && isPast && (
-    <div class="container-x ev-banner"><img src={withBase(e.banner)} alt="" loading="eager" /></div>
+    <div class="container-x ev-banner"><Image src={banner(e.banner)} alt="" widths={[800, 1200, 1600, 2000]} sizes="(min-width: 1280px) 75rem, 100vw" loading="eager" /></div>
   )}
 
   <section class="section">

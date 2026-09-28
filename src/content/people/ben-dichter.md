@@ -2,7 +2,7 @@
 name: Ben Dichter
 affiliation: CatalystNeuro
 title: Program Director
-photo: /images/people/ben-dichter.jpg
+photo: ben-dichter.jpg
 roles: [director, faculty, instructor, organizer]
 tools: [NWB, NeuroConv, Neurosift]
 links:
